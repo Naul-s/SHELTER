@@ -1,0 +1,294 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd7487cd1d0a5b4db0d8f0e2b19d758, type: 3}
+  m_Name: PlayerLevelData
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelData
+  levels:
+  - _hp: 1000
+    _def: 50
+    _str: 100
+    _dex: 50
+    _int: 0
+    _speed: 0
+    _weight: 500
+    _exp: 0
+    _sp: 0
+  - _hp: 1000
+    _def: 50
+    _str: 100
+    _dex: 50
+    _int: 0
+    _speed: 0
+    _weight: 500
+    _exp: 100
+    _sp: 5
+  - _hp: 1010
+    _def: 52
+    _str: 105
+    _dex: 55
+    _int: 0
+    _speed: 0
+    _weight: 500
+    _exp: 100
+    _sp: 1
+  - _hp: 1020
+    _def: 54
+    _str: 110
+    _dex: 60
+    _int: 0
+    _speed: 0
+    _weight: 500
+    _exp: 100
+    _sp: 1
+  - _hp: 1030
+    _def: 56
+    _str: 115
+    _dex: 65
+    _int: 0
+    _speed: 0
+    _weight: 500
+    _exp: 100
+    _sp: 1
+  - _hp: 1050
+    _def: 58
+    _str: 120
+    _dex: 70
+    _int: 0
+    _speed: 0
+    _weight: 550
+    _exp: 150
+    _sp: 1
+  - _hp: 1060
+    _def: 60
+    _str: 125
+    _dex: 75
+    _int: 0
+    _speed: 0
+    _weight: 550
+    _exp: 150
+    _sp: 1
+  - _hp: 1070
+    _def: 62
+    _str: 130
+    _dex: 80
+    _int: 0
+    _speed: 0
+    _weight: 550
+    _exp: 150
+    _sp: 1
+  - _hp: 1080
+    _def: 64
+    _str: 135
+    _dex: 85
+    _int: 0
+    _speed: 0
+    _weight: 550
+    _exp: 150
+    _sp: 1
+  - _hp: 1090
+    _def: 66
+    _str: 140
+    _dex: 90
+    _int: 0
+    _speed: 0
+    _weight: 550
+    _exp: 150
+    _sp: 1
+  - _hp: 1110
+    _def: 68
+    _str: 145
+    _dex: 95
+    _int: 0
+    _speed: 0
+    _weight: 600
+    _exp: 200
+    _sp: 3
+  - _hp: 1120
+    _def: 70
+    _str: 150
+    _dex: 100
+    _int: 0
+    _speed: 0
+    _weight: 600
+    _exp: 200
+    _sp: 1
+  - _hp: 1130
+    _def: 72
+    _str: 155
+    _dex: 105
+    _int: 0
+    _speed: 0
+    _weight: 600
+    _exp: 200
+    _sp: 1
+  - _hp: 1140
+    _def: 74
+    _str: 160
+    _dex: 110
+    _int: 0
+    _speed: 0
+    _weight: 600
+    _exp: 200
+    _sp: 1
+  - _hp: 1150
+    _def: 76
+    _str: 165
+    _dex: 115
+    _int: 0
+    _speed: 0
+    _weight: 600
+    _exp: 200
+    _sp: 1
+  - _hp: 1170
+    _def: 78
+    _str: 170
+    _dex: 120
+    _int: 0
+    _speed: 0
+    _weight: 650
+    _exp: 250
+    _sp: 1
+  - _hp: 1180
+    _def: 80
+    _str: 175
+    _dex: 125
+    _int: 0
+    _speed: 0
+    _weight: 650
+    _exp: 250
+    _sp: 1
+  - _hp: 1190
+    _def: 82
+    _str: 180
+    _dex: 130
+    _int: 0
+    _speed: 0
+    _weight: 650
+    _exp: 250
+    _sp: 1
+  - _hp: 1200
+    _def: 84
+    _str: 185
+    _dex: 135
+    _int: 0
+    _speed: 0
+    _weight: 650
+    _exp: 250
+    _sp: 1
+  - _hp: 1210
+    _def: 86
+    _str: 190
+    _dex: 140
+    _int: 0
+    _speed: 0
+    _weight: 650
+    _exp: 250
+    _sp: 1
+  - _hp: 1230
+    _def: 88
+    _str: 195
+    _dex: 145
+    _int: 0
+    _speed: 0
+    _weight: 700
+    _exp: 300
+    _sp: 3
+  - _hp: 1240
+    _def: 90
+    _str: 200
+    _dex: 150
+    _int: 0
+    _speed: 0
+    _weight: 700
+    _exp: 300
+    _sp: 1
+  - _hp: 1250
+    _def: 92
+    _str: 205
+    _dex: 155
+    _int: 0
+    _speed: 0
+    _weight: 700
+    _exp: 300
+    _sp: 1
+  - _hp: 1260
+    _def: 94
+    _str: 210
+    _dex: 160
+    _int: 0
+    _speed: 0
+    _weight: 700
+    _exp: 300
+    _sp: 1
+  - _hp: 1270
+    _def: 96
+    _str: 215
+    _dex: 165
+    _int: 0
+    _speed: 0
+    _weight: 700
+    _exp: 300
+    _sp: 1
+  - _hp: 1290
+    _def: 98
+    _str: 220
+    _dex: 170
+    _int: 0
+    _speed: 0
+    _weight: 750
+    _exp: 350
+    _sp: 1
+  - _hp: 1300
+    _def: 100
+    _str: 225
+    _dex: 175
+    _int: 0
+    _speed: 0
+    _weight: 750
+    _exp: 350
+    _sp: 1
+  - _hp: 1310
+    _def: 102
+    _str: 230
+    _dex: 180
+    _int: 0
+    _speed: 0
+    _weight: 750
+    _exp: 350
+    _sp: 1
+  - _hp: 1320
+    _def: 104
+    _str: 235
+    _dex: 185
+    _int: 0
+    _speed: 0
+    _weight: 750
+    _exp: 350
+    _sp: 1
+  - _hp: 1330
+    _def: 106
+    _str: 240
+    _dex: 190
+    _int: 0
+    _speed: 0
+    _weight: 750
+    _exp: 350
+    _sp: 1
+  - _hp: 1400
+    _def: 110
+    _str: 250
+    _dex: 200
+    _int: 0
+    _speed: 0
+    _weight: 800
+    _exp: 500
+    _sp: 3
