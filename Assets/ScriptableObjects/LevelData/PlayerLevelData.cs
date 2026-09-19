@@ -80,8 +80,8 @@ public class PlayerLevelData : ScriptableObject
         stats.INT = intelligence;
         stats.Speed = speed;
         stats.Weight = weight;
-        stats.EXP = exp;
-        stats.SP = sp;
+        stats._EXP = exp;
+        stats._SP = sp;
 
         return stats;
     }
