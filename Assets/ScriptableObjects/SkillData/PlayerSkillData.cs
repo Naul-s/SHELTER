@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerSkillData", menuName = "Game/Player Skill Data")]
+[CreateAssetMenu(fileName = "PlayerSkillData", menuName = "SO/Player Skill Data")]
 public class PlayerSkillData : ScriptableObject
 {
     public enum Tier

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerSkillManager : MonoBehaviour
 {
     //public static PlayerSkillManager Instance { get; private set; }
-    public PlayerStats PlayerStats;
+    public PlayerStats playerStats;
 
     public P_Stats total_stats;
     public SkillEffect[] total_effects;
@@ -34,63 +34,51 @@ public class PlayerSkillManager : MonoBehaviour
         //}
     }
 
+    private readonly Color activeColor = new Color(80 / 255f, 80 / 255f, 80 / 255f, 192 / 255f);
+    private readonly Color inactiveColor = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
+
     private void Start()
     {
-        btn_A.onClick.AddListener(() => {
-            btn_A.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 192 / 255f);
-            btn_G.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
-            btn_H.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
-            node_A.SetActive(true);
-            node_G.SetActive(false);
-            node_H.SetActive(false);
-        });
-        btn_G.onClick.AddListener(() => {
-             btn_A.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
-             btn_G.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 192 / 255f);
-             btn_H.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
-            node_A.SetActive(false);
-            node_G.SetActive(true);
-            node_H.SetActive(false);
-        });
-        btn_H.onClick.AddListener(() => {
-            btn_A.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
-            btn_G.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
-            btn_H.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 192 / 255f);
-            node_A.SetActive(false);
-            node_G.SetActive(false);
-            node_H.SetActive(true);
-        });
+        btn_A.onClick.AddListener(() => SelectTab(node_A, btn_A));
+        btn_G.onClick.AddListener(() => SelectTab(node_G, btn_G));
+        btn_H.onClick.AddListener(() => SelectTab(node_H, btn_H));
 
-        btn_A.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 192 / 255f);
-        btn_G.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
-        btn_H.image.color = new Color(80 / 255f, 80 / 255f, 80 / 255f, 128 / 255f);
-        node_A.SetActive(true);
-        node_G.SetActive(false);
-        node_H.SetActive(false);
+        // 기본 탭 선택
+        SelectTab(node_A, btn_A);
+    }
+
+    private void SelectTab(GameObject targetPage, Button targetButton)
+    {
+        // 모든 페이지 비활성화 및 색상 초기화
+        node_A.SetActive(node_A == targetPage);
+        node_G.SetActive(node_G == targetPage);
+        node_H.SetActive(node_H == targetPage);
+
+        btn_A.image.color = (btn_A == targetButton) ? activeColor : inactiveColor;
+        btn_G.image.color = (btn_G == targetButton) ? activeColor : inactiveColor;
+        btn_H.image.color = (btn_H == targetButton) ? activeColor : inactiveColor;
     }
 
     private void OnEnable()
     {
-        PlayerStats.OnSPChanged += UI_Update_curSP;
-        UI_Update_curSP(PlayerStats.SP);
-        PlayerStats.ONLevelChanged += UI_Update_Level;
-        UI_Update_Level(PlayerStats.Level);
+        if (playerStats != null)
+        {
+            playerStats.OnStatChanged += UI_Refresh;
+        }
     }
 
     private void OnDisable()
     {
-        PlayerStats.OnSPChanged -= UI_Update_curSP;
-        PlayerStats.ONLevelChanged -= UI_Update_curSP;
+        if (playerStats != null)
+        {
+            playerStats.OnStatChanged -= UI_Refresh;
+        }
     }
 
-    void UI_Update_curSP(int _sp)
+    private void UI_Refresh()
     {
-        text_curSP.text = "SP : " + _sp.ToString();
-    }
-
-    void UI_Update_Level(int _level)
-    {
-        text_Level.text = "LV : " + _level.ToString();
+        text_curSP.text = "SP : " + playerStats.CurrentStats.SP.ToString();
+        text_Level.text = "LV : " + playerStats.Level.ToString();
     }
 
     public void Set_Total_Skill_Effects(P_Stats _stats, SkillEffect[] _effects)
@@ -102,9 +90,9 @@ public class PlayerSkillManager : MonoBehaviour
         total_stats.INT += _stats.INT;
         total_stats.Speed += _stats.Speed;
         total_stats.Weight += _stats.Weight;
-        total_stats._EXP += _stats._EXP;
-        total_stats._SP += _stats._SP;
-        PlayerStats.Calculate_TotalStats();
+        total_stats.EXP += _stats.EXP;
+        total_stats.SP += _stats.SP;
+        playerStats.Calculate_Stats();
 
         for (int i = 0; i < total_effects.Length; i++)
         {

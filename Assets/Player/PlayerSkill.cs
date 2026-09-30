@@ -28,12 +28,18 @@ public class PlayerSkill : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void OnEnable()
     {
-        playerSkillManager.PlayerStats.ONLevelChanged += Update_NextSkill;
-        Update_NextSkill(playerSkillManager.PlayerStats.Level);
+        if (playerSkillManager.playerStats != null)
+        {
+            playerSkillManager.playerStats.OnStatChanged += Update_NextSkill;
+            Update_NextSkill();
+        }
     }
     private void OnDisable()
     {
-        playerSkillManager.PlayerStats.ONLevelChanged -= Update_NextSkill;
+        if (playerSkillManager.playerStats != null)
+        {
+            playerSkillManager.playerStats.OnStatChanged -= Update_NextSkill;
+        }
     }
 
     public void Start()
@@ -69,7 +75,7 @@ public class PlayerSkill : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (stats.INT > 0) _statTexts.Add("INT +" + stats.INT); else if (stats.INT < 0) _statTexts.Add("INT " + stats.INT);
         if (stats.Speed > 0) _statTexts.Add("Speed +" + stats.Speed); else if (stats.Speed < 0) _statTexts.Add("Speed " + stats.Speed);
         if (stats.Weight > 0) _statTexts.Add("Weight +" + stats.Weight); else if (stats.Weight < 0) _statTexts.Add("Weight " + stats.Weight);
-        if (stats._EXP > 0) _statTexts.Add("EXP +" + stats._EXP); else if (stats._EXP < 0) _statTexts.Add("EXP " + stats._EXP);
+        if (stats.EXP > 0) _statTexts.Add("EXP +" + stats.EXP); else if (stats.EXP < 0) _statTexts.Add("EXP " + stats.EXP);
         if (_statTexts.Count > 0)
         {
             for (int i = 0; i < _statTexts.Count; i++)
@@ -140,8 +146,8 @@ public class PlayerSkill : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (isOn == false && isUnlock)
         {
             // SP 소모
-            if (playerSkillManager.PlayerStats.SP - playerSkillData.SP_cost < 0) return;
-            playerSkillManager.PlayerStats.SP -= playerSkillData.SP_cost;
+            if (playerSkillManager.playerStats.CurrentStats.SP - playerSkillData.SP_cost < 0) return;
+            playerSkillManager.playerStats.CurrentStats.SP -= playerSkillData.SP_cost;
 
             isOn = true;
             Update_SkillDetails();
@@ -162,13 +168,12 @@ public class PlayerSkill : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     break;
             }
 
-            // ActivateSkill()
             playerSkillManager.Set_Total_Skill_Effects(playerSkillData.stats, playerSkillData.effects);
 
-            Update_NextSkill(playerSkillManager.PlayerStats.Level);
+            Update_NextSkill();
         }
     }
-    public void Update_NextSkill(int _level)// 다음 스킬들의 잠금상태 업데이트
+    public void Update_NextSkill()// 다음 스킬들의 잠금상태 업데이트
     {
         for (int i = 0; i < nextSkills.Length; i++)
         {
@@ -186,7 +191,7 @@ public class PlayerSkill : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     _requiredLevel = 25;
                     break;
             }
-            if (_level < _requiredLevel) return;
+            if (playerSkillManager.playerStats.Level < _requiredLevel) return;
 
             // 선행 노드가 모두 찍혀있는지 확인
             bool _isOn = true;

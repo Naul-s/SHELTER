@@ -18,7 +18,7 @@ MonoBehaviour:
     _str: 100
     _dex: 50
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 500
     _exp: 0
     _sp: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     _str: 100
     _dex: 50
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 500
     _exp: 100
     _sp: 5
@@ -36,7 +36,7 @@ MonoBehaviour:
     _str: 105
     _dex: 55
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 500
     _exp: 100
     _sp: 1
@@ -45,7 +45,7 @@ MonoBehaviour:
     _str: 110
     _dex: 60
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 500
     _exp: 100
     _sp: 1
@@ -54,7 +54,7 @@ MonoBehaviour:
     _str: 115
     _dex: 65
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 500
     _exp: 100
     _sp: 1
@@ -63,7 +63,7 @@ MonoBehaviour:
     _str: 120
     _dex: 70
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 550
     _exp: 150
     _sp: 1
@@ -72,7 +72,7 @@ MonoBehaviour:
     _str: 125
     _dex: 75
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 550
     _exp: 150
     _sp: 1
@@ -81,7 +81,7 @@ MonoBehaviour:
     _str: 130
     _dex: 80
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 550
     _exp: 150
     _sp: 1
@@ -90,7 +90,7 @@ MonoBehaviour:
     _str: 135
     _dex: 85
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 550
     _exp: 150
     _sp: 1
@@ -99,7 +99,7 @@ MonoBehaviour:
     _str: 140
     _dex: 90
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 550
     _exp: 150
     _sp: 1
@@ -108,7 +108,7 @@ MonoBehaviour:
     _str: 145
     _dex: 95
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 600
     _exp: 200
     _sp: 3
@@ -117,7 +117,7 @@ MonoBehaviour:
     _str: 150
     _dex: 100
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 600
     _exp: 200
     _sp: 1
@@ -126,7 +126,7 @@ MonoBehaviour:
     _str: 155
     _dex: 105
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 600
     _exp: 200
     _sp: 1
@@ -135,7 +135,7 @@ MonoBehaviour:
     _str: 160
     _dex: 110
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 600
     _exp: 200
     _sp: 1
@@ -144,7 +144,7 @@ MonoBehaviour:
     _str: 165
     _dex: 115
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 600
     _exp: 200
     _sp: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     _str: 170
     _dex: 120
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 650
     _exp: 250
     _sp: 1
@@ -162,7 +162,7 @@ MonoBehaviour:
     _str: 175
     _dex: 125
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 650
     _exp: 250
     _sp: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
     _str: 180
     _dex: 130
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 650
     _exp: 250
     _sp: 1
@@ -180,7 +180,7 @@ MonoBehaviour:
     _str: 185
     _dex: 135
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 650
     _exp: 250
     _sp: 1
@@ -189,7 +189,7 @@ MonoBehaviour:
     _str: 190
     _dex: 140
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 650
     _exp: 250
     _sp: 1
@@ -198,7 +198,7 @@ MonoBehaviour:
     _str: 195
     _dex: 145
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 700
     _exp: 300
     _sp: 3
@@ -207,7 +207,7 @@ MonoBehaviour:
     _str: 200
     _dex: 150
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 700
     _exp: 300
     _sp: 1
@@ -216,7 +216,7 @@ MonoBehaviour:
     _str: 205
     _dex: 155
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 700
     _exp: 300
     _sp: 1
@@ -225,7 +225,7 @@ MonoBehaviour:
     _str: 210
     _dex: 160
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 700
     _exp: 300
     _sp: 1
@@ -234,7 +234,7 @@ MonoBehaviour:
     _str: 215
     _dex: 165
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 700
     _exp: 300
     _sp: 1
@@ -243,7 +243,7 @@ MonoBehaviour:
     _str: 220
     _dex: 170
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 750
     _exp: 350
     _sp: 1
@@ -252,7 +252,7 @@ MonoBehaviour:
     _str: 225
     _dex: 175
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 750
     _exp: 350
     _sp: 1
@@ -261,7 +261,7 @@ MonoBehaviour:
     _str: 230
     _dex: 180
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 750
     _exp: 350
     _sp: 1
@@ -270,7 +270,7 @@ MonoBehaviour:
     _str: 235
     _dex: 185
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 750
     _exp: 350
     _sp: 1
@@ -279,7 +279,7 @@ MonoBehaviour:
     _str: 240
     _dex: 190
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 750
     _exp: 350
     _sp: 1
@@ -288,7 +288,7 @@ MonoBehaviour:
     _str: 250
     _dex: 200
     _int: 0
-    _speed: 0
+    _speed: 2.5
     _weight: 800
     _exp: 500
     _sp: 3

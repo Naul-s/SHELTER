@@ -25,21 +25,27 @@ public class VRController : MonoBehaviour
     [SerializeField] private Transform leftController;
     [SerializeField] private Transform rightController;
 
+
+
+
     [SerializeField] private GameObject UI_SKill;
+    [SerializeField] private GameObject UI_Inventory;
+
     void Awake()
     {
         UI_SKill.gameObject.SetActive(false);
+        UI_Inventory.gameObject.SetActive(false);
     }
 
     void Update()
     {
         if (right_btn_A.action != null && right_btn_A.action.WasPressedThisFrame())
         {
-            Debug.Log("오른쪽 A키 입력");
+            //Debug.Log("오른쪽 A키 입력");
         }
         if (right_btn_B.action != null && right_btn_B.action.WasPressedThisFrame())
         {
-            Debug.Log("오른쪽 B키 입력");
+            //Debug.Log("오른쪽 B키 입력");
         }
         if (right_stick.action != null)
         {
@@ -47,17 +53,17 @@ public class VRController : MonoBehaviour
 
             if (inputVector.magnitude > 0.1f)// 스틱을 일정 이상 밀었을 때만 작동 (Deadzone 처리)
             {
-                Debug.Log("오른쪽 스틱 입력" + inputVector);
+                //Debug.Log("오른쪽 스틱 입력" + inputVector);
             }
         }
 
         if (right_btn_front.action != null && right_btn_front.action.WasPressedThisFrame())
         {
-            Debug.Log("오른쪽 정면키 입력");
+            //Debug.Log("오른쪽 정면키 입력");
         }
         if (right_btn_side.action != null && right_btn_side.action.WasPressedThisFrame())
         {
-            Debug.Log("오른쪽 측면키 입력");
+            //Debug.Log("오른쪽 측면키 입력");
         }
 
 
@@ -65,7 +71,7 @@ public class VRController : MonoBehaviour
 
         if (left_btn_X.action != null && left_btn_X.action.WasPressedThisFrame())
         {
-            Debug.Log("왼쪽 X키 입력");
+            //Debug.Log("왼쪽 X키 입력");
 
             // Skill 창 활성화
             Vector3 spawnPosition = mainCamera.position + (mainCamera.forward * 0.8f);
@@ -77,7 +83,15 @@ public class VRController : MonoBehaviour
         }
         if (left_btn_Y.action != null && left_btn_Y.action.WasPressedThisFrame())
         {
-            Debug.Log("왼쪽 Y키 입력");
+            //Debug.Log("왼쪽 Y키 입력");
+
+            // Inventory 창 활성화
+            Vector3 spawnPosition = mainCamera.position + (mainCamera.forward * 0.8f);
+            spawnPosition.y += -0.2f;
+            UI_Inventory.transform.position = spawnPosition;
+            UI_Inventory.transform.rotation = mainCamera.rotation;
+
+            UI_Inventory.gameObject.SetActive(!UI_Inventory.gameObject.activeSelf);
         }
         if (left_stick.action != null)
         {
@@ -85,21 +99,21 @@ public class VRController : MonoBehaviour
 
             if (inputVector.magnitude > 0.1f)// 스틱을 일정 이상 밀었을 때만 작동 (Deadzone 처리)
             {
-                Debug.Log("왼쪽 스틱 입력" + inputVector);
+                //Debug.Log("왼쪽 스틱 입력" + inputVector);
             }
         }
         if (left_btn_menu.action != null && left_btn_menu.action.WasPressedThisFrame())
         {
-            Debug.Log("왼쪽 메뉴키 입력");
+            //Debug.Log("왼쪽 메뉴키 입력");
         }
 
         if (left_btn_front.action != null && left_btn_front.action.WasPressedThisFrame())
         {
-            Debug.Log("왼쪽 정면키 입력");
+            //Debug.Log("왼쪽 정면키 입력");
         }
         if (left_btn_side.action != null && left_btn_side.action.WasPressedThisFrame())
         {
-            Debug.Log("왼쪽 측면키 입력");
+            //Debug.Log("왼쪽 측면키 입력");
         }
     }
 }
