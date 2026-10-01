@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7561619d930df24f98fb720a4c9fa3a, type: 3}
+  m_Name: Wood
+  m_EditorClassIdentifier: Assembly-CSharp::Shelter.Gathering.ResourceNodeData
+  _resourceType: 0
+  _displayName: "\uB098\uBB34"
+  _nodePrefab: {fileID: 7327986545186764091, guid: 6a3bbaf7841e71f4e8bd73015198dca9, type: 3}
+  _totalAmount: 10
+  _amountPerHit: 2
+  _respawnDelayMinMinutes: 10
+  _respawnDelayMaxMinutes: 12
+  _minSpacing: 3
+  _randomYaw: 0
+  _scaleRange: {x: 1, y: 1}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54990f2d54a44747a33c1fcb4f852ad, type: 3}
+  m_Name: EnemyData_Walker
+  m_EditorClassIdentifier: Assembly-CSharp::Shelter.Enemies.EnemyData
+  _enemyId: zombie_walker
+  _displayName: "\uC77C\uBC18 \uC880\uBE44 (Walker)"
+  _maxHealth: 100
+  _defense: 5
+  _moveSpeed: 2
+  _attackPower: 20
+  _attackRange: 1.2
+  _attackCooldown: 1.8
+  _attackWindupTime: 0.4
+  _aggroRadius: 8
+  _playerPreferenceWeight: 0.5
+  _loseTargetRadius: 12
+  _loseTargetTime: 5
+  _switchTargetOnHit: 0
+  _targetReevaluateInterval: 0.5
+  _corpseLifetime: 8
