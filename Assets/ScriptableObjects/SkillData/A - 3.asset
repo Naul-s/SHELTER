@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c941c46bc903404ca93b90bba7eb803, type: 3}
+  m_Name: A - 3
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillData
+  isUnlock: 0
+  isOn: 0
+  tier: 0
+  skillName: "\uC2E0\uCCB4 \uAC15\uD654 I"
+  stats:
+    _hp: 0
+    _def: 5
+    _str: 0
+    _dex: 0
+    _int: 2
+    _speed: 0
+    _weight: 0
+    _exp: 0
+    _sp: 0
+  effects: []
+  SP_cost: 1
+  prevSkills: []
+  nextSkills:
+  - {fileID: 11400000, guid: 212af6133202c5b40aee1252c8cd7c60, type: 2}
