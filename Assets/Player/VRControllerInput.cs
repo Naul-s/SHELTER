@@ -72,53 +72,53 @@ public class VRController : MonoBehaviour
         if (right_btn_front.action != null && right_btn_front.action.WasPressedThisFrame())
         {
             //Debug.Log("오른쪽 정면키 입력");
-            On_right_btn_front?.Invoke();
-            for (int i = 0; i < rightHandBone.Length; i++)
-            {
-                right_front_grab[i] = rightHandBone[i].localEulerAngles;
-            }
+            //On_right_btn_front?.Invoke();
+            //for (int i = 0; i < rightHandBone.Length; i++)
+            //{
+            //    right_side_grab[i] = rightHandBone[i].localEulerAngles;
+            //}
         }
-        //if (right_btn_front_value.action != null)
-        //{
-        //    float inputValue = right_btn_front_value.action.ReadValue<float>();
-        //    for (int i = 0; i < 3; i++)// 검지손가락만
-        //    {
-        //        Vector3 baseRot = right_base[i];
-        //        Vector3 grabRot = right_front_grab[i];
-        //
-        //        Vector3 result = new Vector3(
-        //            Mathf.LerpAngle(baseRot.x, grabRot.x, inputValue),
-        //            Mathf.LerpAngle(baseRot.y, grabRot.y, inputValue),
-        //            Mathf.LerpAngle(baseRot.z, grabRot.z, inputValue)
-        //        );
-        //
-        //        rightHandBone[i].localEulerAngles = result;
-        //    }
-        //
-        //    //Debug.Log("오른쪽 정면키 입력값" + inputValue);
-        //}
+        if (right_btn_front_value.action != null)
+        {
+            float inputValue = right_btn_front_value.action.ReadValue<float>();
+            for (int i = 0; i < 3; i++)// 검지손가락만
+            {
+                Vector3 baseRot = right_base[i];
+                Vector3 grabRot = right_front_grab[i];
+        
+                Vector3 result = new Vector3(
+                    Mathf.LerpAngle(baseRot.x, grabRot.x, inputValue),
+                    Mathf.LerpAngle(baseRot.y, grabRot.y, inputValue),
+                    Mathf.LerpAngle(baseRot.z, grabRot.z, inputValue)
+                );
+        
+                rightHandBone[i].localEulerAngles = result;
+            }
+        
+            //Debug.Log("오른쪽 정면키 입력값" + inputValue);
+        }
         if (right_btn_side.action != null && right_btn_side.action.WasPressedThisFrame())
         {
             //Debug.Log("오른쪽 측면키 입력");
         }
-        //if (right_btn_side_value.action != null)
-        //{
-        //    float inputValue = right_btn_side_value.action.ReadValue<float>();
-        //    for (int i = 3; i < rightHandBone.Length; i++)// 검지손가락 제외
-        //    {
-        //        Vector3 baseRot = right_base[i];
-        //        Vector3 grabRot = right_side_grab[i];
-        //
-        //        Vector3 result = new Vector3(
-        //            Mathf.LerpAngle(baseRot.x, grabRot.x, inputValue),
-        //            Mathf.LerpAngle(baseRot.y, grabRot.y, inputValue),
-        //            Mathf.LerpAngle(baseRot.z, grabRot.z, inputValue)
-        //        );
-        //
-        //        rightHandBone[i].localEulerAngles = result;
-        //    }
-        //    //Debug.Log("오른쪽 측면키 입력값" + inputValue);
-        //}
+        if (right_btn_side_value.action != null)
+        {
+            float inputValue = right_btn_side_value.action.ReadValue<float>();
+            for (int i = 3; i < rightHandBone.Length; i++)// 검지손가락 제외
+            {
+                Vector3 baseRot = right_base[i];
+                Vector3 grabRot = right_side_grab[i];
+        
+                Vector3 result = new Vector3(
+                    Mathf.LerpAngle(baseRot.x, grabRot.x, inputValue),
+                    Mathf.LerpAngle(baseRot.y, grabRot.y, inputValue),
+                    Mathf.LerpAngle(baseRot.z, grabRot.z, inputValue)
+                );
+        
+                rightHandBone[i].localEulerAngles = result;
+            }
+            //Debug.Log("오른쪽 측면키 입력값" + inputValue);
+        }
 
 
 
