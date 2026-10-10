@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private bool isGrab = false;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private VRController vrController;
 
     private XRGrabInteractable xRGrabInteractable;
     private Rigidbody rigid;
@@ -35,6 +36,12 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float hapticAmplitude = 0.5f;
     [SerializeField] private float hapticDuration = 0.1f;
 
+
+    [Header("ÃÑ ¼³Á¤")]
+    [SerializeField] private bool isGun;
+    [SerializeField] private Transform bulletPos;
+    [SerializeField] private GameObject bullet;
+
     private void Start()
     {
         xRGrabInteractable = GetComponentInParent<XRGrabInteractable>();
@@ -59,6 +66,19 @@ public class Weapon : MonoBehaviour
         playerStats = arg0.interactorObject.transform.GetComponentInParent<PlayerStats>();
         if (slot == null)
         xRGrabInteractable.throwOnDetach = true;
+
+        if (isGun)
+        {
+            vrController = playerStats.transform.GetComponentInParent<VRController>();
+            if (arg0.interactorObject.transform.gameObject.CompareTag("Left"))
+            {
+                vrController.On_left_btn_front += Shot;
+            }
+            else if (arg0.interactorObject.transform.gameObject.CompareTag("Right"))
+            {
+                vrController.On_right_btn_front += Shot;
+            }
+        }
     }
 
     private void OnSelectExited(SelectExitEventArgs arg0)
@@ -85,6 +105,13 @@ public class Weapon : MonoBehaviour
         }
 
         playerStats = null;
+
+        if (isGun)
+        {
+            vrController.On_left_btn_front -= Shot;
+            vrController.On_right_btn_front -= Shot;
+            vrController = null;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -162,5 +189,12 @@ public class Weapon : MonoBehaviour
         }
 
         return 0;
+    }
+
+    void Shot()
+    {
+        Instantiate(bullet, bulletPos.position, bulletPos.rotation);
+        SendHaptic();
+        Debug.Log("»ç°Ý");
     }
 }
