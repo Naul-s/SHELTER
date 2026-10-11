@@ -1,3 +1,4 @@
+using RootMotion.Demos;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,9 +39,18 @@ public class Weapon : MonoBehaviour
 
 
     [Header("총 설정")]
+    [Tooltip("총이면 체크")]
     [SerializeField] private bool isGun;
-    [SerializeField] private Transform bulletPos;
+    [Tooltip("flase = 단발, true = 단발<->연사 전환가능 / 총 소환시 기본 상태는 단발")]
+    [SerializeField] private bool isAutoChange = false; private bool isAuto = false;
+    [SerializeField] private float maxDistance = 100f;
+    [SerializeField] private float shotColldown = 0.1f;
+    private float lastShotTime;
+    [SerializeField] private Transform muzzle;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private AudioSource shotSound;
+
+    bool isRight;
 
     private void Start()
     {
@@ -70,13 +80,25 @@ public class Weapon : MonoBehaviour
         if (isGun)
         {
             vrController = playerStats.transform.GetComponentInParent<VRController>();
+
+
             if (arg0.interactorObject.transform.gameObject.CompareTag("Left"))
             {
-                vrController.On_left_btn_front += Shot;
+                isRight = false;
+                if (isAuto == false) vrController.On_left_btn_front += Shot;
+                else vrController.On_left_btn_front_Update += Shot;
+
+                vrController.On_left_btn_X += ReLoad;
+                vrController.On_left_btn_Y += AutoChange;
             }
             else if (arg0.interactorObject.transform.gameObject.CompareTag("Right"))
             {
-                vrController.On_right_btn_front += Shot;
+                isRight = true;
+                if (isAuto == false) vrController.On_right_btn_front += Shot;
+                else vrController.On_right_btn_front_Update += Shot;
+
+                vrController.On_right_btn_A += ReLoad;
+                vrController.On_right_btn_B += AutoChange;
             }
         }
     }
@@ -109,7 +131,13 @@ public class Weapon : MonoBehaviour
         if (isGun)
         {
             vrController.On_left_btn_front -= Shot;
+            vrController.On_left_btn_front_Update -= Shot;
+            vrController.On_left_btn_X -= ReLoad;
+            vrController.On_left_btn_Y -= AutoChange;
             vrController.On_right_btn_front -= Shot;
+            vrController.On_right_btn_front_Update -= Shot;
+            vrController.On_right_btn_A -= ReLoad;
+            vrController.On_right_btn_B -= AutoChange;
             vrController = null;
         }
     }
@@ -193,8 +221,63 @@ public class Weapon : MonoBehaviour
 
     void Shot()
     {
-        Instantiate(bullet, bulletPos.position, bulletPos.rotation);
+        if (MathF.Abs(Time.time - lastShotTime) < shotColldown) return;
+
+        Ray ray = new Ray(muzzle.position, muzzle.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance))
+        {
+            Debug.Log($"맞은 대상: {hit.collider.name}, 위치: {hit.point}");
+            GameObject go = Instantiate(bullet, hit.point, muzzle.rotation);
+            Destroy(go, 10f);
+        }
+
+        Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.red, 2f);
+
         SendHaptic();
-        Debug.Log("사격");
+        shotSound.PlayOneShot(shotSound.clip);
+
+
+        lastShotTime = Time.time;
+    }
+
+    void AutoChange()
+    {
+        if (isAutoChange == false) return;
+
+        isAuto = !isAuto;
+
+        vrController.On_left_btn_front -= Shot;
+        vrController.On_right_btn_front -= Shot;
+        vrController.On_left_btn_front_Update -= Shot;
+        vrController.On_right_btn_front_Update -= Shot;
+
+        if (isAuto == false)
+        {
+            if (isRight == false)
+            {
+                vrController.On_left_btn_front += Shot;
+            }
+            else
+            {
+                vrController.On_right_btn_front += Shot;
+            }
+        }
+        else
+        {
+            if (isRight == false)
+            {
+                vrController.On_left_btn_front_Update += Shot;
+            }
+            else
+            {
+                vrController.On_right_btn_front_Update += Shot;
+            }
+        }
+    }
+
+    void ReLoad()
+    {
+
     }
 }
