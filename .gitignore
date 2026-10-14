@@ -104,3 +104,14 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# AI agent harness (local only — not shared)
+/CLAUDE.md
+CLAUDE.local.md
+/.claude/
+/.mcp.json
+/[Aa]ssets/_AIHarness/
+/[Aa]ssets/_AIHarness.meta
+
+# Notion planning cache (no longer used)
+/Docs/notion/
