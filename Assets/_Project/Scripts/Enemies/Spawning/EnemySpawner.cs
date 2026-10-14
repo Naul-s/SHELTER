@@ -18,6 +18,13 @@ namespace Shelter.Enemies.Spawning
 
         private readonly Dictionary<EnemyBase, EnemyPool> _poolsByPrefab = new Dictionary<EnemyBase, EnemyPool>();
         private readonly Dictionary<EnemyBase, EnemyPool> _poolByActiveInstance = new Dictionary<EnemyBase, EnemyPool>();
+        private readonly HashSet<EnemyBase> _alive = new HashSet<EnemyBase>();
+
+        /// <summary>스폰됐고 아직 죽지 않은 좀비 수(시체는 제외).</summary>
+        public int AliveCount => _alive.Count;
+
+        /// <summary>좀비 한 마리가 죽어 AliveCount가 줄어든 직후.</summary>
+        public event System.Action<EnemyBase> EnemyKilled;
 
         public EnemyBase SpawnEntry(EnemySpawnEntry entry, Transform point)
         {
@@ -32,7 +39,9 @@ namespace Shelter.Enemies.Spawning
             EnemyBase instance = pool.Get();
             _poolByActiveInstance[instance] = pool;
             instance.DespawnRequested += HandleDespawnRequested;
+            instance.EnemyDied += HandleEnemyDied;
             instance.Spawn(entry.Data, point.position, point.rotation);
+            _alive.Add(instance);
             return instance;
         }
 
@@ -57,9 +66,17 @@ namespace Shelter.Enemies.Spawning
             return WeightedRandomPicker.Pick(_entries, e => e.Weight);
         }
 
+        private void HandleEnemyDied(EnemyBase instance)
+        {
+            if (_alive.Remove(instance))
+                EnemyKilled?.Invoke(instance);
+        }
+
         private void HandleDespawnRequested(EnemyBase instance)
         {
             instance.DespawnRequested -= HandleDespawnRequested;
+            instance.EnemyDied -= HandleEnemyDied;
+            _alive.Remove(instance);
 
             if (_poolByActiveInstance.TryGetValue(instance, out EnemyPool pool))
             {

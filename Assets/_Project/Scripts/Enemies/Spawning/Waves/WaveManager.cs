@@ -40,6 +40,8 @@ namespace Shelter.Enemies.Spawning.Waves
 
         public int CurrentRound { get; private set; }
 
+        public EnemySpawner Spawner => _spawner;
+
         /// <summary>라운드 시작이 결정된 시점(텔레그래프 연출 시작 신호) — ui-audio 스킬이 하늘색/SFX 연출에 구독.</summary>
         public event Action<int> RoundTelegraphStarted;
         /// <summary>텔레그래프 대기가 끝나고 실제 스폰이 시작되는 시점.</summary>
@@ -66,25 +68,26 @@ namespace Shelter.Enemies.Spawning.Waves
             StartRound(CurrentRound + 1);
         }
 
-        /// <summary>day-night-cycle이 넘겨주는 절대 라운드(Day) 번호로 웨이브를 시작한다.</summary>
-        public void StartRound(int roundNumber)
+        /// <summary>절대 라운드 번호로 웨이브를 시작한다. 해당 라운드의 WaveDefinition/스포너가 없어 시작하지 못하면 false.</summary>
+        public bool StartRound(int roundNumber)
         {
             WaveDefinition wave = _waveProvider.GetWaveDefinition(roundNumber);
             if (wave == null)
             {
                 Debug.LogWarning($"{name}: round {roundNumber}에 대응하는 WaveDefinition이 없습니다.", this);
-                return;
+                return false;
             }
 
             if (_spawner == null)
             {
                 Debug.LogError($"{name}: EnemySpawner가 연결되지 않았습니다.", this);
-                return;
+                return false;
             }
 
             CurrentRound = roundNumber;
             int activePlayerCount = PlayerHealth.ActiveInstances.Count;
             StartCoroutine(RunWave(wave, roundNumber, activePlayerCount));
+            return true;
         }
 
         private IEnumerator RunWave(WaveDefinition wave, int roundNumber, int activePlayerCount)

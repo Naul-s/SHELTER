@@ -41,6 +41,8 @@ namespace Shelter.Enemies
 
         public event Action<DamageInfo> Damaged;
         public event Action Died;
+        /// <summary>사망한 개체 자신을 넘겨주는 사망 이벤트 — 스포너가 생존 수를 세는 데 사용한다.</summary>
+        public event Action<EnemyBase> EnemyDied;
 
         /// <summary>사체 유지 시간이 끝나 풀로 반환해도 좋다는 신호. Spawner/Pool이 구독한다.</summary>
         public event Action<EnemyBase> DespawnRequested;
@@ -270,6 +272,7 @@ namespace Shelter.Enemies
             _animationDriver.PlayDeath();
 
             Died?.Invoke();
+            EnemyDied?.Invoke(this);
         }
     }
 }

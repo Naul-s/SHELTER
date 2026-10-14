@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Shelter.Core;
+using Shelter.Player;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -8,28 +10,26 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private bool isGrab = false;
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerAttackStats attackStats;
 
     private XRGrabInteractable xRGrabInteractable;
     private Rigidbody rigid;
     [SerializeField] private EquipmentSlot slot;
-    [SerializeField] private bool isCollisionState = false;// ÇÏÀ§¿¡ ¿©·¯°³ÀÇ Äİ¶óÀÌ´õ°¡ ÀÖÀ» ½Ã Ãæµ¹È½¼ö¸¦ 1È¸·Î Á¦ÇÑÇÏ±â À§ÇÑ ¿ëµµ Æ÷ÇÔ
+    [SerializeField] private bool isCollisionState = false;// í•˜ìœ„ì— ì—¬ëŸ¬ê°œì˜ ì½œë¼ì´ë”ê°€ ìˆì„ ì‹œ ì¶©ëŒíšŸìˆ˜ë¥¼ 1íšŒë¡œ ì œí•œí•˜ê¸° ìœ„í•œ ìš©ë„ í¬í•¨
 
     private Vector3 previousPosition;
     private Vector3 currentVelocity;
 
-    [Header("¹«±â ¼³Á¤")]
-    [Tooltip("¿òÁ÷ÀÓÀÌ ÇØ´ç ¼Óµµ ÀÌ»óÀÏ ½Ã µ¥¹ÌÁö°¡ µé¾î°¨")]
+    [Header("ë¬´ê¸° ì„¤ì •")]
+    [Tooltip("ì›€ì§ì„ì´ í•´ë‹¹ ì†ë„ ì´ìƒì¼ ì‹œ ë°ë¯¸ì§€ê°€ ë“¤ì–´ê°")]
     [SerializeField] private float trueDamageSpeed = 2.0f;
-    [Tooltip("µ¿ÀÏ ´ë»ó ÀçÅ¸°İ ÄğÅ¸ÀÓ")]
+    [Tooltip("ë™ì¼ ëŒ€ìƒ ì¬íƒ€ê²© ì¿¨íƒ€ì„")]
     [SerializeField] private float hitCooldown = 0.3f;
-    private Dictionary<IDamagable, float> hitHistory = new Dictionary<IDamagable, float>();
-    [Tooltip("¹«±â µ¥¹ÌÁö")]
+    private Dictionary<IDamageable, float> hitHistory = new Dictionary<IDamageable, float>();
+    [Tooltip("ë¬´ê¸° ë°ë¯¸ì§€")]
     [SerializeField] private int damage = 0;
-    [Tooltip("¹«±â Æ¼¾î")]
+    [Tooltip("ë¬´ê¸° í‹°ì–´")]
     [SerializeField] private int tier = 0;
-    [Tooltip("¹«±â ¹«°Ô")]
-    [SerializeField] private float weight = 0;
 
     [Header("Haptic")]
     [SerializeField] private float hapticAmplitude = 0.5f;
@@ -56,7 +56,7 @@ public class Weapon : MonoBehaviour
     private void OnSelectEnterd(SelectEnterEventArgs arg0)
     {
         isGrab = true;
-        playerStats = arg0.interactorObject.transform.GetComponentInParent<PlayerStats>();
+        attackStats = arg0.interactorObject.transform.GetComponentInParent<PlayerAttackStats>();
         if (slot == null)
         xRGrabInteractable.throwOnDetach = true;
     }
@@ -65,9 +65,9 @@ public class Weapon : MonoBehaviour
     {
         isGrab = false;
 
-        if (isCollisionState == true)// ÃÑµ¹ ¹üÀ§ ¾È¿¡ µé¾î¿ÍÀÖÀ¸¸é¼­
+        if (isCollisionState == true)// ì´ëŒ ë²”ìœ„ ì•ˆì— ë“¤ì–´ì™€ìˆìœ¼ë©´ì„œ
         {
-            if (slot != null && slot.weapon == this)// ¹«±â ½½·ÔÀÏ °æ¿ì && ÀåÂøµÈ ¹«±â°¡ ³ª ÀÏ¶§
+            if (slot != null && slot.weapon == this)// ë¬´ê¸° ìŠ¬ë¡¯ì¼ ê²½ìš° && ì¥ì°©ëœ ë¬´ê¸°ê°€ ë‚˜ ì¼ë•Œ
             {
                 xRGrabInteractable.throwOnDetach = false;
                 rigid.isKinematic = true;
@@ -84,15 +84,15 @@ public class Weapon : MonoBehaviour
             hitHistory.Clear();
         }
 
-        playerStats = null;
+        attackStats = null;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (isCollisionState == true) return;
         isCollisionState = true;
 
-        IDamagable target = other.transform.GetComponent<IDamagable>();
-        if (target != null && currentVelocity.magnitude >= trueDamageSpeed)
+        IDamageable target = other.GetComponentInParent<IDamageable>();
+        if (target != null && !(target is PlayerHealth) && !target.IsDead && currentVelocity.magnitude >= trueDamageSpeed)
         {
             if (hitHistory.ContainsKey(target))
             {
@@ -103,7 +103,7 @@ public class Weapon : MonoBehaviour
                 }
             }
 
-            target.TakeDamage(Calculate_Damage());// ´ë»ó¿¡°Ô µ¥¹ÌÁö ÁÖ±â
+            target.TakeDamage(new DamageInfo(Calculate_Damage(), attackStats != null ? attackStats.gameObject : gameObject, other.ClosestPoint(transform.position)));// ëŒ€ìƒì—ê²Œ ë°ë¯¸ì§€ ì£¼ê¸°
             hitHistory[target] = Time.time;
             SendHaptic();
 
@@ -116,7 +116,7 @@ public class Weapon : MonoBehaviour
             SendHaptic();
         }
     }
-    private void OnTriggerStay(Collider other)// ¹«±â ½½·Ô À§Ä¡¿¡¼­ Àâ¾Ò´Ù°¡ ¹Ù·Î ³õ¾Æµµ ½½·Ô ¾ÈÀ¸·Î µé¾î°¡µµ·Ï
+    private void OnTriggerStay(Collider other)// ë¬´ê¸° ìŠ¬ë¡¯ ìœ„ì¹˜ì—ì„œ ì¡ì•˜ë‹¤ê°€ ë°”ë¡œ ë†“ì•„ë„ ìŠ¬ë¡¯ ì•ˆìœ¼ë¡œ ë“¤ì–´ê°€ë„ë¡
     {
         if (isCollisionState == true) return;
         isCollisionState = true;
@@ -130,14 +130,14 @@ public class Weapon : MonoBehaviour
         if (isCollisionState == false) return;
         isCollisionState = false;
 
-        if (slot != null && slot.weapon == this)// ¹«±â ½½·ÔÀÏ °æ¿ì && ÀåÂøµÈ ¹«±â°¡ ³ª ÀÏ¶§
+        if (slot != null && slot.weapon == this)// ë¬´ê¸° ìŠ¬ë¡¯ì¼ ê²½ìš° && ì¥ì°©ëœ ë¬´ê¸°ê°€ ë‚˜ ì¼ë•Œ
         {
             slot.weapon = null;
             slot = null;
         }
     }
 
-    /// <summary> Áøµ¿ </summary>
+    /// <summary> ì§„ë™ </summary>
     private void SendHaptic()
     {
         if (xRGrabInteractable.interactorsSelecting.Count == 0)
@@ -154,13 +154,8 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    int Calculate_Damage()
+    float Calculate_Damage()
     {
-        if (playerStats != null)
-        {
-            return (int)(playerStats.TotalStats.STR * 0.3f) + damage;
-        }
-
-        return 0;
+        return damage + (attackStats != null ? attackStats.AttackPower : 0f);
     }
 }
