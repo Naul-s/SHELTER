@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using Shelter.Core;
+using Shelter.Player;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -8,83 +9,80 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class Weapon : MonoBehaviour
 {
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // References
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    [Header("ÂüÁ¶")]
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private VRController vrController;// ÇöÀç ÁÖ ¼Õ¿¡ ¿¬°áµÈ ÄÁÆ®·Ñ·¯
+    [Header("ì°¸ì¡°")]
+    [SerializeField] private PlayerAttackStats attackStats;
+    [SerializeField] private VRController vrController;// í˜„ì¬ ì£¼ ì†ì— ì—°ê²°ëœ ì»¨íŠ¸ë¡¤ëŸ¬
     [SerializeField] private EquipmentSlot slot;
 
     private XRGrabInteractable xRGrabInteractable;
     private Rigidbody rigid;
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // State
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    [Header("»óÅÂ")]
-    [SerializeField] private bool isGrab = false;// Àû¾îµµ ÇÑ ¼ÕÀÌ ÃÑÀ» Àâ°í ÀÖ´ÂÁö ³ªÅ¸³»´Â »óÅÂ
-    [SerializeField] private bool isCollisionState = false;
+    [Header("ìƒíƒœ")]
+    [SerializeField] private bool isGrab = false;// ì ì–´ë„ í•œ ì†ì´ ì´ì„ ì¡ê³  ìˆëŠ”ì§€ ë‚˜íƒ€ë‚´ëŠ” ìƒíƒœ
+    [SerializeField] private bool isCollisionState = false;// í•˜ìœ„ì— ì—¬ëŸ¬ê°œì˜ ì½œë¼ì´ë”ê°€ ìˆì„ ì‹œ ì¶©ëŒíšŸìˆ˜ë¥¼ 1íšŒë¡œ ì œí•œí•˜ê¸° ìœ„í•œ ìš©ë„ í¬í•¨
 
     private Vector3 previousPosition;
     private Vector3 currentVelocity;
 
-    private bool isRight;// ÇöÀç ÁÖ ¼ÕÀÌ ¿À¸¥¼ÕÀÎÁö ¿Ş¼ÕÀÎÁö ±¸ºĞ
+    private bool isRight;// í˜„ì¬ ì£¼ ì†ì´ ì˜¤ë¥¸ì†ì¸ì§€ ì™¼ì†ì¸ì§€ êµ¬ë¶„
 
-    private IXRSelectInteractor primaryInteractor;// ÇöÀç ÃÑ±â Á¶ÀÛ ±ÇÇÑÀ» °¡Áø ¼Õ
+    private IXRSelectInteractor primaryInteractor;// í˜„ì¬ ì´ê¸° ì¡°ì‘ ê¶Œí•œì„ ê°€ì§„ ì†
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Weapon Settings
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    [Header("¹«±â ¼³Á¤")]
+    [Header("ë¬´ê¸° ì„¤ì •")]
 
-    [Tooltip("¿òÁ÷ÀÓÀÌ ÇØ´ç ¼Óµµ ÀÌ»óÀÏ ¶§ µ¥¹ÌÁö Àû¿ë")]
+    [Tooltip("ì›€ì§ì„ì´ í•´ë‹¹ ì†ë„ ì´ìƒì¼ ë•Œ ë°ë¯¸ì§€ ì ìš©")]
     [SerializeField] private float trueDamageSpeed = 2.0f;
 
-    [Tooltip("µ¿ÀÏ ´ë»ó ÀçÅ¸°İ ÄğÅ¸ÀÓ")]
+    [Tooltip("ë™ì¼ ëŒ€ìƒ ì¬íƒ€ê²© ì¿¨íƒ€ì„")]
     [SerializeField] private float hitCooldown = 0.3f;
 
-    [Tooltip("¹«±â µ¥¹ÌÁö")]
+    [Tooltip("ë¬´ê¸° ë°ë¯¸ì§€")]
     [SerializeField] private int damage = 0;
 
-    [Tooltip("¹«±â Æ¼¾î")]
+    [Tooltip("ë¬´ê¸° í‹°ì–´")]
     [SerializeField] private int tier = 0;
 
-    [Tooltip("¹«±â ¹«°Ô")]
-    [SerializeField] private float weight = 0;
-
-    private Dictionary<IDamagable, float> hitHistory =
-        new Dictionary<IDamagable, float>();
+    private Dictionary<IDamageable, float> hitHistory =
+        new Dictionary<IDamageable, float>();
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Haptic
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    [Header("±ÙÁ¢ °ø°İ Áøµ¿")]
+    [Header("ê·¼ì ‘ ê³µê²© ì§„ë™")]
 
     [SerializeField] private float hapticAmplitude = 0.5f;
     [SerializeField] private float hapticDuration = 0.1f;
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Gun Settings
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    [Header("ÃÑ ¼³Á¤")]
+    [Header("ì´ ì„¤ì •")]
 
-    [Tooltip("ÃÑÀÌ¸é Ã¼Å©")]
+    [Tooltip("ì´ì´ë©´ ì²´í¬")]
     [SerializeField] private bool isGun;
 
-    [Tooltip("false = ´Ü¹ß °íÁ¤, true = ´Ü¹ß/¿¬»ç ÀüÈ¯ °¡´É")]
+    [Tooltip("false = ë‹¨ë°œ ê³ ì •, true = ë‹¨ë°œ/ì—°ì‚¬ ì „í™˜ ê°€ëŠ¥")]
     [SerializeField] private bool isAutoChange = false;
 
-    private bool isAuto = false;// ´Ü¹ß¡¤¿¬»ç ¸ğµå »óÅÂ
+    private bool isAuto = false;// ë‹¨ë°œÂ·ì—°ì‚¬ ëª¨ë“œ ìƒíƒœ
 
     [SerializeField] private float maxDistance = 100f;
     [SerializeField] private float shotColldown = 0.1f;
@@ -102,9 +100,12 @@ public class Weapon : MonoBehaviour
 
     private int bulletCount;
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // ì‚¬ê²© ë ˆì´ìºìŠ¤íŠ¸ ëŒ€ìƒ: ê¸°ë³¸ ë ˆì´ì–´ì—ì„œ í”Œë ˆì´ì–´ ì°¨ë‹¨ë²½(PlayerBlocker)ì„ ëº€ë‹¤ â€” ì°½ë¬¸ íŒì ë„ˆë¨¸ ì¢€ë¹„ë¥¼ ì  ìˆ˜ ìˆê²Œ.
+    private int shotLayerMask;
+
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Initialization
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void Start()
     {
@@ -114,10 +115,13 @@ public class Weapon : MonoBehaviour
         rigid =
             GetComponentInParent<Rigidbody>();
 
+        shotLayerMask =
+            Physics.DefaultRaycastLayers & ~LayerMask.GetMask("PlayerBlocker");
+
         if (xRGrabInteractable == null)
         {
             Debug.LogError(
-                $"{name}: XRGrabInteractableÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.",
+                $"{name}: XRGrabInteractableì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.",
                 this
             );
             return;
@@ -142,9 +146,9 @@ public class Weapon : MonoBehaviour
     }
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Update / Velocity
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void Update()
     {
@@ -158,20 +162,20 @@ public class Weapon : MonoBehaviour
     }
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Grab Events
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void OnSelectEntered(SelectEnterEventArgs args)
     {
         isGrab = true;
 
-        // ¾ÆÁ÷ ÁÖ ¼ÕÀÌ ¾øÀ» ¶§¸¸ Á¶ÀÛ ±ÇÇÑ ºÎ¿©
+        // ì•„ì§ ì£¼ ì†ì´ ì—†ì„ ë•Œë§Œ ì¡°ì‘ ê¶Œí•œ ë¶€ì—¬
         if (primaryInteractor == null)
         {
             SetPrimaryInteractor(args.interactorObject);
         }
-        // ÀÌ¹Ì ÁÖ ¼ÕÀÌ ÀÖ´Ù¸é »õ·Î ÀâÀº ¼ÕÀº º¸Á¶ ¼Õ
+        // ì´ë¯¸ ì£¼ ì†ì´ ìˆë‹¤ë©´ ìƒˆë¡œ ì¡ì€ ì†ì€ ë³´ì¡° ì†
     }
 
     private void OnSelectExited(SelectExitEventArgs args)
@@ -179,23 +183,23 @@ public class Weapon : MonoBehaviour
         bool wasPrimary =
             object.ReferenceEquals(primaryInteractor, args.interactorObject);
 
-        // ³õÀº ¼ÕÀ» Á¦¿ÜÇÏ°í ¾ÆÁ÷ Àâ°í ÀÖ´Â ¼Õ Ã£±â
+        // ë†“ì€ ì†ì„ ì œì™¸í•˜ê³  ì•„ì§ ì¡ê³  ìˆëŠ” ì† ì°¾ê¸°
         IXRSelectInteractor remainingInteractor =
             FindRemainingInteractor(args.interactorObject);
 
-        // ÁÖ ¼ÕÀÌ ³õ¾Ò´Ù¸é ±âÁ¸ ÀÔ·Â ¿¬°á ÇØÁ¦
+        // ì£¼ ì†ì´ ë†“ì•˜ë‹¤ë©´ ê¸°ì¡´ ì…ë ¥ ì—°ê²° í•´ì œ
         if (wasPrimary)
         {
             UnsubscribeGunControls();
             primaryInteractor = null;
         }
 
-        // ´Ù¸¥ ¼ÕÀÌ ¿©ÀüÈ÷ Àâ°í ÀÖ´Ù¸é ¿ÏÀüÈ÷ ³õÀº °ÍÀÌ ¾Æ´Ô
+        // ë‹¤ë¥¸ ì†ì´ ì—¬ì „íˆ ì¡ê³  ìˆë‹¤ë©´ ì™„ì „íˆ ë†“ì€ ê²ƒì´ ì•„ë‹˜
         if (remainingInteractor != null)
         {
             isGrab = true;
 
-            // ÁÖ ¼ÕÀÌ ³õ¾ÒÀ» ¶§¸¸ ³²Àº ¼ÕÀ¸·Î ±ÇÇÑ ÀÌÀü
+            // ì£¼ ì†ì´ ë†“ì•˜ì„ ë•Œë§Œ ë‚¨ì€ ì†ìœ¼ë¡œ ê¶Œí•œ ì´ì „
             if (wasPrimary)
             {
                 SetPrimaryInteractor(remainingInteractor);
@@ -204,7 +208,7 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        // ´õ ÀÌ»ó Àâ°í ÀÖ´Â ¼ÕÀÌ ¾øÀ½
+        // ë” ì´ìƒ ì¡ê³  ìˆëŠ” ì†ì´ ì—†ìŒ
         UnsubscribeGunControls();
         primaryInteractor = null;
 
@@ -234,8 +238,8 @@ public class Weapon : MonoBehaviour
         previousPosition = transform.position;
         currentVelocity = Vector3.zero;
 
-        playerStats =
-            interactor.transform.GetComponentInParent<PlayerStats>();
+        attackStats =
+            interactor.transform.GetComponentInParent<PlayerAttackStats>();
 
         if (slot == null)
         {
@@ -274,13 +278,13 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        playerStats = null;
+        attackStats = null;
     }
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Equipment Slot
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void EquipToSlot()
     {
@@ -304,16 +308,16 @@ public class Weapon : MonoBehaviour
 
         isCollisionState = true;
 
-        // ±ÙÁ¢ ¹«±âÀÇ Å¸°İ ÆÇÁ¤
+        // ê·¼ì ‘ ë¬´ê¸°ì˜ íƒ€ê²© íŒì •
         CheckMeleeDamage(other);
 
-        // ½½·Ô È®ÀÎ ¹× µî·Ï
+        // ìŠ¬ë¡¯ í™•ì¸ ë° ë“±ë¡
         CheckEquipmentSlot(other, true);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        // ½½·Ô ¾È¿¡¼­ Àâ¾Ò´Ù°¡ ¹Ù·Î ³õ´Â °æ¿ì¸¦ À§ÇÑ È®ÀÎ
+        // ìŠ¬ë¡¯ ì•ˆì—ì„œ ì¡ì•˜ë‹¤ê°€ ë°”ë¡œ ë†“ëŠ” ê²½ìš°ë¥¼ ìœ„í•œ í™•ì¸
         if (isCollisionState)
             return;
 
@@ -353,14 +357,13 @@ public class Weapon : MonoBehaviour
     }
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Melee Damage
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void CheckMeleeDamage(Collider other)
     {
-        IDamagable target =
-            other.transform.GetComponent<IDamagable>();
+        IDamageable target = FindDamageTarget(other);
 
         if (target == null)
             return;
@@ -374,33 +377,44 @@ public class Weapon : MonoBehaviour
                 return;
         }
 
-        target.TakeDamage(CalculateDamage());
+        target.TakeDamage(CreateDamageInfo(other.ClosestPoint(transform.position)));
 
         hitHistory[target] = Time.time;
 
         SendHaptic();
     }
 
-    private int CalculateDamage()
+    /// <summary>ë§ì€ ì½œë¼ì´ë”(ë˜ëŠ” ê·¸ ë¶€ëª¨)ì˜ í”¼í•´ ëŒ€ìƒ. í”Œë ˆì´ì–´ ìì‹ Â·ì´ë¯¸ ì£½ì€ ëŒ€ìƒì€ ì œì™¸í•œë‹¤.</summary>
+    private static IDamageable FindDamageTarget(Collider other)
     {
-        if (playerStats == null)
-            return 0;
+        IDamageable target = other.GetComponentInParent<IDamageable>();
 
-        return (int)(playerStats.TotalStats.STR * 0.3f) + damage;
+        if (target == null || target is PlayerHealth || target.IsDead)
+            return null;
+
+        return target;
+    }
+
+    private float CalculateDamage()
+    {
+        return damage + (attackStats != null ? attackStats.AttackPower : 0f);
+    }
+
+    private DamageInfo CreateDamageInfo(Vector3 hitPoint)
+    {
+        GameObject instigator = attackStats != null ? attackStats.gameObject : gameObject;
+        return new DamageInfo(CalculateDamage(), instigator, hitPoint);
     }
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Gun Controls
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void SubscribeGunControls(Transform interactorTransform)
     {
-        if (playerStats == null)
-            return;
-
         vrController =
-            playerStats.GetComponentInParent<VRController>();
+            interactorTransform.GetComponentInParent<VRController>();
 
         if (vrController == null)
             return;
@@ -432,7 +446,7 @@ public class Weapon : MonoBehaviour
         if (vrController == null)
             return;
 
-        // Áßº¹ ¿¬°á ¹æÁö
+        // ì¤‘ë³µ ì—°ê²° ë°©ì§€
         UnsubscribeShotInput();
 
         if (isRight)
@@ -480,9 +494,9 @@ public class Weapon : MonoBehaviour
     }
 
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Gun Actions
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void Shot()
     {
@@ -491,12 +505,12 @@ public class Weapon : MonoBehaviour
 
         Ray ray = new Ray(muzzle.position, muzzle.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance))
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, shotLayerMask, QueryTriggerInteraction.Ignore))
         {
             Debug.Log(
-                $"¸ÂÀº ´ë»ó: {hit.collider.name}, À§Ä¡: {hit.point}"
+                $"ë§ì€ ëŒ€ìƒ: {hit.collider.name}, ìœ„ì¹˜: {hit.point}"
             );
-            CheckGunDamage(hit.collider);
+            CheckGunDamage(hit.collider, hit.point);
 
             GameObject go = Instantiate(
                 bullet,
@@ -554,29 +568,28 @@ public class Weapon : MonoBehaviour
 
         isAuto = !isAuto;
 
-        // ÇöÀç ¼Õ°ú ¹ß»ç ¸ğµå¿¡ ¸ÂÃç ÀÔ·ÂÀ» ´Ù½Ã ¿¬°á
+        // í˜„ì¬ ì†ê³¼ ë°œì‚¬ ëª¨ë“œì— ë§ì¶° ì…ë ¥ì„ ë‹¤ì‹œ ì—°ê²°
         SubscribeShotInput();
     }
 
     private void ReLoad()
     {
-        // ÀçÀåÀü ±â´ÉÀº ÃßÈÄ ±¸Çö
+        // ì¬ì¥ì „ ê¸°ëŠ¥ì€ ì¶”í›„ êµ¬í˜„
     }
 
-    private void CheckGunDamage(Collider other)
+    private void CheckGunDamage(Collider other, Vector3 hitPoint)
     {
-        IDamagable target =
-            other.transform.GetComponent<IDamagable>();
+        IDamageable target = FindDamageTarget(other);
 
         if (target == null)
             return;
 
-        target.TakeDamage(CalculateDamage());
+        target.TakeDamage(CreateDamageInfo(hitPoint));
     }
 
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Haptic
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void SendHaptic()
     {

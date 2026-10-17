@@ -7,6 +7,8 @@ namespace Shelter.Enemies.Animation
         void PlayAttack();
         void PlayHitReaction();
         void PlayDeath();
+        /// <summary>창문을 뛰어넘는 동작.</summary>
+        void PlayVault();
         void ResetForPool();
     }
 }

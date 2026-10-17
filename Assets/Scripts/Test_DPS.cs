@@ -1,16 +1,27 @@
+using System;
 using System.Collections.Generic;
+using Shelter.Core;
 using TMPro;
 using UnityEngine;
 
-public class Test_DPS : MonoBehaviour, IDamagable
+public class Test_DPS : MonoBehaviour, IDamageable
 {
     [SerializeField] private TextMeshProUGUI text_DPS;
 
-    public void TakeDamage(int damageAmount)
+    // DPS ì¸¡ì •ìš© í—ˆìˆ˜ì•„ë¹„ë¼ ì²´ë ¥ì´ ì¤„ì§€ ì•ŠëŠ”ë‹¤.
+    public float CurrentHealth => float.MaxValue;
+    public float MaxHealth => float.MaxValue;
+    public bool IsDead => false;
+
+    public event Action<DamageInfo> Damaged;
+    public event Action Died;
+
+    public void TakeDamage(DamageInfo damageInfo)
     {
         float currentTime = Time.time;
-        damageQueue.Enqueue(new DamageRecord(currentTime, damageAmount));
-        totalDamageInWindow += damageAmount;
+        damageQueue.Enqueue(new DamageRecord(currentTime, damageInfo.Amount));
+        totalDamageInWindow += damageInfo.Amount;
+        Damaged?.Invoke(damageInfo);
     }
 
     private struct DamageRecord
@@ -27,14 +38,14 @@ public class Test_DPS : MonoBehaviour, IDamagable
     private Queue<DamageRecord> damageQueue = new Queue<DamageRecord>();
     private float totalDamageInWindow = 0f;
 
-    [Header("DPS ÃøÁ¤ ¼³Á¤")]
-    public float trackingWindowTime = 1.0f; // ÃÖ±Ù ¸î ÃÊ µ¿¾ÈÀÇ ±â·ÏÀ» ±âÁØÀ¸·Î DPS¸¦ Àê °ÍÀÎ°¡? (¿¹: 3ÃÊ)
+    [Header("DPS ì¸¡ì • ì„¤ì •")]
+    public float trackingWindowTime = 1.0f; // ìµœê·¼ ëª‡ ì´ˆ ë™ì•ˆì˜ ê¸°ë¡ì„ ê¸°ì¤€ìœ¼ë¡œ DPSë¥¼ ìž´ ê²ƒì¸ê°€? (ì˜ˆ: 3ì´ˆ)
 
     void Update()
     {
         float currentTime = Time.time;
 
-        // ÃøÁ¤ ½Ã°£(¿¹: 3ÃÊ)ÀÌ Áö³­ ¿À·¡µÈ µ¥¹ÌÁö ±â·ÏÀº Å¥¿¡¼­ Á¦°Å
+        // ì¸¡ì • ì‹œê°„(ì˜ˆ: 3ì´ˆ)ì´ ì§€ë‚œ ì˜¤ëž˜ëœ ë°ë¯¸ì§€ ê¸°ë¡ì€ íì—ì„œ ì œê±°
         while (damageQueue.Count > 0 && currentTime - damageQueue.Peek().time > trackingWindowTime)
         {
             DamageRecord oldRecord = damageQueue.Dequeue();
@@ -45,27 +56,27 @@ public class Test_DPS : MonoBehaviour, IDamagable
     }
 
     /// <summary>
-    /// ÇöÀç ½Ç½Ã°£ DPS¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö
+    /// í˜„ìž¬ ì‹¤ì‹œê°„ DPSë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public float GetCurrentDPS()
     {
         if (trackingWindowTime <= 0f) return 0f;
 
-        // ÃÖ±Ù À©µµ¿ì ½Ã°£ µ¿¾È ´©ÀûµÈ µ¥¹ÌÁö / À©µµ¿ì ½Ã°£
-        // (¸¸¾à ÀüÅõ°¡ ½ÃÀÛµÈ Áö ¾ó¸¶ ¾È µÇ¾ú´Ù¸é ½ÇÁ¦·Î °æ°úÇÑ ½Ã°£À¸·Î ³ª´©´Â º¸Á¤µµ °¡´ÉÇÕ´Ï´Ù)
+        // ìµœê·¼ ìœˆë„ìš° ì‹œê°„ ë™ì•ˆ ëˆ„ì ëœ ë°ë¯¸ì§€ / ìœˆë„ìš° ì‹œê°„
+        // (ë§Œì•½ ì „íˆ¬ê°€ ì‹œìž‘ëœ ì§€ ì–¼ë§ˆ ì•ˆ ë˜ì—ˆë‹¤ë©´ ì‹¤ì œë¡œ ê²½ê³¼í•œ ì‹œê°„ìœ¼ë¡œ ë‚˜ëˆ„ëŠ” ë³´ì •ë„ ê°€ëŠ¥í•©ë‹ˆë‹¤)
         float activeTime = Mathf.Min(Time.time, trackingWindowTime);
 
-        // µ¥ÀÌÅÍ°¡ ¾Æ¿¹ ¾ø°Å³ª ½Ã°£ÀÌ ³Ê¹« ÂªÀ¸¸é 0 ¹ÝÈ¯
+        // ë°ì´í„°ê°€ ì•„ì˜ˆ ì—†ê±°ë‚˜ ì‹œê°„ì´ ë„ˆë¬´ ì§§ìœ¼ë©´ 0 ë°˜í™˜
         if (activeTime <= 0f) return 0f;
 
-        // ÇöÀç Å¥¿¡ ³²¾ÆÀÖ´Â µ¥ÀÌÅÍµéÀ» ±âÁØÀ¸·Î ÇÑ ½ÇÁ¦ ÃÊ´ç µ¥¹ÌÁö °è»ê
-        // (¶Ç´Â °íÁ¤À¸·Î trackingWindowTimeÀ¸·Î ³ª´©¾î ·Ñ¸µ À©µµ¿ì DPS ÃøÁ¤)
+        // í˜„ìž¬ íì— ë‚¨ì•„ìžˆëŠ” ë°ì´í„°ë“¤ì„ ê¸°ì¤€ìœ¼ë¡œ í•œ ì‹¤ì œ ì´ˆë‹¹ ë°ë¯¸ì§€ ê³„ì‚°
+        // (ë˜ëŠ” ê³ ì •ìœ¼ë¡œ trackingWindowTimeìœ¼ë¡œ ë‚˜ëˆ„ì–´ ë¡¤ë§ ìœˆë„ìš° DPS ì¸¡ì •)
         return totalDamageInWindow / trackingWindowTime;
     }
 
     //void OnGUI()
     //{
-    //    // È­¸é¿¡ ÇöÀç DPS¸¦ °£´ÜÈ÷ Ç¥½ÃÇØ ÁÝ´Ï´Ù.
+    //    // í™”ë©´ì— í˜„ìž¬ DPSë¥¼ ê°„ë‹¨ížˆ í‘œì‹œí•´ ì¤ë‹ˆë‹¤.
     //    GUI.color = Color.green;
     //    GUI.Label(new Rect(30, 30, 300, 30), $"Current DPS: {GetCurrentDPS():F2}");
     //}

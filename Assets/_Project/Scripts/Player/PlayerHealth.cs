@@ -6,22 +6,25 @@ using UnityEngine;
 namespace Shelter.Player
 {
     /// <summary>
-    /// 플레이어 체력의 최소 구현. 좀비 공격이 실제로 받아칠 대상이 필요해 우선 만든 것으로,
-    /// 사망/30초 후 쉘터 부활/자원 드랍 등 전체 생사 흐름은 player-state 스킬 작업에서 이 컴포넌트를 확장한다.
+    /// 플레이어 체력. 기획상 플레이어 스탯은 체력과 공격력(<see cref="PlayerAttackStats"/>)뿐이라 방어력은 없다 —
+    /// 좀비 공격 피해가 그대로 체력을 깎는다. 사망하면 <see cref="PlayerParty"/>가 전원 사망(패배) 여부를 판정한다.
+    /// 사망 후 흐름(부활 등)은 미확정 — player-state 스킬 작업에서 이 컴포넌트를 확장한다.
     /// </summary>
     public class PlayerHealth : MonoBehaviour, IDamageable
     {
         /// <summary>Update 루프에서 FindObjectOfType 없이 근처 플레이어를 찾기 위한 활성 인스턴스 registry.</summary>
         internal static readonly List<PlayerHealth> ActiveInstances = new List<PlayerHealth>();
 
-        [SerializeField, Min(0f)] private float _maxHealth = 1000f;
-        [SerializeField, Min(0f)] private float _defense = 50f;
+        [SerializeField, Min(1f)] private float _maxHealth = 1000f;
+        [Tooltip("좀비가 쫓아가고 공격하는 지점. VR 리그에서는 머리(HMD 카메라)를 넣어 룸스케일로 걸어도 실제 위치를 따라가게 한다. 비우면 이 오브젝트.")]
+        [SerializeField] private Transform _targetPoint;
 
         private float _currentHealth;
 
         public float CurrentHealth => _currentHealth;
         public float MaxHealth => _maxHealth;
         public bool IsDead => _currentHealth <= 0f;
+        public Transform TargetPoint => _targetPoint != null ? _targetPoint : transform;
 
         public event Action<DamageInfo> Damaged;
         public event Action Died;
@@ -45,11 +48,13 @@ namespace Shelter.Player
         {
             if (IsDead) return;
 
-            float mitigated = CombatMath.ApplyDefense(damageInfo.Amount, _defense);
-            _currentHealth = Mathf.Max(0f, _currentHealth - mitigated);
+            _currentHealth = Mathf.Max(0f, _currentHealth - damageInfo.Amount);
             Damaged?.Invoke(damageInfo);
 
-            if (IsDead) Died?.Invoke();
+            if (!IsDead) return;
+
+            Died?.Invoke();
+            PlayerParty.NotifyPlayerDied(this);
         }
     }
 }

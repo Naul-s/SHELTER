@@ -36,5 +36,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _playerCountBaseCoefficient: 0.7
+  _playerCountBaseCoefficient: 0.85
   _playerCountPerPlayerCoefficient: 0.15
