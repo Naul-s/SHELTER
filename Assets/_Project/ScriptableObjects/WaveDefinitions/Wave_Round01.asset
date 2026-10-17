@@ -17,16 +17,37 @@ MonoBehaviour:
     _data: {fileID: 11400000, guid: ae45bac427c95d04d84a38c9463c4a8e, type: 2}
     _weight: 1
   _pointAllocations:
-  - _point: {fileID: 11400000, guid: 74caf3d56d765af41ac8525b26ec6c02, type: 2}
-    _count: 4
-    _spawnInterval: 2
+  - _point: {fileID: 11400000, guid: a2bce99b0d8fb5447b8de3eb27f1c6ff, type: 2}
+    _count: 0
+    _spawnInterval: 3
     _startDelay: 0
-  - _point: {fileID: 11400000, guid: d0fb6492ec6c1ca449b2e2cc28e936ad, type: 2}
-    _count: 2
-    _spawnInterval: 2.5
-    _startDelay: 1
-  - _point: {fileID: 11400000, guid: f00169349751e994683705bef1293334, type: 2}
-    _count: 3
-    _spawnInterval: 2.5
-    _startDelay: 1
+  - _point: {fileID: 11400000, guid: 8db1cc7fdfa5fac4db97a73837985532, type: 2}
+    _count: 1
+    _spawnInterval: 3
+    _startDelay: 1.5
+  - _point: {fileID: 11400000, guid: f16a0acbc6914b345a58e8040e2cf441, type: 2}
+    _count: 1
+    _spawnInterval: 3
+    _startDelay: 3
+  - _point: {fileID: 11400000, guid: 509724ac1e3c64c4d828b2916dbbcc1f, type: 2}
+    _count: 1
+    _spawnInterval: 3
+    _startDelay: 4.5
+  - _point: {fileID: 11400000, guid: 3acccfc46b19150479d6a56ecfae416d, type: 2}
+    _count: 1
+    _spawnInterval: 3
+    _startDelay: 0
+  - _point: {fileID: 11400000, guid: 065cef28e5563cb4da26d7a32222c088, type: 2}
+    _count: 1
+    _spawnInterval: 3
+    _startDelay: 1.5
+  - _point: {fileID: 11400000, guid: 77cf6ca62dd9d344c9f9c4424ba3326a, type: 2}
+    _count: 1
+    _spawnInterval: 3
+    _startDelay: 3
+  - _point: {fileID: 11400000, guid: 083ca02b37bf51f4298163c2b4ec1f2c, type: 2}
+    _count: 0
+    _spawnInterval: 3
+    _startDelay: 4.5
   _telegraphLeadTime: 5
+  _maxAlive: 12

@@ -16,15 +16,11 @@ MonoBehaviour:
   _displayName: "\uC77C\uBC18 \uC880\uBE44 (Walker)"
   _maxHealth: 100
   _defense: 5
-  _moveSpeed: 2
-  _attackPower: 20
+  _moveSpeed: 1.5
+  _attackPower: 25
   _attackRange: 1.2
   _attackCooldown: 1.8
   _attackWindupTime: 0.4
-  _aggroRadius: 8
-  _playerPreferenceWeight: 0.5
-  _loseTargetRadius: 12
-  _loseTargetTime: 5
-  _switchTargetOnHit: 0
+  _windowVaultDuration: 1.5
   _targetReevaluateInterval: 0.5
   _corpseLifetime: 8

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RoundConfig
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Rounds.RoundConfig
   _maxRounds: 10
-  _firstRoundDelay: 10
-  _intermissionTime: 15
+  _firstRoundDelay: 60
+  _intermissionTime: 60
