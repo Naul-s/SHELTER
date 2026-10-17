@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Anchor
   - CinemachineTarget
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX
