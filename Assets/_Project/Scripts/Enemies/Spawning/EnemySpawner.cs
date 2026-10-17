@@ -1,18 +1,20 @@
 using System.Collections.Generic;
 using Shelter.Core;
 using Shelter.Enemies;
+using Shelter.ShelterDefense;
 using UnityEngine;
 
 namespace Shelter.Enemies.Spawning
 {
     /// <summary>
-    /// 스폰 포인트 + (프리팹, EnemyData, 가중치) 목록을 받아 좀비를 생성/회수하는 기본 스포너.
-    /// 낮/밤 페이즈에 맞춘 웨이브 구성·난이도 스케일링은 wave-spawning 스킬의 WaveManager가 이 스포너를 호출하는
-    /// 형태로 얹으면 된다 — 이 클래스는 "몇 마리를 어디서 즉시 스폰할지"만 책임진다.
+    /// (프리팹, EnemyData, 가중치) 항목을 받아 좀비를 풀에서 꺼내 생성/회수하는 기본 스포너.
+    /// 라운드별 구성·물량은 WaveManager가 이 스포너를 호출해 결정한다 — 이 클래스는 "무엇을 어디서 즉시 스폰할지"만 책임진다.
     /// </summary>
     public class EnemySpawner : MonoBehaviour
     {
+        [Tooltip("WaveManager 없이 SpawnRandom/SpawnWave로 테스트할 때만 쓰는 스폰 위치.")]
         [SerializeField] private Transform[] _spawnPoints;
+        [Tooltip("WaveManager 없이 테스트할 때만 쓰는 스폰 항목.")]
         [SerializeField] private EnemySpawnEntry[] _entries;
         [SerializeField] private Transform _poolParent;
 
@@ -26,7 +28,8 @@ namespace Shelter.Enemies.Spawning
         /// <summary>좀비 한 마리가 죽어 AliveCount가 줄어든 직후.</summary>
         public event System.Action<EnemyBase> EnemyKilled;
 
-        public EnemyBase SpawnEntry(EnemySpawnEntry entry, Transform point)
+        /// <summary>항목 하나를 point 위치에 스폰한다. targetBarricade가 없으면 좀비가 가장 가까운 바리케이드로 간다.</summary>
+        public EnemyBase SpawnEntry(EnemySpawnEntry entry, Transform point, Barricade targetBarricade = null)
         {
             if (entry == null || entry.Prefab == null || entry.Data == null || point == null) return null;
 
@@ -40,7 +43,7 @@ namespace Shelter.Enemies.Spawning
             _poolByActiveInstance[instance] = pool;
             instance.DespawnRequested += HandleDespawnRequested;
             instance.EnemyDied += HandleEnemyDied;
-            instance.Spawn(entry.Data, point.position, point.rotation);
+            instance.Spawn(entry.Data, point.position, point.rotation, targetBarricade);
             _alive.Add(instance);
             return instance;
         }

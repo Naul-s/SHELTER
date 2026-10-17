@@ -12,12 +12,13 @@ namespace Shelter.Enemies.Spawning.Waves
             _config = config;
         }
 
-        public int ScaleCount(int baseCount, int roundNumber, int activePlayerCount)
+        public int ScaleCount(int baseCount, int roundsBeyondAuthored, int activePlayerCount)
         {
-            if (_config == null) return baseCount;
+            if (_config == null || baseCount <= 0) return Mathf.Max(0, baseCount);
 
-            float multiplier = _config.Evaluate(roundNumber, activePlayerCount);
-            return Mathf.Max(0, Mathf.RoundToInt(baseCount * multiplier));
+            float multiplier = _config.Evaluate(roundsBeyondAuthored, activePlayerCount);
+            // 제작자가 1마리 이상 배정한 포인트가 인원 보정으로 0마리가 되지는 않게 한다.
+            return Mathf.Max(1, Mathf.RoundToInt(baseCount * multiplier));
         }
     }
 }

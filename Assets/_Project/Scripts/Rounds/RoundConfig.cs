@@ -10,10 +10,10 @@ namespace Shelter.Rounds
         [SerializeField, Min(1)] private int _maxRounds = 10;
 
         [Tooltip("게임 시작 후 1라운드가 시작되기까지의 준비 시간(초).")]
-        [SerializeField, Min(0f)] private float _firstRoundDelay = 10f;
+        [SerializeField, Min(0f)] private float _firstRoundDelay = 60f;
 
-        [Tooltip("라운드를 클리어한 뒤 다음 라운드가 시작되기까지의 준비 시간(초).")]
-        [SerializeField, Min(0f)] private float _intermissionTime = 15f;
+        [Tooltip("라운드를 클리어한 뒤 다음 라운드가 시작되기까지의 준비 시간(초). 상점·수리·회복 시간.")]
+        [SerializeField, Min(0f)] private float _intermissionTime = 60f;
 
         public int MaxRounds => _maxRounds;
         public float FirstRoundDelay => _firstRoundDelay;

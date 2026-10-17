@@ -20,27 +20,24 @@ namespace Shelter.Enemies
         [Header("이동")]
         [SerializeField, Min(0f)] private float _moveSpeed = 2f;
 
-        [Header("공격")]
+        [Header("공격 (판자 뜯기와 플레이어 공격 공용)")]
+        [Tooltip("플레이어에게 주는 피해. 판자에는 공격 1회 = 타격 1회로 적용되고 이 값은 쓰지 않는다.")]
         [SerializeField, Min(0f)] private float _attackPower = 20f;
+        [Tooltip("플레이어 공격 사거리(수평 거리).")]
         [SerializeField, Min(0.01f)] private float _attackRange = 1.2f;
         [SerializeField, Min(0.01f)] private float _attackCooldown = 1.8f;
         [SerializeField, Min(0f)] private float _attackWindupTime = 0.4f;
 
-        [Header("타겟팅 — 쉘터 vs 플레이어 가중치")]
-        [Tooltip("이 반경 안에 플레이어가 있어야 플레이어를 타겟 후보로 고려한다.")]
-        [SerializeField, Min(0f)] private float _aggroRadius = 8f;
-        [Tooltip("플레이어가 사거리 안에 있을 때 쉘터 대신 플레이어를 고를 확률(0=무조건 쉘터, 1=무조건 플레이어).")]
-        [SerializeField, Range(0f, 1f)] private float _playerPreferenceWeight = 0.5f;
-        [Tooltip("플레이어를 쫓는 중 이 반경을 벗어나면 시야를 잃은 것으로 간주해 시간 카운트를 시작한다.")]
-        [SerializeField, Min(0f)] private float _loseTargetRadius = 12f;
-        [Tooltip("플레이어 시야를 잃은 채 이 시간이 지나면 타겟을 쉘터로 복귀시킨다.")]
-        [SerializeField, Min(0f)] private float _loseTargetTime = 5f;
-        [Tooltip("피격 시 공격한 대상으로 타겟을 강제 전환할지 여부 (러너/스피터형에 사용, 워커/비스트는 false).")]
-        [SerializeField] private bool _switchTargetOnHit;
+        [Header("쉘터 진입")]
+        [Tooltip("판자가 다 뜯긴 창문을 뛰어넘는 데 걸리는 시간(초). 출입구는 이동 속도로 걸어서 통과한다.")]
+        [SerializeField, Min(0.1f)] private float _windowVaultDuration = 1.3f;
+
+        [Header("타겟팅")]
+        [Tooltip("쉘터 안에서 가장 가까운 플레이어를 다시 고르는 주기(초).")]
         [SerializeField, Min(0.05f)] private float _targetReevaluateInterval = 0.5f;
 
         [Header("사망")]
-        [Tooltip("사망 후 아이템 드랍/시체가 사라지기까지의 시간.")]
+        [Tooltip("사망 후 시체가 사라지기(풀 반환)까지의 시간.")]
         [SerializeField, Min(0f)] private float _corpseLifetime = 8f;
 
         public string EnemyId => _enemyId;
@@ -56,11 +53,8 @@ namespace Shelter.Enemies
         public float AttackCooldown => _attackCooldown;
         public float AttackWindupTime => _attackWindupTime;
 
-        public float AggroRadius => _aggroRadius;
-        public float PlayerPreferenceWeight => _playerPreferenceWeight;
-        public float LoseTargetRadius => _loseTargetRadius;
-        public float LoseTargetTime => _loseTargetTime;
-        public bool SwitchTargetOnHit => _switchTargetOnHit;
+        public float WindowVaultDuration => _windowVaultDuration;
+
         public float TargetReevaluateInterval => _targetReevaluateInterval;
 
         public float CorpseLifetime => _corpseLifetime;

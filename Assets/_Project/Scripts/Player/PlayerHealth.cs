@@ -7,7 +7,8 @@ namespace Shelter.Player
 {
     /// <summary>
     /// 플레이어 체력. 기획상 플레이어 스탯은 체력과 공격력(<see cref="PlayerAttackStats"/>)뿐이라 방어력은 없다 —
-    /// 좀비 공격 피해가 그대로 체력을 깎는다. 사망 후 흐름(부활 등)은 player-state 스킬 작업에서 이 컴포넌트를 확장한다.
+    /// 좀비 공격 피해가 그대로 체력을 깎는다. 사망하면 <see cref="PlayerParty"/>가 전원 사망(패배) 여부를 판정한다.
+    /// 사망 후 흐름(부활 등)은 미확정 — player-state 스킬 작업에서 이 컴포넌트를 확장한다.
     /// </summary>
     public class PlayerHealth : MonoBehaviour, IDamageable
     {
@@ -15,12 +16,15 @@ namespace Shelter.Player
         internal static readonly List<PlayerHealth> ActiveInstances = new List<PlayerHealth>();
 
         [SerializeField, Min(1f)] private float _maxHealth = 1000f;
+        [Tooltip("좀비가 쫓아가고 공격하는 지점. VR 리그에서는 머리(HMD 카메라)를 넣어 룸스케일로 걸어도 실제 위치를 따라가게 한다. 비우면 이 오브젝트.")]
+        [SerializeField] private Transform _targetPoint;
 
         private float _currentHealth;
 
         public float CurrentHealth => _currentHealth;
         public float MaxHealth => _maxHealth;
         public bool IsDead => _currentHealth <= 0f;
+        public Transform TargetPoint => _targetPoint != null ? _targetPoint : transform;
 
         public event Action<DamageInfo> Damaged;
         public event Action Died;
@@ -47,7 +51,10 @@ namespace Shelter.Player
             _currentHealth = Mathf.Max(0f, _currentHealth - damageInfo.Amount);
             Damaged?.Invoke(damageInfo);
 
-            if (IsDead) Died?.Invoke();
+            if (!IsDead) return;
+
+            Died?.Invoke();
+            PlayerParty.NotifyPlayerDied(this);
         }
     }
 }

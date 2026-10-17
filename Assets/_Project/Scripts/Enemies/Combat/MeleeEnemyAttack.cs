@@ -10,6 +10,9 @@ namespace Shelter.Enemies.Combat
     /// </summary>
     public class MeleeEnemyAttack : MonoBehaviour, IEnemyAttack
     {
+        /// <summary>발밑(좀비 피벗)에서 서 있는 플레이어 머리까지 닿는 높이 허용치(m). 밸런스 값이 아닌 판정 기하 상수.</summary>
+        private const float MaxVerticalReach = 2.2f;
+
         private EnemyData _data;
         private IEnemyTarget _pendingTarget;
         private float _windupTimer;
@@ -26,10 +29,17 @@ namespace Shelter.Enemies.Combat
             _data = data;
         }
 
+        /// <summary>
+        /// 사거리는 수평 거리로 판정한다 — 플레이어 타겟 지점이 머리(HMD) 높이라 3D 거리로는 발밑 기준 좀비가 닿지 못한다.
+        /// 높이 차가 MaxVerticalReach를 넘으면(위층·점프 중) 사거리 밖으로 본다.
+        /// </summary>
         public bool IsInRange(Vector3 selfPosition, Vector3 targetPosition)
         {
-            float distanceSqr = (targetPosition - selfPosition).sqrMagnitude;
-            return distanceSqr <= _data.AttackRange * _data.AttackRange;
+            Vector3 offset = targetPosition - selfPosition;
+            if (Mathf.Abs(offset.y) > MaxVerticalReach) return false;
+
+            offset.y = 0f;
+            return offset.sqrMagnitude <= _data.AttackRange * _data.AttackRange;
         }
 
         public bool TryBeginAttack(IEnemyTarget target)

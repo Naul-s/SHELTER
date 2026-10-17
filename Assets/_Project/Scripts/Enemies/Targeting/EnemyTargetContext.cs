@@ -1,4 +1,5 @@
 using Shelter.Enemies;
+using Shelter.ShelterDefense;
 using UnityEngine;
 
 namespace Shelter.Enemies.Targeting
@@ -9,6 +10,9 @@ namespace Shelter.Enemies.Targeting
         public Vector3 Origin;
         public EnemyData Data;
         public IEnemyTarget CurrentTarget;
-        public float TimeSinceTargetVisible;
+        /// <summary>바리케이드를 넘어 쉘터 안으로 들어왔는가.</summary>
+        public bool IsInsideShelter;
+        /// <summary>스폰 포인트가 지정한 바리케이드(없으면 가장 가까운 바리케이드를 고른다).</summary>
+        public Barricade AssignedBarricade;
     }
 }

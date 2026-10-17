@@ -10,7 +10,7 @@ namespace Shelter.Rounds
         InProgress,
         /// <summary>모든 라운드 클리어.</summary>
         Victory,
-        /// <summary>쉘터 함락 등으로 중단됨.</summary>
+        /// <summary>플레이어 전원 사망.</summary>
         Defeat
     }
 }
