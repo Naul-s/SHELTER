@@ -246,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Enemies.Spawning.Waves.EnemySpawnPoint
   _pointTag: {fileID: 11400000, guid: d0fb6492ec6c1ca449b2e2cc28e936ad, type: 2}
+  _targetBarricade: {fileID: 0}
 --- !u!4 &354916639
 Transform:
   m_ObjectHideFlags: 0
@@ -273,7 +274,6 @@ GameObject:
   - component: {fileID: 405884850}
   - component: {fileID: 405884849}
   - component: {fileID: 405884848}
-  - component: {fileID: 405884851}
   m_Layer: 0
   m_Name: ShelterTargetPoint_Test
   m_TagString: Untagged
@@ -374,19 +374,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405884846}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &405884851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405884846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 129f8fcdfa321424188471c6bbd240ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shelter.ShelterDefense.ShelterTargetPoint
-  _maxHealth: 300
 --- !u!1 &426761627
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Enemies.Spawning.Waves.EnemySpawnPoint
   _pointTag: {fileID: 11400000, guid: f00169349751e994683705bef1293334, type: 2}
+  _targetBarricade: {fileID: 0}
 --- !u!4 &426761629
 Transform:
   m_ObjectHideFlags: 0
@@ -855,6 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Player.PlayerHealth
   _maxHealth: 1000
+  _targetPoint: {fileID: 0}
 --- !u!114 &1100887676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1222,6 +1211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Enemies.Spawning.Waves.EnemySpawnPoint
   _pointTag: {fileID: 11400000, guid: 74caf3d56d765af41ac8525b26ec6c02, type: 2}
+  _targetBarricade: {fileID: 0}
 --- !u!4 &1718420761
 Transform:
   m_ObjectHideFlags: 0
