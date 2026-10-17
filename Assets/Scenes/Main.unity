@@ -1085,7 +1085,6 @@ GameObject:
   - component: {fileID: 35083214}
   - component: {fileID: 35083213}
   - component: {fileID: 35083212}
-  - component: {fileID: 35083211}
   m_Layer: 5
   m_Name: Skill A - (13)
   m_TagString: Untagged
@@ -1093,28 +1092,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &35083211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35083210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 99cce28a0e2546941bc172b885ba0832, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1814149741}
-  nextSkills:
-  - {fileID: 2026715042}
-  text_skillName: {fileID: 1671873758}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &35083212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2093,7 +2070,6 @@ GameObject:
   - component: {fileID: 61407455}
   - component: {fileID: 61407454}
   - component: {fileID: 61407453}
-  - component: {fileID: 61407452}
   m_Layer: 5
   m_Name: Skill G - (9)
   m_TagString: Untagged
@@ -2101,29 +2077,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &61407452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61407451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: b1e09c1bb487b7742a2d58d811f03abb, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 553677792}
-  - {fileID: 198960543}
-  nextSkills:
-  - {fileID: 154224252}
-  text_skillName: {fileID: 704383806}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &61407453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2725,7 +2678,6 @@ GameObject:
   - component: {fileID: 75110796}
   - component: {fileID: 75110795}
   - component: {fileID: 75110794}
-  - component: {fileID: 75110793}
   m_Layer: 5
   m_Name: Skill G - (13)
   m_TagString: Untagged
@@ -2733,28 +2685,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &75110793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75110792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: a6952c5a936f1814ca8ad5eca563d72e, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1994043680}
-  nextSkills:
-  - {fileID: 1854988790}
-  text_skillName: {fileID: 1955408766}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &75110794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2870,7 +2800,6 @@ GameObject:
   - component: {fileID: 84006432}
   - component: {fileID: 84006431}
   - component: {fileID: 84006430}
-  - component: {fileID: 84006429}
   m_Layer: 5
   m_Name: Skill H - (4)
   m_TagString: Untagged
@@ -2878,28 +2807,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &84006429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84006428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 98b606f32ebcca544bf6bc1694801f16, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 1336988852}
-  - {fileID: 1061054717}
-  text_skillName: {fileID: 669277949}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &84006430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4264,7 +4171,6 @@ GameObject:
   - component: {fileID: 154224255}
   - component: {fileID: 154224254}
   - component: {fileID: 154224253}
-  - component: {fileID: 154224252}
   m_Layer: 5
   m_Name: Skill G - (11)
   m_TagString: Untagged
@@ -4272,28 +4178,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &154224252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154224251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 073f1b518a2edd54ca92c81782fad61e, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 61407452}
-  nextSkills:
-  - {fileID: 1854988790}
-  text_skillName: {fileID: 733933234}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &154224253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4409,7 +4293,6 @@ GameObject:
   - component: {fileID: 156889685}
   - component: {fileID: 156889684}
   - component: {fileID: 156889683}
-  - component: {fileID: 156889682}
   m_Layer: 5
   m_Name: Skill H - (8)
   m_TagString: Untagged
@@ -4417,29 +4300,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &156889682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156889681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 6464a4987d4b2f449ba747080e2f31b8, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 979636816}
-  - {fileID: 442525681}
-  nextSkills:
-  - {fileID: 1446515019}
-  text_skillName: {fileID: 237568194}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &156889683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4916,7 +4776,6 @@ GameObject:
   - component: {fileID: 198960546}
   - component: {fileID: 198960545}
   - component: {fileID: 198960544}
-  - component: {fileID: 198960543}
   m_Layer: 5
   m_Name: Skill G - (3)
   m_TagString: Untagged
@@ -4924,29 +4783,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &198960543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198960542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 322e33222b78c4344a2755ca0fded46f, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 1994043680}
-  - {fileID: 61407452}
-  - {fileID: 1742706342}
-  text_skillName: {fileID: 694674919}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &198960544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5279,7 +5115,6 @@ GameObject:
   - component: {fileID: 209030905}
   - component: {fileID: 209030904}
   - component: {fileID: 209030903}
-  - component: {fileID: 209030902}
   m_Layer: 5
   m_Name: Skill G - (18)
   m_TagString: Untagged
@@ -5308,28 +5143,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 18.129982}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &209030902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209030900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: bb4c5d289ae911d4a91566b9df65ba7e, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1274492089}
-  - {fileID: 1063869332}
-  nextSkills: []
-  text_skillName: {fileID: 272960038}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &209030903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7148,7 +6961,6 @@ GameObject:
   - component: {fileID: 269058634}
   - component: {fileID: 269058633}
   - component: {fileID: 269058632}
-  - component: {fileID: 269058631}
   m_Layer: 5
   m_Name: Skill A - (6)
   m_TagString: Untagged
@@ -7156,28 +6968,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &269058631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 269058630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 0e9eaa92616c12749a022e0a360bd94f, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1650738947}
-  nextSkills:
-  - {fileID: 1652426984}
-  text_skillName: {fileID: 1798996538}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &269058632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7446,7 +7236,6 @@ GameObject:
   - component: {fileID: 274369208}
   - component: {fileID: 274369207}
   - component: {fileID: 274369206}
-  - component: {fileID: 274369205}
   m_Layer: 5
   m_Name: Skill G - (17)
   m_TagString: Untagged
@@ -7454,27 +7243,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &274369205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274369204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: d76bb54b6f13ec94cb75e36e33ffafbc, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1254442609}
-  nextSkills: []
-  text_skillName: {fileID: 227647161}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &274369206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7910,7 +7678,6 @@ GameObject:
   - component: {fileID: 292916088}
   - component: {fileID: 292916087}
   - component: {fileID: 292916086}
-  - component: {fileID: 292916085}
   m_Layer: 5
   m_Name: Skill G - (7)
   m_TagString: Untagged
@@ -7939,28 +7706,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10, y: -5.5999994}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &292916085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292916083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 6c558d0ab1062224eb101f7c8da19cd1, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 763605701}
-  nextSkills:
-  - {fileID: 1254442609}
-  text_skillName: {fileID: 255724533}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &292916086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8345,7 +8090,6 @@ GameObject:
   - component: {fileID: 299574987}
   - component: {fileID: 299574986}
   - component: {fileID: 299574985}
-  - component: {fileID: 299574984}
   m_Layer: 5
   m_Name: Skill H - (3)
   m_TagString: Untagged
@@ -8353,27 +8097,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &299574984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299574983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: bfede5632b663d74c97485930ca5163c, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 932346363}
-  text_skillName: {fileID: 126965618}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &299574985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8905,7 +8628,6 @@ GameObject:
   - component: {fileID: 335127526}
   - component: {fileID: 335127525}
   - component: {fileID: 335127524}
-  - component: {fileID: 335127523}
   m_Layer: 5
   m_Name: Skill A - (5)
   m_TagString: Untagged
@@ -8913,27 +8635,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &335127523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 335127522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: fd2bedc8780ecf043a65632e9642cb2c, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 1252021606}
-  text_skillName: {fileID: 43574311}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &335127524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10000,7 +9701,6 @@ GameObject:
   - component: {fileID: 371765276}
   - component: {fileID: 371765275}
   - component: {fileID: 371765274}
-  - component: {fileID: 371765273}
   m_Layer: 5
   m_Name: Skill A - (9)
   m_TagString: Untagged
@@ -10008,29 +9708,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &371765273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371765272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 4ee28bc666e3eb444a8a991a183c60be, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1592511966}
-  nextSkills:
-  - {fileID: 819792559}
-  - {fileID: 752027242}
-  text_skillName: {fileID: 1169157586}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &371765274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10482,7 +10159,6 @@ GameObject:
   - component: {fileID: 393068112}
   - component: {fileID: 393068111}
   - component: {fileID: 393068110}
-  - component: {fileID: 393068109}
   m_Layer: 5
   m_Name: Skill H - (5)
   m_TagString: Untagged
@@ -10490,28 +10166,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &393068109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393068108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: f75f88258dd902f43a3d080c1c372444, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 486330707}
-  - {fileID: 2146113299}
-  text_skillName: {fileID: 215424134}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &393068110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10625,8 +10279,6 @@ GameObject:
   m_Component:
   - component: {fileID: 397030130}
   - component: {fileID: 397030133}
-  - component: {fileID: 397030131}
-  - component: {fileID: 397030134}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -10650,53 +10302,6 @@ Transform:
   - {fileID: 1121345973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &397030131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 397030129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f032d3406f3feb4d85998496c1e1383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  levelData: {fileID: 11400000, guid: 0d5bb63d2862c344291c060708f58bcf, type: 2}
-  skillManager: {fileID: 1818064323}
-  inventoryManager: {fileID: 840348397}
-  dynamicMoveProvider: {fileID: 827306735}
-  _level: 0
-  stats_base:
-    _hp: 0
-    _def: 0
-    _str: 0
-    _dex: 0
-    _int: 0
-    _speed: 0
-    _weight: 0
-    _exp: 0
-    _sp: 0
-  stats_total:
-    _hp: 0
-    _def: 0
-    _str: 0
-    _dex: 0
-    _int: 0
-    _speed: 0
-    _weight: 0
-    _exp: 0
-    _sp: 0
-  stats_current:
-    _hp: 0
-    _def: 0
-    _str: 0
-    _dex: 0
-    _int: 0
-    _speed: 0
-    _weight: 0
-    _exp: 0
-    _sp: 0
 --- !u!114 &397030133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11022,28 +10627,6 @@ MonoBehaviour:
   rightController: {fileID: 2050959608}
   UI_SKill: {fileID: 244013523}
   UI_Inventory: {fileID: 683184643}
---- !u!114 &397030134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 397030129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70dab607830a9fa4ebaef73b96f074f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resource
-  wood: 0
-  iron: 0
-  steel: 0
-  gold: 0
-  money: 0
-  weightOneWood: 3
-  weightOneIron: 4
-  weightOneSteel: 7
-  weightOneGold: 6
-  weightOneMoney: 1
 --- !u!4 &401871768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6460700065973807027, guid: 0e55d5c42cc96404f872b45455603f8b, type: 3}
@@ -11315,7 +10898,6 @@ GameObject:
   - component: {fileID: 408471503}
   - component: {fileID: 408471502}
   - component: {fileID: 408471501}
-  - component: {fileID: 408471500}
   m_Layer: 5
   m_Name: Skill G - (4)
   m_TagString: Untagged
@@ -11323,27 +10905,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &408471500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 408471499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: d45cb50b004a8b34f80c9ac7fcc70819, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 1994043680}
-  text_skillName: {fileID: 1469027852}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &408471501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12034,7 +11595,6 @@ GameObject:
   - component: {fileID: 442525684}
   - component: {fileID: 442525683}
   - component: {fileID: 442525682}
-  - component: {fileID: 442525681}
   m_Layer: 5
   m_Name: Skill H - (2)
   m_TagString: Untagged
@@ -12042,28 +11602,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &442525681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 442525680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 7fd52d2b37b0d504b923ca25ee6aaab3, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 512752098}
-  - {fileID: 156889682}
-  text_skillName: {fileID: 801476387}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &442525682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12408,7 +11946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d503be0adc418cb49805138d527f2891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  playerStats: {fileID: 0}
+  attackStats: {fileID: 0}
   vrController: {fileID: 0}
   slot: {fileID: 0}
   isGrab: 0
@@ -12417,7 +11955,6 @@ MonoBehaviour:
   hitCooldown: 0.3
   damage: 20
   tier: 1
-  weight: 0.2
   hapticAmplitude: 0.5
   hapticDuration: 0.1
   isGun: 0
@@ -12485,7 +12022,6 @@ GameObject:
   - component: {fileID: 486330710}
   - component: {fileID: 486330709}
   - component: {fileID: 486330708}
-  - component: {fileID: 486330707}
   m_Layer: 5
   m_Name: Skill H - (9)
   m_TagString: Untagged
@@ -12493,29 +12029,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &486330707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486330706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 88f666328b9766a499e59daab21e772b, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 393068109}
-  nextSkills:
-  - {fileID: 1336988852}
-  - {fileID: 2146113299}
-  text_skillName: {fileID: 1628239481}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &486330708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12672,7 +12185,6 @@ GameObject:
   - component: {fileID: 505278804}
   - component: {fileID: 505278803}
   - component: {fileID: 505278802}
-  - component: {fileID: 505278801}
   m_Layer: 5
   m_Name: Skill H- (6)
   m_TagString: Untagged
@@ -12680,28 +12192,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &505278801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505278800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: e6906191ba20aa149a615582b2cd8ebd, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 979636816}
-  nextSkills:
-  - {fileID: 1100803690}
-  text_skillName: {fileID: 1474054595}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &505278802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12817,7 +12307,6 @@ GameObject:
   - component: {fileID: 512752101}
   - component: {fileID: 512752100}
   - component: {fileID: 512752099}
-  - component: {fileID: 512752098}
   m_Layer: 5
   m_Name: Skill H - (7)
   m_TagString: Untagged
@@ -12825,28 +12314,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &512752098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512752097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: d309e5ee5b763c849af03acfb1467abb, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 442525681}
-  nextSkills:
-  - {fileID: 1100803690}
-  text_skillName: {fileID: 1556588635}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &512752099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13312,7 +12779,6 @@ GameObject:
   - component: {fileID: 553677795}
   - component: {fileID: 553677794}
   - component: {fileID: 553677793}
-  - component: {fileID: 553677792}
   m_Layer: 5
   m_Name: Skill G- (1)
   m_TagString: Untagged
@@ -13320,28 +12786,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &553677792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553677791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: b69a50eb5e7eee3468718a6c8531afbd, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 1224122692}
-  - {fileID: 61407452}
-  text_skillName: {fileID: 1437006475}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &553677793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14704,8 +14148,6 @@ GameObject:
   - component: {fileID: 618217719}
   - component: {fileID: 618217718}
   - component: {fileID: 618217717}
-  - component: {fileID: 618217716}
-  - component: {fileID: 618217715}
   m_Layer: 0
   m_Name: Cube (6)
   m_TagString: Untagged
@@ -14713,42 +14155,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &618217715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618217714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70dab607830a9fa4ebaef73b96f074f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resource
-  wood: 1
-  iron: 2
-  steel: 3
-  gold: 4
-  money: 5
-  weightOneWood: 3
-  weightOneIron: 4
-  weightOneSteel: 7
-  weightOneGold: 6
-  weightOneMoney: 1
---- !u!114 &618217716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618217714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 835d77383e9e36f45b7943f81ac7a627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResourceObject
-  playerInventoryManager: {fileID: 840348397}
-  hp: 100
 --- !u!65 &618217717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16994,7 +16400,6 @@ GameObject:
   - component: {fileID: 741891090}
   - component: {fileID: 741891089}
   - component: {fileID: 741891088}
-  - component: {fileID: 741891087}
   m_Layer: 5
   m_Name: Skill A - (12)
   m_TagString: Untagged
@@ -17002,29 +16407,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &741891087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741891086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 69ad59237160e23469633ce48e781fe4, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 269058631}
-  - {fileID: 1814149741}
-  nextSkills:
-  - {fileID: 800642903}
-  text_skillName: {fileID: 582845034}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &741891088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17430,7 +16812,6 @@ GameObject:
   - component: {fileID: 752027245}
   - component: {fileID: 752027244}
   - component: {fileID: 752027243}
-  - component: {fileID: 752027242}
   m_Layer: 5
   m_Name: Skill A - (15)
   m_TagString: Untagged
@@ -17438,29 +16819,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &752027242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752027241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 2dc4a34e47c40d143aa52b3c3a169556, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 371765273}
-  - {fileID: 1252021606}
-  nextSkills:
-  - {fileID: 2026715042}
-  text_skillName: {fileID: 2032407693}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &752027243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17576,7 +16934,6 @@ GameObject:
   - component: {fileID: 755023735}
   - component: {fileID: 755023734}
   - component: {fileID: 755023733}
-  - component: {fileID: 755023732}
   m_Layer: 5
   m_Name: Skill H - (18)
   m_TagString: Untagged
@@ -17605,28 +16962,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 18.129982}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &755023732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 755023730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 57c951f16f2aefb4e98486e05a75651a, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1061054717}
-  - {fileID: 2146113299}
-  nextSkills: []
-  text_skillName: {fileID: 1646260635}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &755023733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17874,7 +17209,6 @@ GameObject:
   - component: {fileID: 763605704}
   - component: {fileID: 763605703}
   - component: {fileID: 763605702}
-  - component: {fileID: 763605701}
   m_Layer: 5
   m_Name: Skill G - (2)
   m_TagString: Untagged
@@ -17882,27 +17216,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &763605701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763605700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: c2efa8f86e84839498827a78c817e62f, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 292916085}
-  text_skillName: {fileID: 1386038015}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &763605702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18130,7 +17443,6 @@ GameObject:
   - component: {fileID: 800642906}
   - component: {fileID: 800642905}
   - component: {fileID: 800642904}
-  - component: {fileID: 800642903}
   m_Layer: 5
   m_Name: Skill A - (17)
   m_TagString: Untagged
@@ -18138,27 +17450,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &800642903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800642902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: f47d27337663c9043be6d4ca8d53637c, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 741891087}
-  nextSkills: []
-  text_skillName: {fileID: 2053993707}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &800642904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18611,7 +17902,6 @@ GameObject:
   - component: {fileID: 811992472}
   - component: {fileID: 811992471}
   - component: {fileID: 811992470}
-  - component: {fileID: 811992469}
   m_Layer: 5
   m_Name: Skill A - (3)
   m_TagString: Untagged
@@ -18619,27 +17909,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &811992469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811992468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 748f775e60c1bd140a48fa6aeddc2742, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 1814149741}
-  text_skillName: {fileID: 575477771}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &811992470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18755,7 +18024,6 @@ GameObject:
   - component: {fileID: 819792562}
   - component: {fileID: 819792561}
   - component: {fileID: 819792560}
-  - component: {fileID: 819792559}
   m_Layer: 5
   m_Name: Skill A - (14)
   m_TagString: Untagged
@@ -18763,28 +18031,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &819792559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819792558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 58557374f99d18640ae4abcb4e07935c, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 371765273}
-  nextSkills:
-  - {fileID: 2026715042}
-  text_skillName: {fileID: 811121758}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &819792560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19162,17 +18408,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823432210}
   m_CullTransparentMesh: 1
---- !u!114 &827306735 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 153982007679157697, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 431046409}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b1e8c997df241c1a67045eeac79b41b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &840348396
 GameObject:
   m_ObjectHideFlags: 0
@@ -19182,7 +18417,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 840348398}
-  - component: {fileID: 840348397}
   m_Layer: 0
   m_Name: Player Inventory Manager
   m_TagString: Untagged
@@ -19190,27 +18424,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &840348397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840348396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8da96983f121fa449253be51d563a57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventoryManager
-  playerStats: {fileID: 397030131}
-  playerResource: {fileID: 397030134}
-  text_maxWeight: {fileID: 74930}
-  btn_Resource: {fileID: 437533676}
-  btn_Weapon: {fileID: 1522627202}
-  btn_Item: {fileID: 291917615}
-  page_Resource: {fileID: 1452418276}
-  page_Weapon: {fileID: 413318703}
-  page_Item: {fileID: 1853971510}
 --- !u!4 &840348398
 Transform:
   m_ObjectHideFlags: 0
@@ -20664,7 +19877,6 @@ GameObject:
   - component: {fileID: 932346366}
   - component: {fileID: 932346365}
   - component: {fileID: 932346364}
-  - component: {fileID: 932346363}
   m_Layer: 5
   m_Name: Skill H - (10)
   m_TagString: Untagged
@@ -20672,27 +19884,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &932346363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 932346362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: bacd460d1ef20e349b2f372d241831b4, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 299574984}
-  nextSkills: []
-  text_skillName: {fileID: 1322065533}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &932346364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21512,7 +20703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d503be0adc418cb49805138d527f2891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  playerStats: {fileID: 0}
+  attackStats: {fileID: 0}
   vrController: {fileID: 0}
   slot: {fileID: 0}
   isGrab: 0
@@ -21521,7 +20712,6 @@ MonoBehaviour:
   hitCooldown: 0.3
   damage: 10
   tier: 1
-  weight: 0.2
   hapticAmplitude: 0.5
   hapticDuration: 0.1
   isGun: 0
@@ -21957,7 +21147,6 @@ GameObject:
   - component: {fileID: 979636819}
   - component: {fileID: 979636818}
   - component: {fileID: 979636817}
-  - component: {fileID: 979636816}
   m_Layer: 5
   m_Name: Skill H- (1)
   m_TagString: Untagged
@@ -21965,28 +21154,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &979636816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 979636815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: a9db750bcde20d04d987a07b5a25dd2c, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 505278801}
-  - {fileID: 156889682}
-  text_skillName: {fileID: 758710956}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &979636817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23197,7 +22364,6 @@ GameObject:
   - component: {fileID: 1061054720}
   - component: {fileID: 1061054719}
   - component: {fileID: 1061054718}
-  - component: {fileID: 1061054717}
   m_Layer: 5
   m_Name: Skill H - (14)
   m_TagString: Untagged
@@ -23205,28 +22371,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1061054717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061054716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: e9f3a9403f3c75646986dc7ac11fb2dd, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 84006429}
-  nextSkills:
-  - {fileID: 755023732}
-  text_skillName: {fileID: 299482136}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1061054718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23342,7 +22486,6 @@ GameObject:
   - component: {fileID: 1063869335}
   - component: {fileID: 1063869334}
   - component: {fileID: 1063869333}
-  - component: {fileID: 1063869332}
   m_Layer: 5
   m_Name: Skill G - (14)
   m_TagString: Untagged
@@ -23350,28 +22493,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1063869332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063869331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 962beb92ee39b7042b74039b208000ee, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1904722915}
-  nextSkills:
-  - {fileID: 209030902}
-  text_skillName: {fileID: 1632743150}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1063869333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23709,7 +22830,6 @@ GameObject:
   - component: {fileID: 1100803693}
   - component: {fileID: 1100803692}
   - component: {fileID: 1100803691}
-  - component: {fileID: 1100803690}
   m_Layer: 5
   m_Name: Skill H - (11)
   m_TagString: Untagged
@@ -23717,29 +22837,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1100803690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100803689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 4dadc2123fae22c4492b494d6606f8e3, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 505278801}
-  - {fileID: 512752098}
-  nextSkills:
-  - {fileID: 1244028936}
-  text_skillName: {fileID: 1484665684}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1100803691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25389,7 +24486,6 @@ GameObject:
   - component: {fileID: 1195263452}
   - component: {fileID: 1195263451}
   - component: {fileID: 1195263450}
-  - component: {fileID: 1195263449}
   m_Layer: 5
   m_Name: Skill H - (17)
   m_TagString: Untagged
@@ -25418,28 +24514,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10, y: 18.129982}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1195263449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195263447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 8b7d17074997bed4fa490c4612df3643, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1446515019}
-  - {fileID: 1336988852}
-  nextSkills: []
-  text_skillName: {fileID: 750005409}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1195263450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26174,7 +25248,6 @@ GameObject:
   - component: {fileID: 1224122695}
   - component: {fileID: 1224122694}
   - component: {fileID: 1224122693}
-  - component: {fileID: 1224122692}
   m_Layer: 5
   m_Name: Skill G- (6)
   m_TagString: Untagged
@@ -26182,28 +25255,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1224122692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224122691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: aab6fb05ef29a174cb195d68c04a49e9, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 553677792}
-  nextSkills:
-  - {fileID: 1274492089}
-  text_skillName: {fileID: 1546091553}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1224122693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26394,7 +25445,6 @@ GameObject:
   - component: {fileID: 1244028939}
   - component: {fileID: 1244028938}
   - component: {fileID: 1244028937}
-  - component: {fileID: 1244028936}
   m_Layer: 5
   m_Name: Skill H - (16)
   m_TagString: Untagged
@@ -26402,27 +25452,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1244028936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244028935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: e45014817451c5a448f2842e60584600, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1100803690}
-  nextSkills: []
-  text_skillName: {fileID: 1834607560}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1244028937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26538,7 +25567,6 @@ GameObject:
   - component: {fileID: 1252021609}
   - component: {fileID: 1252021608}
   - component: {fileID: 1252021607}
-  - component: {fileID: 1252021606}
   m_Layer: 5
   m_Name: Skill A - (10)
   m_TagString: Untagged
@@ -26546,28 +25574,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1252021606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252021605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 73ea4050aaa9d37408ace271c40426d2, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 335127523}
-  nextSkills:
-  - {fileID: 752027242}
-  text_skillName: {fileID: 2127440322}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1252021607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26683,7 +25689,6 @@ GameObject:
   - component: {fileID: 1254442612}
   - component: {fileID: 1254442611}
   - component: {fileID: 1254442610}
-  - component: {fileID: 1254442609}
   m_Layer: 5
   m_Name: Skill G - (15)
   m_TagString: Untagged
@@ -26691,28 +25696,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1254442609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254442608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 31c55a466b3290643b244f20e7e1742b, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 292916085}
-  nextSkills:
-  - {fileID: 274369205}
-  text_skillName: {fileID: 1046807907}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1254442610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27047,7 +26030,6 @@ GameObject:
   - component: {fileID: 1274492092}
   - component: {fileID: 1274492091}
   - component: {fileID: 1274492090}
-  - component: {fileID: 1274492089}
   m_Layer: 5
   m_Name: Skill G - (12)
   m_TagString: Untagged
@@ -27055,28 +26037,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1274492089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274492088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: d03f304e1f9bddd49b567e2a177a2f3b, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1224122692}
-  nextSkills:
-  - {fileID: 209030902}
-  text_skillName: {fileID: 2018633699}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1274492090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28241,7 +27201,6 @@ GameObject:
   - component: {fileID: 1336988855}
   - component: {fileID: 1336988854}
   - component: {fileID: 1336988853}
-  - component: {fileID: 1336988852}
   m_Layer: 5
   m_Name: Skill H - (13)
   m_TagString: Untagged
@@ -28249,29 +27208,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1336988852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336988851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 84faf9e3751737f47b2aad22259e62c0, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 84006429}
-  - {fileID: 486330707}
-  nextSkills:
-  - {fileID: 1195263449}
-  text_skillName: {fileID: 143693982}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1336988853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28653,7 +27589,6 @@ GameObject:
   - component: {fileID: 1359838295}
   - component: {fileID: 1359838294}
   - component: {fileID: 1359838293}
-  - component: {fileID: 1359838292}
   m_Layer: 5
   m_Name: Skill A - (2)
   m_TagString: Untagged
@@ -28661,27 +27596,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1359838292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359838291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 95ca5ddbe726a404fb82e2eb163308c8, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 2012629634}
-  text_skillName: {fileID: 128866153}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1359838293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29370,7 +28284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d503be0adc418cb49805138d527f2891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  playerStats: {fileID: 0}
+  attackStats: {fileID: 0}
   vrController: {fileID: 0}
   slot: {fileID: 0}
   isGrab: 0
@@ -29379,7 +28293,6 @@ MonoBehaviour:
   hitCooldown: 0.3
   damage: 12
   tier: 1
-  weight: 0.7
   hapticAmplitude: 0.5
   hapticDuration: 0.1
   isGun: 0
@@ -30487,7 +29400,6 @@ GameObject:
   - component: {fileID: 1446515022}
   - component: {fileID: 1446515021}
   - component: {fileID: 1446515020}
-  - component: {fileID: 1446515019}
   m_Layer: 5
   m_Name: Skill H - (12)
   m_TagString: Untagged
@@ -30495,28 +29407,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1446515019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446515018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: a062b46ac0625e5439c82d2a8eb33580, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 156889682}
-  nextSkills:
-  - {fileID: 1195263449}
-  text_skillName: {fileID: 1675313673}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1446515020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30705,7 +29595,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1452418277}
-  - component: {fileID: 1452418278}
   m_Layer: 5
   m_Name: Resource
   m_TagString: Untagged
@@ -30737,29 +29626,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1452418278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452418276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30365141396091a4a954fda63c575eec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Resource
-  playerInventoryManager: {fileID: 840348397}
-  text_woodCount: {fileID: 1873697768}
-  text_woodWeight: {fileID: 1877010657}
-  text_ironCount: {fileID: 1050126266}
-  text_ironWeight: {fileID: 1320903924}
-  text_steelCount: {fileID: 1969331710}
-  text_steelWeight: {fileID: 1453349497}
-  text_goldCount: {fileID: 344468712}
-  text_goldWeight: {fileID: 249768088}
-  text_moneyCount: {fileID: 881861461}
-  text_moneyWeight: {fileID: 2125879929}
 --- !u!1 &1453349494
 GameObject:
   m_ObjectHideFlags: 0
@@ -33594,7 +32460,6 @@ GameObject:
   - component: {fileID: 1567257149}
   - component: {fileID: 1567257148}
   - component: {fileID: 1567257147}
-  - component: {fileID: 1567257146}
   m_Layer: 5
   m_Name: Skill A - (16)
   m_TagString: Untagged
@@ -33602,27 +32467,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1567257146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567257145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: f00c696d4f43aa24c9b96da3012c9908, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1652426984}
-  nextSkills: []
-  text_skillName: {fileID: 880873881}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1567257147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34067,7 +32911,6 @@ GameObject:
   - component: {fileID: 1592511969}
   - component: {fileID: 1592511968}
   - component: {fileID: 1592511967}
-  - component: {fileID: 1592511966}
   m_Layer: 5
   m_Name: Skill A - (4)
   m_TagString: Untagged
@@ -34075,27 +32918,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1592511966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592511965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: f32bde220f80379499a611b3e45ad444, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 371765273}
-  text_skillName: {fileID: 13863063}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1592511967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34698,8 +33520,6 @@ GameObject:
   - component: {fileID: 1619268609}
   - component: {fileID: 1619268608}
   - component: {fileID: 1619268607}
-  - component: {fileID: 1619268606}
-  - component: {fileID: 1619268605}
   m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Untagged
@@ -34707,42 +33527,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1619268605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619268604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70dab607830a9fa4ebaef73b96f074f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resource
-  wood: 1
-  iron: 2
-  steel: 3
-  gold: 4
-  money: 5
-  weightOneWood: 3
-  weightOneIron: 4
-  weightOneSteel: 7
-  weightOneGold: 6
-  weightOneMoney: 1
---- !u!114 &1619268606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619268604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 835d77383e9e36f45b7943f81ac7a627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResourceObject
-  playerInventoryManager: {fileID: 840348397}
-  hp: 100
 --- !u!65 &1619268607
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35742,7 +34526,6 @@ GameObject:
   - component: {fileID: 1650738946}
   - component: {fileID: 1650738945}
   - component: {fileID: 1650738944}
-  - component: {fileID: 1650738947}
   m_Layer: 5
   m_Name: Skill A - (1)
   m_TagString: Untagged
@@ -35853,27 +34636,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650738942}
   m_CullTransparentMesh: 1
---- !u!114 &1650738947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650738942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 0f11b3481bd15824c8cf7674b2cf7bc4, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 269058631}
-  text_skillName: {fileID: 1180695196}
-  skillDetailText: {fileID: 358936495}
 --- !u!1 &1652426983
 GameObject:
   m_ObjectHideFlags: 0
@@ -35886,7 +34648,6 @@ GameObject:
   - component: {fileID: 1652426987}
   - component: {fileID: 1652426986}
   - component: {fileID: 1652426985}
-  - component: {fileID: 1652426984}
   m_Layer: 5
   m_Name: Skill A - (11)
   m_TagString: Untagged
@@ -35894,28 +34655,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1652426984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1652426983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: ed4554b306a9e614d94748c9c844f034, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 269058631}
-  nextSkills:
-  - {fileID: 1567257146}
-  text_skillName: {fileID: 626719742}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1652426985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37424,7 +36163,6 @@ GameObject:
   - component: {fileID: 1742706345}
   - component: {fileID: 1742706344}
   - component: {fileID: 1742706343}
-  - component: {fileID: 1742706342}
   m_Layer: 5
   m_Name: Skill G - (10)
   m_TagString: Untagged
@@ -37432,27 +36170,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1742706342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1742706341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: d5e42bdfa61581f48aa61ad54dd87d8b, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 198960543}
-  nextSkills: []
-  text_skillName: {fileID: 105448608}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1742706343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38421,7 +37138,6 @@ GameObject:
   - component: {fileID: 1814149744}
   - component: {fileID: 1814149743}
   - component: {fileID: 1814149742}
-  - component: {fileID: 1814149741}
   m_Layer: 5
   m_Name: Skill A - (8)
   m_TagString: Untagged
@@ -38429,29 +37145,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1814149741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814149740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 212af6133202c5b40aee1252c8cd7c60, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 811992469}
-  nextSkills:
-  - {fileID: 741891087}
-  - {fileID: 35083211}
-  text_skillName: {fileID: 1467115151}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1814149742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38564,7 +37257,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1818064324}
-  - component: {fileID: 1818064323}
   m_Layer: 0
   m_Name: Player Skill Manager
   m_TagString: Untagged
@@ -38572,94 +37264,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1818064323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818064322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba3c1493e5bdba458b8be6b57242137, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillManager
-  playerStats: {fileID: 397030131}
-  total_stats:
-    _hp: 0
-    _def: 0
-    _str: 0
-    _dex: 0
-    _int: 0
-    _speed: 0
-    _weight: 0
-    _exp: 0
-    _sp: 0
-  total_effects:
-  - effect: 0
-    value: 0
-  - effect: 1
-    value: 0
-  - effect: 2
-    value: 0
-  - effect: 3
-    value: 0
-  - effect: 4
-    value: 0
-  - effect: 5
-    value: 0
-  - effect: 6
-    value: 0
-  - effect: 7
-    value: 0
-  - effect: 8
-    value: 0
-  - effect: 9
-    value: 0
-  - effect: 10
-    value: 0
-  - effect: 11
-    value: 0
-  - effect: 12
-    value: 0
-  - effect: 13
-    value: 0
-  - effect: 14
-    value: 0
-  - effect: 15
-    value: 0
-  - effect: 16
-    value: 0
-  - effect: 17
-    value: 0
-  - effect: 18
-    value: 0
-  - effect: 19
-    value: 0
-  - effect: 20
-    value: 0
-  - effect: 21
-    value: 0
-  - effect: 22
-    value: 0
-  - effect: 23
-    value: 0
-  - effect: 24
-    value: 0
-  - effect: 25
-    value: 0
-  - effect: 26
-    value: 0
-  - effect: 27
-    value: 0
-  text_curSP: {fileID: 989572208}
-  text_Level: {fileID: 2066891454}
-  btn_A: {fileID: 185242809}
-  btn_G: {fileID: 1737135176}
-  btn_H: {fileID: 246655907}
-  node_A: {fileID: 98992372}
-  node_G: {fileID: 53858752}
-  node_H: {fileID: 1349752673}
 --- !u!4 &1818064324
 Transform:
   m_ObjectHideFlags: 0
@@ -39145,7 +37749,6 @@ GameObject:
   - component: {fileID: 1854988793}
   - component: {fileID: 1854988792}
   - component: {fileID: 1854988791}
-  - component: {fileID: 1854988790}
   m_Layer: 5
   m_Name: Skill G - (16)
   m_TagString: Untagged
@@ -39153,28 +37756,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1854988790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854988789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 4042ab818b0b3434eafa56a28e4cef53, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 154224252}
-  - {fileID: 75110793}
-  nextSkills: []
-  text_skillName: {fileID: 710656289}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1854988791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39366,8 +37947,6 @@ GameObject:
   - component: {fileID: 1870543998}
   - component: {fileID: 1870544001}
   - component: {fileID: 1870543997}
-  - component: {fileID: 1870543996}
-  - component: {fileID: 1870543995}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
@@ -39375,42 +37954,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1870543995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870543994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70dab607830a9fa4ebaef73b96f074f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resource
-  wood: 1
-  iron: 2
-  steel: 3
-  gold: 4
-  money: 5
-  weightOneWood: 3
-  weightOneIron: 4
-  weightOneSteel: 7
-  weightOneGold: 6
-  weightOneMoney: 1
---- !u!114 &1870543996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870543994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 835d77383e9e36f45b7943f81ac7a627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResourceObject
-  playerInventoryManager: {fileID: 840348397}
-  hp: 100
 --- !u!65 &1870543997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39928,7 +38471,6 @@ GameObject:
   - component: {fileID: 1904722918}
   - component: {fileID: 1904722917}
   - component: {fileID: 1904722916}
-  - component: {fileID: 1904722915}
   m_Layer: 5
   m_Name: Skill G - (5)
   m_TagString: Untagged
@@ -39936,27 +38478,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1904722915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904722914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: f8cb3d720a97b6e468cf252b392b5485, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills: []
-  nextSkills:
-  - {fileID: 1063869332}
-  text_skillName: {fileID: 1361442077}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1904722916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40815,7 +39336,6 @@ GameObject:
   - component: {fileID: 1994043683}
   - component: {fileID: 1994043682}
   - component: {fileID: 1994043681}
-  - component: {fileID: 1994043680}
   m_Layer: 5
   m_Name: Skill G - (8)
   m_TagString: Untagged
@@ -40823,29 +39343,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1994043680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994043679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 306e1b0bce106ca47aba065bd26b5adf, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 198960543}
-  - {fileID: 408471500}
-  nextSkills:
-  - {fileID: 75110793}
-  text_skillName: {fileID: 345707867}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &1994043681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41331,7 +39828,6 @@ GameObject:
   - component: {fileID: 2012629637}
   - component: {fileID: 2012629636}
   - component: {fileID: 2012629635}
-  - component: {fileID: 2012629634}
   m_Layer: 5
   m_Name: Skill A - (7)
   m_TagString: Untagged
@@ -41360,27 +39856,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10, y: -5.5999994}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2012629634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012629632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 554c947217327c941833fac276c779e7, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 1359838292}
-  nextSkills: []
-  text_skillName: {fileID: 1484906131}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &2012629635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41739,7 +40214,6 @@ GameObject:
   - component: {fileID: 2026715045}
   - component: {fileID: 2026715044}
   - component: {fileID: 2026715043}
-  - component: {fileID: 2026715042}
   m_Layer: 5
   m_Name: Skill A - (18)
   m_TagString: Untagged
@@ -41768,29 +40242,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 18.129982}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2026715042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026715040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: dd3d8b2594e31324f92d83993df67654, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 35083211}
-  - {fileID: 819792559}
-  - {fileID: 752027242}
-  nextSkills: []
-  text_skillName: {fileID: 1114025}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &2026715043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44036,7 +42487,6 @@ GameObject:
   - component: {fileID: 2146113302}
   - component: {fileID: 2146113301}
   - component: {fileID: 2146113300}
-  - component: {fileID: 2146113299}
   m_Layer: 5
   m_Name: Skill H - (15)
   m_TagString: Untagged
@@ -44044,29 +42494,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2146113299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146113298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4237be723726e41a644092989ca960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkill
-  playerSkillData: {fileID: 11400000, guid: 52d9c180adb613a499ad0b414385c82e, type: 2}
-  playerSkillManager: {fileID: 1818064323}
-  isUnlock: 0
-  isOn: 0
-  prevSkills:
-  - {fileID: 393068109}
-  - {fileID: 486330707}
-  nextSkills:
-  - {fileID: 755023732}
-  text_skillName: {fileID: 1360707132}
-  skillDetailText: {fileID: 358936495}
 --- !u!114 &2146113300
 MonoBehaviour:
   m_ObjectHideFlags: 0
