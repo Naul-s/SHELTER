@@ -97,9 +97,6 @@ public class PlayerStats : MonoBehaviour
     }
     public event Action OnStatChanged;
 
-    // 가방 최대 용량 같은 공식을 프로퍼티로 선언 (읽을 때 자동 계산)
-    public float MaxCarryWeight => stats_total.Weight + (stats_total.STR * 2.0f);
-
     private void OnEnable()
     {
         stats_current.OnStatChanged += HandleStatChanged;
