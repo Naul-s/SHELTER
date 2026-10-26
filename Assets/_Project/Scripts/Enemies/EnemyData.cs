@@ -40,6 +40,10 @@ namespace Shelter.Enemies
         [Tooltip("사망 후 시체가 사라지기(풀 반환)까지의 시간.")]
         [SerializeField, Min(0f)] private float _corpseLifetime = 8f;
 
+        [Header("보상")]
+        [Tooltip("처치(막타)한 플레이어가 받는 돈. 플레이테스트 후 조정 대상.")]
+        [SerializeField, Min(0)] private int _killReward = 60;
+
         public string EnemyId => _enemyId;
         public string DisplayName => _displayName;
 
@@ -58,5 +62,7 @@ namespace Shelter.Enemies
         public float TargetReevaluateInterval => _targetReevaluateInterval;
 
         public float CorpseLifetime => _corpseLifetime;
+
+        public int KillReward => _killReward;
     }
 }

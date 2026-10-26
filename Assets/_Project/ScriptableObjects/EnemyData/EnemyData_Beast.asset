@@ -21,10 +21,7 @@ MonoBehaviour:
   _attackRange: 1.2
   _attackCooldown: 1.3
   _attackWindupTime: 0.3
-  _aggroRadius: 8
-  _playerPreferenceWeight: 0
-  _loseTargetRadius: 12
-  _loseTargetTime: 5
-  _switchTargetOnHit: 0
+  _windowVaultDuration: 1.3
   _targetReevaluateInterval: 0.5
   _corpseLifetime: 8
+  _killReward: 150

@@ -17,10 +17,12 @@ namespace Shelter.ShelterDefense
         [SerializeField] private AudioClip[] _breakClips;
         [Tooltip("판자가 떨어지지 않은 타격(HitsPerBoard > 1)일 때 무작위로 하나 재생.")]
         [SerializeField] private AudioClip[] _hitClips;
-        [SerializeField] private AudioSource _audioSource;
+        [Tooltip("마지막 판자가 떨어져 입구가 뚫렸을 때 무작위로 하나 재생.")]
+        [SerializeField] private AudioClip[] _breachClips;
 
         private Barricade _barricade;
         private ParticleSystem _splinters;
+        private AudioSource _audioSource;
 
         private Transform[] _boards;
         private Renderer[] _boardRenderers;
@@ -56,15 +58,7 @@ namespace Shelter.ShelterDefense
                 _homeLocalRotations[i] = board.localRotation;
             }
 
-            if (_audioSource == null)
-            {
-                _audioSource = gameObject.AddComponent<AudioSource>();
-                _audioSource.playOnAwake = false;
-                _audioSource.spatialBlend = 1f;
-                _audioSource.rolloffMode = AudioRolloffMode.Linear;
-                _audioSource.minDistance = 1.5f;
-                _audioSource.maxDistance = 30f;
-            }
+            _audioSource = CreateAudioSourceAtBoards(count);
 
             // 바리케이드 루트는 비균등 스케일일 수 있어 파티클을 자식으로 두지 않는다(모양이 찌그러짐).
             if (_splinterPrefab != null)
@@ -75,10 +69,43 @@ namespace Shelter.ShelterDefense
             }
         }
 
+        /// <summary>
+        /// 소리는 판자들의 실제 중심에서 나야 한다 — 바리케이드 루트(모델 프리팹 인스턴스)는 판자에서 수십 m 떨어져 있을 수 있다.
+        /// </summary>
+        private AudioSource CreateAudioSourceAtBoards(int boardCount)
+        {
+            Vector3 center = Vector3.zero;
+            int found = 0;
+            for (int i = 0; i < boardCount; i++)
+            {
+                if (_boardRenderers[i] == null) continue;
+                center += _boardRenderers[i].bounds.center;
+                found++;
+            }
+            if (found == 0) center = transform.position;
+            else center /= found;
+
+            var go = new GameObject("BarricadeAudio");
+            go.transform.SetParent(transform, false);
+            go.transform.position = center;
+
+            var source = go.AddComponent<AudioSource>();
+            Vector2 range = _barricade.Config != null ? _barricade.Config.SfxAudibleRange : new Vector2(4f, 40f);
+            source.playOnAwake = false;
+            source.spatialBlend = 1f;
+            source.rolloffMode = AudioRolloffMode.Linear;
+            source.minDistance = range.x;
+            source.maxDistance = range.y;
+            source.dopplerLevel = 0f;
+            source.priority = 64; // 입구가 뚫리는 소리는 좀비 발소리보다 우선
+            return source;
+        }
+
         private void OnEnable()
         {
             _barricade.BoardHit += HandleBoardHit;
             _barricade.BoardRemoved += HandleBoardRemoved;
+            _barricade.Breached += HandleBreached;
             _barricade.BoardRestored += HandleBoardRestored;
         }
 
@@ -86,7 +113,13 @@ namespace Shelter.ShelterDefense
         {
             _barricade.BoardHit -= HandleBoardHit;
             _barricade.BoardRemoved -= HandleBoardRemoved;
+            _barricade.Breached -= HandleBreached;
             _barricade.BoardRestored -= HandleBoardRestored;
+        }
+
+        private void HandleBreached()
+        {
+            PlayRandom(_breachClips, _barricade.Config != null ? _barricade.Config.BreachVolume : 1f);
         }
 
         private void OnDestroy()
@@ -177,12 +210,16 @@ namespace Shelter.ShelterDefense
 
         private void PlayRandom(AudioClip[] clips)
         {
+            PlayRandom(clips, _barricade.Config != null ? _barricade.Config.SfxVolume : 1f);
+        }
+
+        private void PlayRandom(AudioClip[] clips, float volume)
+        {
             if (clips == null || clips.Length == 0 || _audioSource == null) return;
 
             AudioClip clip = clips[Random.Range(0, clips.Length)];
             if (clip == null) return;
 
-            float volume = _barricade.Config != null ? _barricade.Config.SfxVolume : 1f;
             _audioSource.pitch = Random.Range(0.92f, 1.08f);
             _audioSource.PlayOneShot(clip, volume);
         }

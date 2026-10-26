@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d00a572f5200d547b00b896b937fb7e, type: 3}
+  m_Name: ShelterAudioConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Shelter.Audio.ShelterAudioConfig
+  _roundTelegraph: {fileID: 0}
+  _roundTelegraphVolume: 0.45
+  _roundBgm: {fileID: 8300000, guid: 75b59901207f00e4cb35812ef4a3a3ef, type: 3}
+  _roundBgmVolume: 0.45
+  _bgmFadeInTime: 3
+  _bgmFadeOutTime: 4
+  _zombieGroans:
+  - {fileID: 8300000, guid: 1d1cc2ba9292ff7498cfc982512309af, type: 3}
+  - {fileID: 8300000, guid: e89d85bd2bd66f04988a9821431b29ff, type: 3}
+  - {fileID: 8300000, guid: 71251105b4f522c4aaf0f110066b2c03, type: 3}
+  _zombieGroanVolume: 0.8
+  _zombieGroanInterval: {x: 4, y: 11}
+  _zombieFootsteps: {fileID: 8300000, guid: fd480a1bd63f8c94b9d4bfddf3c928f6, type: 3}
+  _zombieFootstepVolume: 0.35
+  _zombieFootstepMinSpeed: 0.3
+  _zombieHit: {fileID: 8300000, guid: 282eb232f577cd842a724fa502e8302c, type: 3}
+  _zombieHitVolume: 0.8
+  _zombieDeath: {fileID: 8300000, guid: 79ea76fbd475325439b3bdaff455fe41, type: 3}
+  _zombieDeathVolume: 0.9
+  _zombieAudibleRange: {x: 2, y: 28}
+  _playerHit: {fileID: 8300000, guid: b80e3a68e52c77548a586a8cf7958c07, type: 3}
+  _playerHitVolume: 0.9
+  _playerDeath: {fileID: 8300000, guid: 46fe0e078d9da5c40b8fedc8289a3374, type: 3}
+  _playerDeathVolume: 1
