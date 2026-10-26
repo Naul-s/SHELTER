@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 1684450006012957599}
   - component: {fileID: 4867542314519214212}
   - component: {fileID: 1125529484722837277}
+  - component: {fileID: 4023161466582302860}
   m_Layer: 0
   m_Name: ENM_ZombieWalker
   m_TagString: Untagged
@@ -534,6 +535,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Enemies.EnemyBase
   _data: {fileID: 11400000, guid: ae45bac427c95d04d84a38c9463c4a8e, type: 2}
+--- !u!114 &4023161466582302860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212551199809813333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bffd54c525272444a698fce2f7c49f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shelter.Audio.EnemyAudio
+  _config: {fileID: 11400000, guid: ecfea699714b85f41aa65b0b70cdf8d3, type: 2}
 --- !u!1 &1282475604039791002
 GameObject:
   m_ObjectHideFlags: 0

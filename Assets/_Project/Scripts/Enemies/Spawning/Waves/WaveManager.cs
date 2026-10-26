@@ -37,12 +37,17 @@ namespace Shelter.Enemies.Spawning.Waves
 
         public EnemySpawner Spawner => _spawner;
 
+        /// <summary>이번 라운드에서 아직 스폰되지 않은 좀비 수. 남은 좀비 = Spawner.AliveCount + 이 값.</summary>
+        public int RemainingToSpawn { get; private set; }
+
         /// <summary>라운드 시작이 결정된 시점(텔레그래프 연출 시작 신호) — ui-audio 연출이 구독한다.</summary>
         public event Action<int> RoundTelegraphStarted;
         /// <summary>텔레그래프 대기가 끝나고 실제 스폰이 시작되는 시점.</summary>
         public event Action<int> RoundSpawningStarted;
         /// <summary>이번 라운드의 모든 스폰 포인트가 물량을 다 소진한 시점(생존한 좀비가 전멸했다는 뜻은 아님).</summary>
         public event Action<int> RoundSpawningCompleted;
+        /// <summary>좀비 한 마리가 스폰돼 <see cref="RemainingToSpawn"/>이 줄어든 직후 — 남은 좀비 표시 갱신용.</summary>
+        public event Action EnemySpawned;
 
         private void Awake()
         {
@@ -90,6 +95,7 @@ namespace Shelter.Enemies.Spawning.Waves
         public void StopAllWaves()
         {
             StopAllCoroutines();
+            RemainingToSpawn = 0;
         }
 
         private IEnumerator RunWave(WaveDefinition wave, int roundNumber, int roundsBeyondAuthored, int activePlayerCount)
@@ -99,10 +105,15 @@ namespace Shelter.Enemies.Spawning.Waves
             if (wave.TelegraphLeadTime > 0f)
                 yield return new WaitForSeconds(wave.TelegraphLeadTime);
 
-            RoundSpawningStarted?.Invoke(roundNumber);
-
             IReadOnlyList<WaveSpawnPointAllocation> allocations = wave.PointAllocations;
             int pending = allocations?.Count ?? 0;
+
+            RemainingToSpawn = 0;
+            for (int i = 0; i < pending; i++)
+                RemainingToSpawn += _difficultyScaler.ScaleCount(allocations[i].Count, roundsBeyondAuthored, activePlayerCount);
+
+            RoundSpawningStarted?.Invoke(roundNumber);
+
             if (pending == 0)
             {
                 RoundSpawningCompleted?.Invoke(roundNumber);
@@ -136,10 +147,14 @@ namespace Shelter.Enemies.Spawning.Waves
             if (candidates.Count == 0)
             {
                 Debug.LogWarning($"{name}: '{(allocation.Point != null ? allocation.Point.DisplayName : "null")}' 태그의 스폰 포인트가 씬에 없습니다.", this);
+                RemainingToSpawn = Mathf.Max(0, RemainingToSpawn - count);
+                EnemySpawned?.Invoke();
             }
             else if (composition == null || composition.Count == 0)
             {
                 Debug.LogWarning($"{name}: 웨이브에 스폰할 좀비 구성(Composition)이 비어 있습니다.", this);
+                RemainingToSpawn = Mathf.Max(0, RemainingToSpawn - count);
+                EnemySpawned?.Invoke();
             }
             else
             {
@@ -153,6 +168,8 @@ namespace Shelter.Enemies.Spawning.Waves
                     EnemySpawnEntry entry = WeightedRandomPicker.Pick(composition, e => e.Weight);
                     EnemySpawnPoint point = candidates[UnityEngine.Random.Range(0, candidates.Count)];
                     _spawner.SpawnEntry(entry, point.transform, point.PickTargetBarricade());
+                    RemainingToSpawn = Mathf.Max(0, RemainingToSpawn - 1);
+                    EnemySpawned?.Invoke();
 
                     if (i < count - 1)
                         yield return interval;
