@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Shelter.Core;
 using Shelter.Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using Random = UnityEngine.Random;
 
 public class Weapon : MonoBehaviour
 {
@@ -15,7 +18,7 @@ public class Weapon : MonoBehaviour
 
     [Header("참조")]
     [SerializeField] private PlayerAttackStats attackStats;
-    [SerializeField] private VRController vrController;// 현재 주 손에 연결된 컨트롤러
+    [SerializeField] private VRController vrController;// 현재 주 손에 연결된 컨트롤러(있으면 A/B·X/Y 버튼으로 연사 전환)
     [SerializeField] private EquipmentSlot slot;
 
     private XRGrabInteractable xRGrabInteractable;
@@ -33,9 +36,9 @@ public class Weapon : MonoBehaviour
     private Vector3 previousPosition;
     private Vector3 currentVelocity;
 
-    private bool isRight;// 현재 주 손이 오른손인지 왼손인지 구분
-
     private IXRSelectInteractor primaryInteractor;// 현재 총기 조작 권한을 가진 손
+    private GameObject holder;// 총을 잡은 플레이어(처치 보상을 받을 공격자)
+    private bool isTriggerHeld;// 주 손 트리거를 당기고 있는지(연사용)
 
 
     // ─────────────────────────────────────
@@ -79,7 +82,7 @@ public class Weapon : MonoBehaviour
     [Tooltip("총이면 체크")]
     [SerializeField] private bool isGun;
 
-    [Tooltip("false = 단발 고정, true = 단발/연사 전환 가능")]
+    [Tooltip("false = 단발 고정, true = 연사(트리거를 누르고 있으면 계속 발사). 컨트롤러 버튼(VRController)이 있으면 단발/연사 전환 가능")]
     [SerializeField] private bool isAutoChange = false;
 
     private bool isAuto = false;// 단발·연사 모드 상태
@@ -88,24 +91,58 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float shotColldown = 0.1f;
 
     private float lastShotTime = float.NegativeInfinity;
+    private float lastDryFireTime = float.NegativeInfinity;
 
     [SerializeField] private Transform muzzle;
+    [Tooltip("탄피 배출 연출용(총알 모델의 탄피 부분만 사용).")]
     [SerializeField] private GameObject bullet;
     [SerializeField] private AudioSource shotSound;
+    [Tooltip("발사음 후보. 쏠 때마다 하나를 무작위로 고른다. 비우면 shotSound의 클립을 쓴다.")]
+    [SerializeField] private AudioClip[] shotClips;
+    [Tooltip("총구 화염 이펙트(총구 위치의 자식). 쏠 때마다 재생.")]
+    [SerializeField] private ParticleSystem muzzleFlash;
 
     [SerializeField] private Transform slidePos;
     private Vector3 baseSlidePos;
     [SerializeField] private Vector3 shotSlidePos;
     [SerializeField] private Transform casingPos;
 
-    private int bulletCount;
-
     // 사격 레이캐스트 대상: 기본 레이어에서 플레이어 차단벽(PlayerBlocker)을 뺀다 — 창문 판자 너머 좀비를 쏠 수 있게.
     private int shotLayerMask;
+
+
+    // ─────────────────────────────────────
+    // Ammo
+    // ─────────────────────────────────────
+
+    [Header("탄약 (재장전·보충 없음 — 다 쓰면 새 총을 사야 한다)")]
+    [Tooltip("이 총의 총 탄약 수. 상점에서 살 때는 상점 품목의 탄약 수로 덮어쓴다.")]
+    [SerializeField, Min(0)] private int maxAmmo = 90;
+    [Tooltip("남은 탄약 표시(총에 붙은 작은 카운터). 비워도 된다.")]
+    [SerializeField] private TMP_Text ammoText;
+    [SerializeField] private Color ammoColor = new Color(0.85f, 0.95f, 0.85f, 1f);
+    [SerializeField] private Color lowAmmoColor = new Color(0.95f, 0.15f, 0.1f, 1f);
+    [SerializeField, Min(0)] private int lowAmmoThreshold = 10;
+
+    private int currentAmmo;
+
+    public int CurrentAmmo => currentAmmo;
+    public int MaxAmmo => maxAmmo;
+    public bool IsGun => isGun;
+
+    /// <summary>남은 탄약이 바뀌었다(발사·지급).</summary>
+    public event Action<int> AmmoChanged;
 
     // ─────────────────────────────────────
     // Initialization
     // ─────────────────────────────────────
+
+    private void Awake()
+    {
+        currentAmmo = maxAmmo;
+        isAuto = isAutoChange;// 연사 가능한 총은 연사로 시작(전환 버튼이 없는 리그에서도 연사가 된다)
+        UpdateAmmoText();
+    }
 
     private void Start()
     {
@@ -129,6 +166,8 @@ public class Weapon : MonoBehaviour
 
         xRGrabInteractable.selectEntered.AddListener(OnSelectEntered);
         xRGrabInteractable.selectExited.AddListener(OnSelectExited);
+        xRGrabInteractable.activated.AddListener(OnActivated);
+        xRGrabInteractable.deactivated.AddListener(OnDeactivated);
 
         if (slidePos != null)
             baseSlidePos = slidePos.transform.localPosition;
@@ -140,9 +179,20 @@ public class Weapon : MonoBehaviour
         {
             xRGrabInteractable.selectEntered.RemoveListener(OnSelectEntered);
             xRGrabInteractable.selectExited.RemoveListener(OnSelectExited);
+            xRGrabInteractable.activated.RemoveListener(OnActivated);
+            xRGrabInteractable.deactivated.RemoveListener(OnDeactivated);
         }
 
         UnsubscribeGunControls();
+    }
+
+    /// <summary>탄약 수를 정한다(상점 구매 직후 등). 상태 변경 지점 — 네트워킹 도입 시 서버에서만 호출.</summary>
+    public void SetAmmo(int ammo)
+    {
+        maxAmmo = Mathf.Max(0, ammo);
+        currentAmmo = maxAmmo;
+        UpdateAmmoText();
+        AmmoChanged?.Invoke(currentAmmo);
     }
 
 
@@ -159,6 +209,10 @@ public class Weapon : MonoBehaviour
             (transform.position - previousPosition) / Time.deltaTime;
 
         previousPosition = transform.position;
+
+        // 연사: 트리거를 누르고 있는 동안 쿨다운마다 발사
+        if (isGun && isAuto && isTriggerHeld)
+            Shot();
     }
 
 
@@ -192,6 +246,7 @@ public class Weapon : MonoBehaviour
         {
             UnsubscribeGunControls();
             primaryInteractor = null;
+            isTriggerHeld = false;
         }
 
         // 다른 손이 여전히 잡고 있다면 완전히 놓은 것이 아님
@@ -211,6 +266,7 @@ public class Weapon : MonoBehaviour
         // 더 이상 잡고 있는 손이 없음
         UnsubscribeGunControls();
         primaryInteractor = null;
+        isTriggerHeld = false;
 
         FinishRelease();
     }
@@ -241,6 +297,9 @@ public class Weapon : MonoBehaviour
         attackStats =
             interactor.transform.GetComponentInParent<PlayerAttackStats>();
 
+        PlayerHealth player = interactor.transform.GetComponentInParent<PlayerHealth>();
+        holder = player != null ? player.gameObject : null;
+
         if (slot == null)
         {
             xRGrabInteractable.throwOnDetach = true;
@@ -248,7 +307,7 @@ public class Weapon : MonoBehaviour
 
         if (isGun)
         {
-            SubscribeGunControls(interactor.transform);
+            SubscribeGunControls(interactor);
         }
     }
 
@@ -279,6 +338,7 @@ public class Weapon : MonoBehaviour
         }
 
         attackStats = null;
+        holder = null;
     }
 
 
@@ -400,9 +460,13 @@ public class Weapon : MonoBehaviour
         return damage + (attackStats != null ? attackStats.AttackPower : 0f);
     }
 
+    /// <summary>공격자 = 총을 잡은 플레이어(처치 보상 지급 대상). 없으면 공격 스탯 보유자, 그것도 없으면 무기 자신.</summary>
     private DamageInfo CreateDamageInfo(Vector3 hitPoint)
     {
-        GameObject instigator = attackStats != null ? attackStats.gameObject : gameObject;
+        GameObject instigator =
+            holder != null ? holder :
+            attackStats != null ? attackStats.gameObject :
+            gameObject;
         return new DamageInfo(CalculateDamage(), instigator, hitPoint);
     }
 
@@ -411,78 +475,51 @@ public class Weapon : MonoBehaviour
     // Gun Controls
     // ─────────────────────────────────────
 
-    private void SubscribeGunControls(Transform interactorTransform)
+    // 트리거: XR Interaction Toolkit 의 Activate(잡은 손의 트리거) — 어떤 XR 리그에서도 동작한다.
+    private void OnActivated(ActivateEventArgs args)
     {
+        if (!isGun || !object.ReferenceEquals(args.interactorObject, primaryInteractor))
+            return;
+
+        isTriggerHeld = true;
+        Shot();
+    }
+
+    private void OnDeactivated(DeactivateEventArgs args)
+    {
+        if (object.ReferenceEquals(args.interactorObject, primaryInteractor))
+            isTriggerHeld = false;
+    }
+
+    // 컨트롤러 버튼(단발/연사 전환)은 VRController 가 있는 리그에서만 연결한다.
+    private void SubscribeGunControls(IXRSelectInteractor interactor)
+    {
+        Transform interactorTransform = interactor.transform;
         vrController =
             interactorTransform.GetComponentInParent<VRController>();
 
         if (vrController == null)
             return;
 
-        if (interactorTransform.CompareTag("Left"))
-        {
-            isRight = false;
+        bool isLeft = interactorTransform.CompareTag("Left") ||
+                      interactor.handedness == InteractorHandedness.Left;
 
+        if (isLeft)
+        {
             vrController.On_left_btn_X += ReLoad;
             vrController.On_left_btn_Y += AutoChange;
         }
-        else if (interactorTransform.CompareTag("Right"))
+        else
         {
-            isRight = true;
-
             vrController.On_right_btn_A += ReLoad;
             vrController.On_right_btn_B += AutoChange;
         }
-        else
-        {
-            return;
-        }
-
-        SubscribeShotInput();
-    }
-
-    private void SubscribeShotInput()
-    {
-        if (vrController == null)
-            return;
-
-        // 중복 연결 방지
-        UnsubscribeShotInput();
-
-        if (isRight)
-        {
-            if (isAuto)
-                vrController.On_right_btn_front_Update += Shot;
-            else
-                vrController.On_right_btn_front += Shot;
-        }
-        else
-        {
-            if (isAuto)
-                vrController.On_left_btn_front_Update += Shot;
-            else
-                vrController.On_left_btn_front += Shot;
-        }
-    }
-
-    private void UnsubscribeShotInput()
-    {
-        if (vrController == null)
-            return;
-
-        vrController.On_left_btn_front -= Shot;
-        vrController.On_left_btn_front_Update -= Shot;
-
-        vrController.On_right_btn_front -= Shot;
-        vrController.On_right_btn_front_Update -= Shot;
     }
 
     private void UnsubscribeGunControls()
     {
         if (vrController == null)
             return;
-
-        UnsubscribeShotInput();
 
         vrController.On_left_btn_X -= ReLoad;
         vrController.On_left_btn_Y -= AutoChange;
@@ -503,52 +540,79 @@ public class Weapon : MonoBehaviour
         if (Time.time - lastShotTime < shotColldown)
             return;
 
+        if (currentAmmo <= 0)
+        {
+            DryFire();
+            return;
+        }
+
+        lastShotTime = Time.time;
+        currentAmmo--;
+        UpdateAmmoText();
+        AmmoChanged?.Invoke(currentAmmo);
+
         Ray ray = new Ray(muzzle.position, muzzle.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, shotLayerMask, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log(
-                $"맞은 대상: {hit.collider.name}, 위치: {hit.point}"
-            );
             CheckGunDamage(hit.collider, hit.point);
-
-            GameObject go = Instantiate(
-                bullet,
-                hit.point,
-                muzzle.rotation
-            );
-            go.GetComponent<Collider>().enabled = false;
-
-            Destroy(go, 10f);
         }
-
-        Debug.DrawRay(
-            ray.origin,
-            ray.direction * maxDistance,
-            Color.red,
-            2f
-        );
 
         SendHaptic(1f, 0.1f);
 
-        if (shotSound != null && shotSound.clip != null)
-            shotSound.PlayOneShot(shotSound.clip);
+        PlayShotSound();
 
-        lastShotTime = Time.time;
+        if (muzzleFlash != null)
+            muzzleFlash.Play(true);
 
         ShotEffect();
     }
 
+    /// <summary>탄약이 없을 때 트리거: 발사 대신 약한 진동만(연사 중에는 0.3초 간격).</summary>
+    private void DryFire()
+    {
+        if (Time.time - lastDryFireTime < 0.3f)
+            return;
+
+        lastDryFireTime = Time.time;
+        SendHaptic(0.15f, 0.03f);
+    }
+
+    private void UpdateAmmoText()
+    {
+        if (ammoText == null)
+            return;
+
+        ammoText.SetText("{0}", currentAmmo);
+        ammoText.color = currentAmmo <= lowAmmoThreshold ? lowAmmoColor : ammoColor;
+    }
+
+    private void PlayShotSound()
+    {
+        if (shotSound == null)
+            return;
+
+        AudioClip clip = shotClips != null && shotClips.Length > 0
+            ? shotClips[Random.Range(0, shotClips.Length)]
+            : shotSound.clip;
+
+        if (clip != null)
+            shotSound.PlayOneShot(clip);
+    }
+
     void ShotEffect()
     {
-        GameObject casing = Instantiate(bullet, casingPos.position, muzzle.rotation);
-        Rigidbody casingRigid = casing.AddComponent<Rigidbody>();
-        casingRigid.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        casingRigid.AddForce(casingPos.transform.forward * Random.Range(50f, 100f));
-        casingRigid.AddForce(casingPos.transform.right * Random.Range(-20f, 40f));
-        casingRigid.AddTorque(Vector3.up * Random.Range(-1f, 1f), ForceMode.Impulse);
-        casing.transform.GetChild(0).gameObject.SetActive(false);
-        Destroy(casing, 10f);
+        if (bullet != null && casingPos != null)
+        {
+            GameObject casing = Instantiate(bullet, casingPos.position, muzzle.rotation);
+            Rigidbody casingRigid = casing.AddComponent<Rigidbody>();
+            casingRigid.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            casingRigid.AddForce(casingPos.transform.forward * Random.Range(50f, 100f));
+            casingRigid.AddForce(casingPos.transform.right * Random.Range(-20f, 40f));
+            casingRigid.AddTorque(Vector3.up * Random.Range(-1f, 1f), ForceMode.Impulse);
+            casing.transform.GetChild(0).gameObject.SetActive(false);
+            Destroy(casing, 10f);
+        }
 
         if (slidePos != null)
             StartCoroutine(ShotAnimation());
@@ -567,14 +631,11 @@ public class Weapon : MonoBehaviour
             return;
 
         isAuto = !isAuto;
-
-        // 현재 손과 발사 모드에 맞춰 입력을 다시 연결
-        SubscribeShotInput();
     }
 
     private void ReLoad()
     {
-        // 재장전 기능은 추후 구현
+        // 재장전 없음 — 탄약을 다 쓰면 새 총을 산다(기획 2026-10-26).
     }
 
     private void CheckGunDamage(Collider other, Vector3 hitPoint)

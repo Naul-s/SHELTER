@@ -59,6 +59,9 @@ namespace Shelter.Enemies
 
         public float CurrentHealth => _currentHealth;
         public float MaxHealth => _data.MaxHealth;
+        public EnemyData Data => _data;
+        /// <summary>마지막으로 피해를 준 공격자(막타 판정 — 처치 보상 지급 대상). 스폰 시 초기화.</summary>
+        public GameObject LastAttacker { get; private set; }
         public bool IsDead => _state == EnemyState.Dead;
         public EnemyState State => _state;
         /// <summary>바리케이드를 넘어 쉘터 안으로 들어왔는가.</summary>
@@ -116,6 +119,7 @@ namespace Shelter.Enemies
             _movement.Warp(position);
 
             _currentHealth = _data.MaxHealth;
+            LastAttacker = null;
             ClearTarget();
             _reevaluateTimer = 0f;
             _corpseTimer = 0f;
@@ -403,6 +407,7 @@ namespace Shelter.Enemies
 
             float mitigated = CombatMath.ApplyDefense(damageInfo.Amount, _data.Defense);
             _currentHealth = Mathf.Max(0f, _currentHealth - mitigated);
+            if (damageInfo.Instigator != null) LastAttacker = damageInfo.Instigator;
             Damaged?.Invoke(damageInfo);
 
             if (_currentHealth <= 0f)

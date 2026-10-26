@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bad94a11913f83449b0761893ddd359, type: 3}
+  m_Name: ShopCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::Shelter.Economy.ShopCatalog
+  _offers:
+  - _id: pistol
+    _displayName: PISTOL
+    _price: 400
+    _ammo: 90
+    _weaponPrefab: {fileID: 2168365450242408086, guid: a34ed9c3008b75a42b63abcc5373a441, type: 3}
+  - _id: smg
+    _displayName: SMG
+    _price: 1000
+    _ammo: 90
+    _weaponPrefab: {fileID: 1270005102600715603, guid: 11592c59fa5da684f873b3be1c19a8b5, type: 3}
+  - _id: ar
+    _displayName: AR
+    _price: 1600
+    _ammo: 90
+    _weaponPrefab: {fileID: 681016632066943707, guid: 46b48d38e5716084d8056a6b87ce655e, type: 3}
