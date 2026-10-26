@@ -16,10 +16,16 @@ namespace Shelter.ShelterDefense
         [SerializeField, Min(0f)] private float _boardFlySpeed = 2.5f;
         [Tooltip("판자 파괴/타격 효과음 볼륨.")]
         [SerializeField, Range(0f, 1f)] private float _sfxVolume = 1f;
+        [Tooltip("판자가 모두 부서져 뚫렸을 때 소리 볼륨.")]
+        [SerializeField, Range(0f, 1f)] private float _breachVolume = 1f;
+        [Tooltip("판자 소리가 최대 크기로 들리는 거리 / 들리지 않게 되는 거리(m). 쉘터 어디서든 어느 입구가 뚫리는지 들려야 한다.")]
+        [SerializeField] private Vector2 _sfxAudibleRange = new Vector2(4f, 40f);
 
         public int HitsPerBoard => _hitsPerBoard;
         public float BoardFlyTime => _boardFlyTime;
         public float BoardFlySpeed => _boardFlySpeed;
         public float SfxVolume => _sfxVolume;
+        public float BreachVolume => _breachVolume;
+        public Vector2 SfxAudibleRange => _sfxAudibleRange;
     }
 }
