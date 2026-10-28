@@ -97,7 +97,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 90
+  m_text: 300
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 789ee531d579d5345bf51ebc991ad775, type: 2}
   m_sharedMaterial: {fileID: 8819435902531883247, guid: 789ee531d579d5345bf51ebc991ad775, type: 2}
@@ -332,7 +332,7 @@ MonoBehaviour:
   slidePos: {fileID: 6144733467047160838}
   shotSlidePos: {x: 0, y: 0.075, z: 0.0644}
   casingPos: {fileID: 163151896566068168}
-  maxAmmo: 90
+  maxAmmo: 300
   ammoText: {fileID: 5907335025477547520}
   ammoColor: {r: 0.85, g: 0.95, b: 0.85, a: 1}
   lowAmmoColor: {r: 0.95, g: 0.15, b: 0.1, a: 1}

@@ -46,8 +46,9 @@ public class VRController : MonoBehaviour
 
     void Awake()
     {
-        UI_SKill.gameObject.SetActive(false);
-        UI_Inventory.gameObject.SetActive(false);
+        // 구 기획 스킬·인벤토리 UI ? 없는 리그(Player.prefab 등)에서도 동작하도록 비어 있으면 건너뛴다.
+        if (UI_SKill != null) UI_SKill.gameObject.SetActive(false);
+        if (UI_Inventory != null) UI_Inventory.gameObject.SetActive(false);
     }
 
     void Update()

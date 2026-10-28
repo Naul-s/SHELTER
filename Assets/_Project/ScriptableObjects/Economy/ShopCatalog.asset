@@ -16,15 +16,15 @@ MonoBehaviour:
   - _id: pistol
     _displayName: PISTOL
     _price: 400
-    _ammo: 90
+    _ammo: 40
     _weaponPrefab: {fileID: 2168365450242408086, guid: a34ed9c3008b75a42b63abcc5373a441, type: 3}
   - _id: smg
     _displayName: SMG
     _price: 1000
-    _ammo: 90
+    _ammo: 150
     _weaponPrefab: {fileID: 1270005102600715603, guid: 11592c59fa5da684f873b3be1c19a8b5, type: 3}
   - _id: ar
     _displayName: AR
     _price: 1600
-    _ammo: 90
+    _ammo: 300
     _weaponPrefab: {fileID: 681016632066943707, guid: 46b48d38e5716084d8056a6b87ce655e, type: 3}
