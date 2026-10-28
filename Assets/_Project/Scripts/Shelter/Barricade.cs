@@ -122,11 +122,18 @@ namespace Shelter.ShelterDefense
             return true;
         }
 
-        [ContextMenu("Repair All Boards")]
-        private void RepairAll()
+        /// <summary>떨어진 판자를 모두 되붙인다. 되붙인 장수를 돌려준다. 비용 처리는 호출하는 쪽(BarricadeRepairStation) 책임.</summary>
+        public int RepairAll()
         {
-            if (!Application.isPlaying) return;
-            while (TryRepairOne()) { }
+            int restored = 0;
+            while (TryRepairOne()) restored++;
+            return restored;
+        }
+
+        [ContextMenu("Repair All Boards")]
+        private void RepairAllFromMenu()
+        {
+            if (Application.isPlaying) RepairAll();
         }
 
         /// <summary>

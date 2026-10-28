@@ -21,7 +21,15 @@ namespace Shelter.ShelterDefense
         [Tooltip("판자 소리가 최대 크기로 들리는 거리 / 들리지 않게 되는 거리(m). 쉘터 어디서든 어느 입구가 뚫리는지 들려야 한다.")]
         [SerializeField] private Vector2 _sfxAudibleRange = new Vector2(4f, 40f);
 
+        [Header("수리 (준비 시간에만)")]
+        [Tooltip("떨어진 판자 1장당 수리 비용. 수리 버튼은 떨어진 판자를 한 번에 모두 되붙인다. 플레이테스트 후 조정 대상.")]
+        [SerializeField, Min(0)] private int _repairCostPerBoard = 30;
+        [Tooltip("플레이어가 입구 안쪽 지점에서 이 거리(m, 수평) 안에 있으면 수리 버튼이 나타난다.")]
+        [SerializeField, Min(0.5f)] private float _repairPromptDistance = 2.5f;
+
         public int HitsPerBoard => _hitsPerBoard;
+        public int RepairCostPerBoard => _repairCostPerBoard;
+        public float RepairPromptDistance => _repairPromptDistance;
         public float BoardFlyTime => _boardFlyTime;
         public float BoardFlySpeed => _boardFlySpeed;
         public float SfxVolume => _sfxVolume;
