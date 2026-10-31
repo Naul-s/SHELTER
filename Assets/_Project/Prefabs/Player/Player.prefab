@@ -1872,6 +1872,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4988567813265218962}
+    - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4181382778696205107}
+    - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 406458582888924321}
     - targetCorrespondingSourceObject: {fileID: 202364687, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3852749184367752051}
@@ -2232,3 +2238,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Economy.PlayerWallet
   _config: {fileID: 11400000, guid: 620f1bc4e650ebb4ba3d20cf0930176b, type: 2}
+--- !u!114 &4181382778696205107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189045743151864131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81261554ef51b2046ab5689f5b0e2ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shelter.Player.PlayerDamageFeedback
+  _vignetteShader: {fileID: 4800000, guid: 7fb646bd066086f4781c057f4076e893, type: 3}
+  _hitColor: {r: 0.6, g: 0, b: 0, a: 1}
+  _heavyHitFraction: 0.08
+  _hitFlashMin: 0.55
+  _hitFlashMax: 0.9
+  _hitFlashFadeTime: 0.7
+  _hitFlashCoverage: 0.6
+  _hitDirectional: 0.75
+  _hitHapticMin: 0.5
+  _hitHapticMax: 1
+  _hitHapticDuration: 0.2
+  _farHandHaptic: 0.35
+  _lowHealthThreshold: 0.35
+  _lowHealthColor: {r: 0.4, g: 0, b: 0, a: 1}
+  _lowHealthMaxOpacity: 0.6
+  _lowHealthCoverage: 0.45
+  _heartbeatClip: {fileID: 8300000, guid: eeba3b4578f00954f8ab47dce4fd90aa, type: 3}
+  _heartbeatMaxVolume: 0.8
+  _heartbeatMaxRate: 1.45
+  _healColor: {r: 0.25, g: 0.75, b: 0.35, a: 1}
+  _healFlash: 0.45
+  _healFlashFadeTime: 1
+  _healHaptic: 0.3
+  _healClip: {fileID: 8300000, guid: 9f37b32fc11bb9543ab7ddef0145ce53, type: 3}
+  _healVolume: 0.8
+  _deathColor: {r: 0.07, g: 0, b: 0, a: 1}
+  _deathFadeTarget: 0.88
+  _deathFadeTime: 1.6
+--- !u!114 &406458582888924321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189045743151864131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ead0ef2ce726fd4a81ed566ce02def7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shelter.UI.WristDisplay
+  _anchor: {fileID: 7516906868915527806}
+  _font: {fileID: 11400000, guid: 21fb6e7143b60c74bb1600d1cd76fd91, type: 2}
+  _localPosition: {x: -0.06, y: 0, z: -0.1}
+  _localEuler: {x: 0, y: 90, z: 180}
+  _metersPerPixel: 0.0004
+  _idleAlpha: 0.15
+  _lookFadeRange: {x: 0.35, y: 0.75}
+  _panelColor: {r: 0.05, g: 0.04, b: 0.04, a: 0.75}
+  _healthyColor: {r: 0.45, g: 0.85, b: 0.35, a: 1}
+  _woundedColor: {r: 0.95, g: 0.7, b: 0.15, a: 1}
+  _criticalColor: {r: 0.9, g: 0.1, b: 0.06, a: 1}
+  _trailColor: {r: 1, g: 0.92, b: 0.85, a: 0.85}
+  _textColor: {r: 0.95, g: 0.92, b: 0.85, a: 1}
+  _moneyColor: {r: 0.95, g: 0.85, b: 0.4, a: 1}
+  _trailDelay: 0.45
+  _trailSpeed: 0.6
