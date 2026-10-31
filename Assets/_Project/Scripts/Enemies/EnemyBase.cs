@@ -3,6 +3,7 @@ using Shelter.Core;
 using Shelter.Enemies.Animation;
 using Shelter.Enemies.Combat;
 using Shelter.Enemies.Movement;
+using Shelter.Enemies.Ragdoll;
 using Shelter.Enemies.Targeting;
 using Shelter.ShelterDefense;
 using UnityEngine;
@@ -38,6 +39,7 @@ namespace Shelter.Enemies
         private IEnemyAttack _attack;
         private IEnemyAnimationDriver _animationDriver;
         private IEnemyTargetSelector _targetSelector;
+        private EnemyRagdoll _ragdoll;
 
         private EnemyState _state;
         private IEnemyTarget _currentTarget;
@@ -81,6 +83,7 @@ namespace Shelter.Enemies
             _attack = GetComponent<IEnemyAttack>();
             _animationDriver = GetComponent<IEnemyAnimationDriver>();
             _targetSelector = new ShelterAssaultTargetSelector(new PlayerTargetProvider(), new BarricadeProvider());
+            _ragdoll = GetComponent<EnemyRagdoll>();
 
             if (_movement == null) Debug.LogError($"{name}: IEnemyMovement 구현 컴포넌트가 없습니다.", this);
             if (_attack == null) Debug.LogError($"{name}: IEnemyAttack 구현 컴포넌트가 없습니다.", this);
@@ -110,6 +113,8 @@ namespace Shelter.Enemies
         public void Spawn(EnemyData data, Vector3 position, Quaternion rotation, Barricade assignedBarricade = null)
         {
             _data = data;
+
+            _ragdoll?.ResetRagdoll();
 
             _movement.Initialize(_data.MoveSpeed, _data.AttackRange);
             _attack.Initialize(_data);
