@@ -2495,6 +2495,7 @@ MonoBehaviour:
   mainCamera: {fileID: 765616913}
   leftController: {fileID: 934259534225338627}
   rightController: {fileID: 1133781188843485860}
+  gameOverUI: {fileID: 0}
   UI_SKill: {fileID: 0}
   UI_Inventory: {fileID: 0}
 --- !u!223 &3350687219933787186
@@ -3250,9 +3251,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8987615982003510815}
-    - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6020795697363627266}
     - targetCorrespondingSourceObject: {fileID: 202364687, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 934259534225338622}
@@ -3276,20 +3274,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6020795697363627266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060087859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948d1751446cb824fb40d6aff53609b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthEffect
-  _health: {fileID: 5402014268362265550}
-  HealthEffectVignette: {fileID: 2100000, guid: da184c279c6aa7e4f8515aa30a5c2510, type: 2}
 --- !u!114 &6279400635178090551
 MonoBehaviour:
   m_ObjectHideFlags: 0
