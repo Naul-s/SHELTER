@@ -395,7 +395,8 @@ GameObject:
   - component: {fileID: 4867542314519214212}
   - component: {fileID: 1125529484722837277}
   - component: {fileID: 4023161466582302860}
-  - component: {fileID: 761282016676369469}
+  - component: {fileID: 2837911787678585717}
+  - component: {fileID: 6430461681141844966}
   m_Layer: 0
   m_Name: ENM_ZombieWalker
   m_TagString: Untagged
@@ -523,6 +524,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f298d06e8703d4c9d880b67de9c0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Enemies.Animation.EnemyAnimatorDriver
+  _moveSpeedDampTime: 0.15
+  _attackFadeTime: 0.15
+  _hitFadeTime: 0.06
+  _hitStartTime: 0.25
+  _deathFadeTime: 0.15
+  _vaultFadeTime: 0.12
 --- !u!114 &1125529484722837277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,7 +556,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Audio.EnemyAudio
   _config: {fileID: 11400000, guid: ecfea699714b85f41aa65b0b70cdf8d3, type: 2}
---- !u!114 &761282016676369469
+--- !u!136 &2837911787678585717
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212551199809813333}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &6430461681141844966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

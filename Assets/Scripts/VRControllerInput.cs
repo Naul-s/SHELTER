@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class VRController : MonoBehaviour
 {
     [Header("오른쪽 컨트롤러")]
@@ -38,7 +37,7 @@ public class VRController : MonoBehaviour
     [SerializeField] private Transform leftController;
     [SerializeField] private Transform rightController;
 
-
+    [SerializeField] private GameMenuUI gameOverUI;
 
 
     [SerializeField] private GameObject UI_SKill;
@@ -181,6 +180,10 @@ public class VRController : MonoBehaviour
         if (left_btn_menu.action != null && left_btn_menu.action.WasPressedThisFrame())
         {
             //Debug.Log("왼쪽 메뉴키 입력");
+            if (gameOverUI != null && gameOverUI.isDefeated == false)//게임오버가 되지 않았을 때
+            {
+                gameOverUI.MenuSetActive();
+            }
         }
 
         if (left_btn_front.action != null && left_btn_front.action.WasPressedThisFrame())
