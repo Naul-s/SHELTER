@@ -19,8 +19,11 @@ MonoBehaviour:
   _moveSpeed: 3.2
   _attackPower: 20
   _attackRange: 1.2
-  _attackCooldown: 1.4
-  _attackWindupTime: 0.3
+  _attackCooldown: 0.85
+  _attackWindupTime: 0.9
+  _attackRecoveryTime: 0.85
+  _hitReactionCooldown: 0.6
+  _hitStaggerDuration: 0.35
   _windowVaultDuration: 0.9
   _targetReevaluateInterval: 0.5
   _corpseLifetime: 8

@@ -3,6 +3,7 @@ using Shelter.Core;
 using Shelter.Enemies.Animation;
 using Shelter.Enemies.Combat;
 using Shelter.Enemies.Movement;
+using Shelter.Enemies.Ragdoll;
 using Shelter.Enemies.Targeting;
 using Shelter.ShelterDefense;
 using UnityEngine;
@@ -38,12 +39,15 @@ namespace Shelter.Enemies
         private IEnemyAttack _attack;
         private IEnemyAnimationDriver _animationDriver;
         private IEnemyTargetSelector _targetSelector;
+        private EnemyRagdoll _ragdoll;
 
         private EnemyState _state;
         private IEnemyTarget _currentTarget;
         private float _currentHealth;
         private float _reevaluateTimer;
         private float _corpseTimer;
+        private float _staggerTimer;
+        private float _hitReactionTimer;
 
         private bool _insideShelter;
         private Barricade _assignedBarricade;
@@ -81,6 +85,7 @@ namespace Shelter.Enemies
             _attack = GetComponent<IEnemyAttack>();
             _animationDriver = GetComponent<IEnemyAnimationDriver>();
             _targetSelector = new ShelterAssaultTargetSelector(new PlayerTargetProvider(), new BarricadeProvider());
+            _ragdoll = GetComponent<EnemyRagdoll>();
 
             if (_movement == null) Debug.LogError($"{name}: IEnemyMovement 구현 컴포넌트가 없습니다.", this);
             if (_attack == null) Debug.LogError($"{name}: IEnemyAttack 구현 컴포넌트가 없습니다.", this);
@@ -111,6 +116,8 @@ namespace Shelter.Enemies
         {
             _data = data;
 
+            _ragdoll?.ResetRagdoll();
+
             _movement.Initialize(_data.MoveSpeed, _data.AttackRange);
             _attack.Initialize(_data);
             _attack.CancelAttack();
@@ -124,6 +131,8 @@ namespace Shelter.Enemies
             _reevaluateTimer = 0f;
             _corpseTimer = 0f;
             _stuckTimer = 0f;
+            _staggerTimer = 0f;
+            _hitReactionTimer = 0f;
             _insideShelter = false;
             _assignedBarricade = assignedBarricade;
 
@@ -141,6 +150,9 @@ namespace Shelter.Enemies
 
         private void Update()
         {
+            if (_hitReactionTimer > 0f) _hitReactionTimer -= Time.deltaTime;
+            if (TickStagger(Time.deltaTime)) return;
+
             switch (_state)
             {
                 case EnemyState.Seeking:
@@ -156,6 +168,22 @@ namespace Shelter.Enemies
                     TickDead(Time.deltaTime);
                     break;
             }
+        }
+
+        /// <summary>피격 경직 중이면 제자리에 멈춰 있는다(공격 쿨다운만 흐른다). 경직 중이었으면 true.</summary>
+        private bool TickStagger(float deltaTime)
+        {
+            if (_staggerTimer <= 0f) return false;
+            if (_state != EnemyState.Seeking && _state != EnemyState.Attacking)
+            {
+                _staggerTimer = 0f;
+                return false;
+            }
+
+            _staggerTimer -= deltaTime;
+            _attack.Tick(deltaTime);
+            _animationDriver.SetMoveSpeed01(0f);
+            return true;
         }
 
         private void TickSeeking(float deltaTime)
@@ -242,6 +270,14 @@ namespace Shelter.Enemies
                 ClearTarget();
                 _reevaluateTimer = 0f;
                 _state = EnemyState.Seeking;
+                return;
+            }
+
+            // 휘두르는 동작은 끝까지 제자리에서 한다 — 도중에 대상이 물러나도 쫓아가며 미끄러지지 않는다
+            // (빗나감은 공격 컴포넌트가 타격 순간에 판정). 예비동작 동안만 대상을 향해 몸을 돌린다.
+            if (_attack.IsAttacking)
+            {
+                if (_attack.IsImpactPending) FaceTowards(_currentTarget.Transform.position);
                 return;
             }
 
@@ -416,7 +452,29 @@ namespace Shelter.Enemies
                 return;
             }
 
+            ReactToHit();
+        }
+
+        /// <summary>
+        /// 피격 반응: 하던 동작을 끊고 움찔한다. 연사에 매 발 굳지 않게 EnemyData.HitReactionCooldown 간격으로만 재생하고,
+        /// 경직(HitStaggerDuration) 동안 멈춰 서며 진행 중이던 공격은 취소된다. 경직이 없는 중량급은 공격 중엔 반응하지 않는다.
+        /// 창문을 넘는 중에는 궤적이 어긋나지 않게 반응하지 않는다.
+        /// </summary>
+        private void ReactToHit()
+        {
+            if (_state == EnemyState.Entering || _hitReactionTimer > 0f) return;
+
+            bool staggers = _data.HitStaggerDuration > 0f;
+            if (!staggers && _attack.IsAttacking) return;
+
+            _hitReactionTimer = _data.HitReactionCooldown;
             _animationDriver.PlayHitReaction();
+            if (!staggers) return;
+
+            _attack.CancelAttack();
+            _movement.Stop();
+            _hasDestination = false;
+            _staggerTimer = _data.HitStaggerDuration;
         }
 
         private void Die()
@@ -431,6 +489,7 @@ namespace Shelter.Enemies
 
             _state = EnemyState.Dead;
             _corpseTimer = _data.CorpseLifetime;
+            _staggerTimer = 0f;
 
             _attack.CancelAttack();
             _movement.Stop();
