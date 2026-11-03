@@ -33,6 +33,11 @@ namespace Shelter.UI
         [Tooltip("표시면과 시선이 이루는 정도(코사인)가 이 범위를 지나며 선명해진다.")]
         [SerializeField] private Vector2 _lookFadeRange = new Vector2(0.35f, 0.75f);
 
+        [Header("모양(UI 키트) — 비우면 단색 사각형")]
+        [SerializeField] private Sprite _panelSprite;
+        [SerializeField] private Sprite _heartIcon;
+        [SerializeField] private Sprite _coinIcon;
+
         [Header("색")]
         [SerializeField] private Color _panelColor = new Color(0.05f, 0.04f, 0.04f, 0.75f);
         [SerializeField] private Color _healthyColor = new Color(0.45f, 0.85f, 0.35f, 1f);
@@ -118,7 +123,9 @@ namespace Shelter.UI
 
         private void ShowMoney(int balance)
         {
-            _moneyText.SetText("보유 {0}", balance);
+            // 동전 아이콘이 있으면 숫자만
+            if (_coinIcon != null) _moneyText.SetText("{0}", balance);
+            else _moneyText.SetText("보유 {0}", balance);
         }
 
         private void Update()
@@ -170,12 +177,23 @@ namespace Shelter.UI
             _group.interactable = false;
             _group.blocksRaycasts = false;
 
-            Image panel = AddImage(_root, "Panel", _panelColor);
+            Image panel = AddImage(_root, "Panel", _panelSprite != null ? Color.white : _panelColor);
+            panel.sprite = _panelSprite;
             Stretch(panel.rectTransform, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+
+            // 아이콘이 있으면 왼쪽에 두고 그만큼 바·금액을 오른쪽으로
+            float iconSpace = _heartIcon != null ? 42f : 0f;
+            if (_heartIcon != null)
+            {
+                Image heart = AddImage(_root, "HeartIcon", _criticalColor);
+                heart.sprite = _heartIcon;
+                Stretch(heart.rectTransform, new Vector2(0f, 0.58f), new Vector2(0f, 0.9f), new Vector2(14f, 0f), new Vector2(48f, 0f));
+                heart.preserveAspect = true;
+            }
 
             // 체력 바: 배경 → 잔상 → 채움
             Image barBack = AddImage(_root, "HealthBar", new Color(0f, 0f, 0f, 0.6f));
-            Stretch(barBack.rectTransform, new Vector2(0f, 0.56f), new Vector2(1f, 0.92f), new Vector2(14f, 0f), new Vector2(-14f, 0f));
+            Stretch(barBack.rectTransform, new Vector2(0f, 0.56f), new Vector2(1f, 0.92f), new Vector2(14f + iconSpace, 0f), new Vector2(-16f, 0f));
             Image trail = AddImage(barBack.rectTransform, "Trail", _trailColor);
             _trail = trail.rectTransform;
             Stretch(_trail, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
@@ -188,8 +206,18 @@ namespace Shelter.UI
             _healthText.outlineWidth = 0.12f;
             _healthText.outlineColor = new Color32(0, 0, 0, 200);
 
-            _moneyText = AddText(_root, "MoneyText", 34f, TextAlignmentOptions.Center, _moneyColor);
-            Stretch(_moneyText.rectTransform, new Vector2(0f, 0.06f), new Vector2(1f, 0.5f), new Vector2(14f, 0f), new Vector2(-14f, 0f));
+            float coinSpace = _coinIcon != null ? 42f : 0f;
+            if (_coinIcon != null)
+            {
+                Image coin = AddImage(_root, "CoinIcon", _moneyColor);
+                coin.sprite = _coinIcon;
+                coin.preserveAspect = true;
+                Stretch(coin.rectTransform, new Vector2(0f, 0.12f), new Vector2(0f, 0.44f), new Vector2(14f, 0f), new Vector2(48f, 0f));
+                if (_wallet == null) coin.gameObject.SetActive(false);
+            }
+
+            _moneyText = AddText(_root, "MoneyText", 34f, coinSpace > 0f ? TextAlignmentOptions.Left : TextAlignmentOptions.Center, _moneyColor);
+            Stretch(_moneyText.rectTransform, new Vector2(0f, 0.06f), new Vector2(1f, 0.5f), new Vector2(14f + coinSpace, 0f), new Vector2(-16f, 0f));
             if (_wallet == null) _moneyText.gameObject.SetActive(false);
         }
 
