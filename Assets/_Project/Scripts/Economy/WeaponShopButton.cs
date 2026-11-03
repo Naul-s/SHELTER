@@ -19,12 +19,14 @@ namespace Shelter.Economy
         [SerializeField] private Color _unaffordableColor = new Color(0.75f, 0.15f, 0.12f, 1f);
 
         private Button _button;
+        private ColorBlock _baseColors;
         private PlayerWallet _wallet;
         private int _price;
 
         private void Awake()
         {
             _button = GetComponent<Button>();
+            _baseColors = _button.colors;
         }
 
         private void Start()
@@ -77,10 +79,17 @@ namespace Shelter.Economy
             bool affordable = balance >= _price;
             if (_priceText != null) _priceText.color = affordable ? _affordableColor : _unaffordableColor;
 
-            // 누를 수는 있게 두되(거절음·피드백) 흐리게 표시한다.
-            ColorBlock colors = _button.colors;
-            colors.colorMultiplier = affordable ? 1f : 0.55f;
+            // 누를 수는 있게 두되(거절음·피드백) 어둡게 표시한다. 밝기만 낮추고 불투명도는 그대로 —
+            // colorMultiplier 는 알파까지 곱해 판 뒤의 발광이 비쳐 보인다.
+            float dim = affordable ? 1f : 0.55f;
+            ColorBlock colors = _baseColors;
+            colors.normalColor = Dim(_baseColors.normalColor, dim);
+            colors.highlightedColor = Dim(_baseColors.highlightedColor, dim);
+            colors.pressedColor = Dim(_baseColors.pressedColor, dim);
+            colors.selectedColor = Dim(_baseColors.selectedColor, dim);
             _button.colors = colors;
         }
+
+        private static Color Dim(Color c, float k) => new Color(c.r * k, c.g * k, c.b * k, c.a);
     }
 }
