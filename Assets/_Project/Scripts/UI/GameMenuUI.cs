@@ -8,6 +8,8 @@ public class GameMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private TextMeshProUGUI text_GameOver;
+    [Tooltip("일시정지로 열었을 때 보이는 제목(게임오버 제목 대신).")]
+    [SerializeField] private TextMeshProUGUI text_Paused;
     [SerializeField] private TextMeshProUGUI text_CurrentRound;
     [SerializeField] private Button btn_ReStart;
     [SerializeField] private Button btn_Main;
@@ -41,13 +43,15 @@ public class GameMenuUI : MonoBehaviour
         isDefeated = true;
         gameOverCanvas.SetActive(true);
         text_GameOver.gameObject.SetActive(true);
-        text_CurrentRound.text = "Round : " + roundNumber;
+        if (text_Paused != null) text_Paused.gameObject.SetActive(false);
+        text_CurrentRound.SetText("{0} 라운드에서 쓰러졌습니다", roundNumber);
     }
 
     public void MenuSetActive()
     {
         gameOverCanvas.SetActive(!gameOverCanvas.activeSelf);
         text_GameOver.gameObject.SetActive(false);
-        text_CurrentRound.text = "Round : " + _roundManager.CurrentRound;
+        if (text_Paused != null) text_Paused.gameObject.SetActive(true);
+        text_CurrentRound.SetText("현재 {0} 라운드", _roundManager.CurrentRound);
     }
 }
