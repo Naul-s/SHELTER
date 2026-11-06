@@ -24,6 +24,14 @@ namespace Shelter.ShelterDefense
         [SerializeField] private RectTransform _promptPrefab;
         [Tooltip("버튼 위치: x = 입구 가장자리에서 옆으로 띄우는 거리, y = 실내 바닥에서의 높이, z = 판자 면에서 실내 쪽으로 띄우는 거리(m).")]
         [SerializeField] private Vector3 _promptPlacement = new Vector3(0.35f, 1.2f, 0.12f);
+        [Tooltip("버튼을 가릴 수 있는 지오메트리(벽) 레이어. 계산된 위치가 벽 속이면 실내 쪽 벽 표면으로 끌어낸다.")]
+        [SerializeField] private LayerMask _occluderMask = Physics.DefaultRaycastLayers;
+        [Tooltip("벽 표면을 찾을 때 실내 쪽에서 레이를 시작하는 거리(m). 벽 두께보다 커야 한다.")]
+        [SerializeField, Min(0.1f)] private float _wallProbeDistance = 1.2f;
+        [Tooltip("벽 표면에서 버튼을 띄우는 거리(m) — z-fighting·관통 방지.")]
+        [SerializeField, Min(0f)] private float _wallSurfaceOffset = 0.03f;
+        [Tooltip("가려짐 검사용 플레이어 눈높이(실내 기준점 바닥에서, m).")]
+        [SerializeField, Min(0f)] private float _viewerEyeHeight = 1.5f;
         [SerializeField] private Color _affordableColor = new Color(0.95f, 0.85f, 0.4f, 1f);
         [SerializeField] private Color _unaffordableColor = new Color(0.8f, 0.15f, 0.12f, 1f);
         [SerializeField] private AudioClip _repairClip;
@@ -84,6 +92,8 @@ namespace Shelter.ShelterDefense
         /// <summary>
         /// 입구 바로 옆 벽면, 가슴 높이에 실내를 향하게 놓는다(판자를 가리지 않게 입구 가장자리 바깥으로).
         /// 바리케이드 루트는 판자와 수십 m 떨어져 있을 수 있어 판자 렌더러 기준으로 계산한다.
+        /// 판자는 벽 두께 안쪽이나 바깥면에 붙어 있는 경우가 많아, 그대로 두면 버튼이 벽 속에 묻힌다 —
+        /// 그래서 실내 쪽 벽 표면으로 끌어내고, 플레이어 자리에서 가려지면 반대편 옆 → 입구 정면 순으로 옮긴다.
         /// </summary>
         private void PlacePrompt()
         {
@@ -117,11 +127,55 @@ namespace Shelter.ShelterDefense
                 }
             }
 
-            Vector3 position = center + side * (halfWidth + _promptPlacement.x) + inward * _promptPlacement.z;
-            position.y = _barricade.InsidePosition.y + _promptPlacement.y;
+            float height = _barricade.InsidePosition.y + _promptPlacement.y;
+            Vector3 eye = _barricade.InsidePosition + Vector3.up * _viewerEyeHeight;
+            float sideOffset = halfWidth + _promptPlacement.x;
+
+            // 1순위: 원래 쪽 옆 벽, 2순위: 반대쪽 옆 벽, 3순위: 입구 정면(판자 바로 앞)
+            Vector3 position = SnapToWallSurface(Nominal(center, side * sideOffset, inward, height), inward);
+            if (!IsVisibleFrom(eye, position))
+            {
+                Vector3 other = SnapToWallSurface(Nominal(center, -side * sideOffset, inward, height), inward);
+                position = IsVisibleFrom(eye, other)
+                    ? other
+                    : SnapToWallSurface(Nominal(center, Vector3.zero, inward, height), inward);
+            }
+
             _prompt.position = position;
             // 캔버스 앞면이 실내(플레이어 쪽)를 보도록: forward = 바깥 방향
             _prompt.rotation = Quaternion.LookRotation(-inward, Vector3.up);
+        }
+
+        private Vector3 Nominal(Vector3 center, Vector3 sideOffset, Vector3 inward, float height)
+        {
+            Vector3 p = center + sideOffset + inward * _promptPlacement.z;
+            p.y = height;
+            return p;
+        }
+
+        /// <summary>
+        /// 실내 쪽에서 바깥으로 레이를 쏴, 버튼 위치 뒤(또는 버튼이 묻힌) 벽의 실내 쪽 표면 바로 앞으로 옮긴다.
+        /// 맞는 면이 없으면(트인 공간) 그대로 둔다.
+        /// </summary>
+        private Vector3 SnapToWallSurface(Vector3 position, Vector3 inward)
+        {
+            Vector3 origin = position + inward * _wallProbeDistance;
+            float distance = _wallProbeDistance + _wallProbeDistance;
+            if (Physics.Raycast(origin, -inward, out RaycastHit hit, distance, _occluderMask, QueryTriggerInteraction.Ignore)
+                && hit.distance < _wallProbeDistance + _wallProbeDistance * 0.5f)
+            {
+                return hit.point + inward * _wallSurfaceOffset;
+            }
+            return position;
+        }
+
+        private bool IsVisibleFrom(Vector3 eye, Vector3 target)
+        {
+            Vector3 toTarget = target - eye;
+            float distance = toTarget.magnitude;
+            if (distance < 0.01f) return true;
+            // 버튼이 붙은 벽 자체에 맞지 않도록 끝을 조금 남긴다.
+            return !Physics.Raycast(eye, toTarget / distance, distance - 0.05f, _occluderMask, QueryTriggerInteraction.Ignore);
         }
 
         private void Update()
