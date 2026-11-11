@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace Shelter.ShelterDefense
 {
     /// <summary>
-    /// 바리케이드 수리: 준비 시간 중 판자가 떨어진 입구 안쪽 가까이 가면 입구 옆에 수리 버튼이 나타나고,
+    /// 바리케이드 수리: 준비 시간 중 판자가 떨어진 입구 안쪽 가까이 가면 입구 앞에 수리 버튼이 나타나고,
     /// 누르면 (떨어진 판자 수 × 장당 비용)을 지갑에서 빼고 판자를 모두 되붙인다.
     /// 판자 수·잔액은 공유 상태 — 상태 변경은 <see cref="TryRepair"/> 한 곳뿐이고, 네트워킹 도입 시 이 메서드가 서버 진입점이 된다
     /// (클라이언트는 "이 바리케이드 수리" 요청만 보내고, 비용은 서버가 BarricadeConfig 로 다시 계산한다).
@@ -22,7 +22,7 @@ namespace Shelter.ShelterDefense
         [SerializeField] private RoundManager _roundManager;
         [Tooltip("월드 스페이스 수리 버튼 프리팹(Button 과 비용 표시 TMP 포함). 바리케이드마다 하나씩 만들어 켜고 끈다.")]
         [SerializeField] private RectTransform _promptPrefab;
-        [Tooltip("버튼 위치: x = 입구 가장자리에서 옆으로 띄우는 거리, y = 실내 바닥에서의 높이, z = 판자 면에서 실내 쪽으로 띄우는 거리(m).")]
+        [Tooltip("버튼 위치: x = 정면이 가려질 때 입구 가장자리에서 옆으로 띄우는 거리, y = 실내 바닥에서의 높이, z = 판자 면에서 실내 쪽으로 띄우는 거리(m).")]
         [SerializeField] private Vector3 _promptPlacement = new Vector3(0.35f, 1.2f, 0.12f);
         [Tooltip("버튼을 가릴 수 있는 지오메트리(벽) 레이어. 계산된 위치가 벽 속이면 실내 쪽 벽 표면으로 끌어낸다.")]
         [SerializeField] private LayerMask _occluderMask = Physics.DefaultRaycastLayers;
@@ -90,10 +90,10 @@ namespace Shelter.ShelterDefense
         }
 
         /// <summary>
-        /// 입구 바로 옆 벽면, 가슴 높이에 실내를 향하게 놓는다(판자를 가리지 않게 입구 가장자리 바깥으로).
+        /// 입구 정면(판자 바로 앞), 가슴 높이에 실내를 향하게 놓는다.
         /// 바리케이드 루트는 판자와 수십 m 떨어져 있을 수 있어 판자 렌더러 기준으로 계산한다.
-        /// 판자는 벽 두께 안쪽이나 바깥면에 붙어 있는 경우가 많아, 그대로 두면 버튼이 벽 속에 묻힌다 —
-        /// 그래서 실내 쪽 벽 표면으로 끌어내고, 플레이어 자리에서 가려지면 반대편 옆 → 입구 정면 순으로 옮긴다.
+        /// 판자는 벽 두께 안쪽이나 바깥면에 붙어 있는 경우가 많아, 그대로 두면 버튼이 벽·판자 속에 묻힌다 —
+        /// 그래서 실내 쪽 표면 바로 앞으로 끌어내고, 플레이어 자리에서 가려지면 입구 옆 벽(한쪽 → 반대쪽)으로 옮긴다.
         /// </summary>
         private void PlacePrompt()
         {
@@ -131,14 +131,14 @@ namespace Shelter.ShelterDefense
             Vector3 eye = _barricade.InsidePosition + Vector3.up * _viewerEyeHeight;
             float sideOffset = halfWidth + _promptPlacement.x;
 
-            // 1순위: 원래 쪽 옆 벽, 2순위: 반대쪽 옆 벽, 3순위: 입구 정면(판자 바로 앞)
-            Vector3 position = SnapToWallSurface(Nominal(center, side * sideOffset, inward, height), inward);
+            // 1순위: 입구 정면(판자 바로 앞), 가려지면 2순위: 한쪽 옆 벽, 3순위: 반대쪽 옆 벽
+            Vector3 position = SnapToWallSurface(Nominal(center, Vector3.zero, inward, height), inward);
             if (!IsVisibleFrom(eye, position))
             {
-                Vector3 other = SnapToWallSurface(Nominal(center, -side * sideOffset, inward, height), inward);
-                position = IsVisibleFrom(eye, other)
-                    ? other
-                    : SnapToWallSurface(Nominal(center, Vector3.zero, inward, height), inward);
+                Vector3 sideA = SnapToWallSurface(Nominal(center, side * sideOffset, inward, height), inward);
+                position = IsVisibleFrom(eye, sideA)
+                    ? sideA
+                    : SnapToWallSurface(Nominal(center, -side * sideOffset, inward, height), inward);
             }
 
             _prompt.position = position;
