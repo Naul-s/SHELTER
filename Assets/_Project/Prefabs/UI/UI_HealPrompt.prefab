@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_HealPrompt
       objectReference: {fileID: 0}
+    - target: {fileID: 7729106169297312168, guid: c50ce9eeba22ae74a84f3d6e3aeda303, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8320880416017519520, guid: c50ce9eeba22ae74a84f3d6e3aeda303, type: 3}
       propertyPath: m_Sprite
       value: 

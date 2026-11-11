@@ -191,5 +191,17 @@ namespace Shelter.Rounds
 
             BeginIntermission(_config.IntermissionTime);
         }
+
+        public void ChangeIntermission(float seconds)
+        {
+            if (State != RoundState.Intermission) return;
+
+            if (_intermissionRoutine != null)
+                StopCoroutine(_intermissionRoutine);
+
+            _intermissionEndTime = Time.time + seconds;
+            Debug.Log($"[Round] 준비 시간 {seconds:0}초로 변경");
+            _intermissionRoutine = StartCoroutine(IntermissionThenStartRound(seconds));
+        }
     }
 }

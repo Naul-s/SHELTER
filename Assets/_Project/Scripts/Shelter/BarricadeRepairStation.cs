@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace Shelter.ShelterDefense
 {
     /// <summary>
-    /// 바리케이드 수리: 준비 시간 중 판자가 떨어진 입구 안쪽 가까이 가면 입구 옆에 수리 버튼이 나타나고,
+    /// 바리케이드 수리: 준비 시간 중 판자가 떨어진 입구 안쪽 가까이 가면 입구 앞에 수리 버튼이 나타나고,
     /// 누르면 (떨어진 판자 수 × 장당 비용)을 지갑에서 빼고 판자를 모두 되붙인다.
     /// 판자 수·잔액은 공유 상태 — 상태 변경은 <see cref="TryRepair"/> 한 곳뿐이고, 네트워킹 도입 시 이 메서드가 서버 진입점이 된다
     /// (클라이언트는 "이 바리케이드 수리" 요청만 보내고, 비용은 서버가 BarricadeConfig 로 다시 계산한다).
@@ -117,7 +117,7 @@ namespace Shelter.ShelterDefense
                 }
             }
 
-            Vector3 position = center + side * (halfWidth + _promptPlacement.x) + inward * _promptPlacement.z;
+            Vector3 position = center + inward * _promptPlacement.z;
             position.y = _barricade.InsidePosition.y + _promptPlacement.y;
             _prompt.position = position;
             // 캔버스 앞면이 실내(플레이어 쪽)를 보도록: forward = 바깥 방향
