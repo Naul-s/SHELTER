@@ -651,7 +651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203335552275749776, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 39.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2203335552275749776, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -687,7 +687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203335552669357593, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 61.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2203335552669357593, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -707,7 +707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203335552931622894, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 35.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2203335552931622894, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -735,7 +735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7394621462093345750, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 34.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7394621462093345750, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -755,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7394621462315176351, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 32.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7394621462315176351, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -791,7 +791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7394621463207001438, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 35.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7394621463207001438, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -819,7 +819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7394621463713527063, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 61.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7394621463713527063, guid: 4427d5722b23524428a4e48ad8962dba, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1606,9 +1606,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.ShelterDefense.BarricadeView
   _splinterPrefab: {fileID: 4490849221977489121, guid: a6fa9a05c1f96b040a7aff48cc864321, type: 3}
   _breakClips:
-  - {fileID: 8300000, guid: 472f6b00d89d9714d819b63405d4b015, type: 3}
-  - {fileID: 8300000, guid: 85dd1dbd254972e4c87f8f17945a80d6, type: 3}
-  - {fileID: 8300000, guid: ef558b829009da8448d90e621f34738a, type: 3}
+  - {fileID: 8300000, guid: 24e0c8d1381c9db42a48b1dff3dba338, type: 3}
+  - {fileID: 8300000, guid: d0d55268ee056d64c9ba5799419232be, type: 3}
   _hitClips:
   - {fileID: 8300000, guid: a07344beb086cb840b205b6b17f22299, type: 3}
   _breachClips:
@@ -3728,9 +3727,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.ShelterDefense.BarricadeView
   _splinterPrefab: {fileID: 4490849221977489121, guid: a6fa9a05c1f96b040a7aff48cc864321, type: 3}
   _breakClips:
-  - {fileID: 8300000, guid: 472f6b00d89d9714d819b63405d4b015, type: 3}
-  - {fileID: 8300000, guid: 85dd1dbd254972e4c87f8f17945a80d6, type: 3}
-  - {fileID: 8300000, guid: ef558b829009da8448d90e621f34738a, type: 3}
+  - {fileID: 8300000, guid: 24e0c8d1381c9db42a48b1dff3dba338, type: 3}
+  - {fileID: 8300000, guid: d0d55268ee056d64c9ba5799419232be, type: 3}
   _hitClips:
   - {fileID: 8300000, guid: a07344beb086cb840b205b6b17f22299, type: 3}
   _breachClips:
@@ -5727,9 +5725,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.ShelterDefense.BarricadeView
   _splinterPrefab: {fileID: 4490849221977489121, guid: a6fa9a05c1f96b040a7aff48cc864321, type: 3}
   _breakClips:
-  - {fileID: 8300000, guid: 472f6b00d89d9714d819b63405d4b015, type: 3}
-  - {fileID: 8300000, guid: 85dd1dbd254972e4c87f8f17945a80d6, type: 3}
-  - {fileID: 8300000, guid: ef558b829009da8448d90e621f34738a, type: 3}
+  - {fileID: 8300000, guid: 24e0c8d1381c9db42a48b1dff3dba338, type: 3}
+  - {fileID: 8300000, guid: d0d55268ee056d64c9ba5799419232be, type: 3}
   _hitClips:
   - {fileID: 8300000, guid: a07344beb086cb840b205b6b17f22299, type: 3}
   _breachClips:
@@ -6051,9 +6048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.ShelterDefense.BarricadeView
   _splinterPrefab: {fileID: 4490849221977489121, guid: a6fa9a05c1f96b040a7aff48cc864321, type: 3}
   _breakClips:
-  - {fileID: 8300000, guid: 472f6b00d89d9714d819b63405d4b015, type: 3}
-  - {fileID: 8300000, guid: 85dd1dbd254972e4c87f8f17945a80d6, type: 3}
-  - {fileID: 8300000, guid: ef558b829009da8448d90e621f34738a, type: 3}
+  - {fileID: 8300000, guid: 24e0c8d1381c9db42a48b1dff3dba338, type: 3}
+  - {fileID: 8300000, guid: d0d55268ee056d64c9ba5799419232be, type: 3}
   _hitClips:
   - {fileID: 8300000, guid: a07344beb086cb840b205b6b17f22299, type: 3}
   _breachClips:
@@ -9132,9 +9128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.ShelterDefense.BarricadeView
   _splinterPrefab: {fileID: 4490849221977489121, guid: a6fa9a05c1f96b040a7aff48cc864321, type: 3}
   _breakClips:
-  - {fileID: 8300000, guid: 472f6b00d89d9714d819b63405d4b015, type: 3}
-  - {fileID: 8300000, guid: 85dd1dbd254972e4c87f8f17945a80d6, type: 3}
-  - {fileID: 8300000, guid: ef558b829009da8448d90e621f34738a, type: 3}
+  - {fileID: 8300000, guid: 24e0c8d1381c9db42a48b1dff3dba338, type: 3}
+  - {fileID: 8300000, guid: d0d55268ee056d64c9ba5799419232be, type: 3}
   _hitClips:
   - {fileID: 8300000, guid: a07344beb086cb840b205b6b17f22299, type: 3}
   _breachClips:
