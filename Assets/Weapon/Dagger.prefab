@@ -220,15 +220,17 @@ MonoBehaviour:
   attackStats: {fileID: 0}
   vrController: {fileID: 0}
   slot: {fileID: 0}
+  playerAmmo: {fileID: 0}
   isGrab: 0
   isCollisionState: 0
   trueDamageSpeed: 2
   hitCooldown: 0.2
-  damage: 15
+  damage: 17
   tier: 1
   hapticAmplitude: 0.5
   hapticDuration: 0.1
   isGun: 0
+  gunType: 0
   isAutoChange: 0
   maxDistance: 100
   shotColldown: 0.1
@@ -240,6 +242,8 @@ MonoBehaviour:
   slidePos: {fileID: 0}
   shotSlidePos: {x: 0, y: 0, z: 0}
   casingPos: {fileID: 0}
+  reloadPrice: 0
+  reloadSound: {fileID: 0}
   maxAmmo: 90
   ammoText: {fileID: 0}
   ammoColor: {r: 0.85, g: 0.95, b: 0.85, a: 1}

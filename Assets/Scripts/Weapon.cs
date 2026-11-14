@@ -1,8 +1,9 @@
+using Shelter.Core;
+using Shelter.Economy;
+using Shelter.Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Shelter.Core;
-using Shelter.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -20,6 +21,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private PlayerAttackStats attackStats;
     [SerializeField] private VRController vrController;// 현재 주 손에 연결된 컨트롤러(있으면 A/B·X/Y 버튼으로 연사 전환)
     [SerializeField] private EquipmentSlot slot;
+    [SerializeField] private PlayerAmmo playerAmmo;
 
     private XRGrabInteractable xRGrabInteractable;
     private Rigidbody rigid;
@@ -82,6 +84,15 @@ public class Weapon : MonoBehaviour
     [Tooltip("총이면 체크")]
     [SerializeField] private bool isGun;
 
+    [Tooltip("총 종류")]
+    [SerializeField] private GunType gunType;
+    enum GunType
+    {
+        pistol,
+        smg,
+        ar
+    }
+
     [Tooltip("false = 단발 고정, true = 연사(트리거를 누르고 있으면 계속 발사). 컨트롤러 버튼(VRController)이 있으면 단발/연사 전환 가능")]
     [SerializeField] private bool isAutoChange = false;
 
@@ -116,6 +127,10 @@ public class Weapon : MonoBehaviour
     // ─────────────────────────────────────
 
     [Header("탄약 (재장전·보충 없음 — 다 쓰면 새 총을 사야 한다)")]
+    private bool isReloading = false;
+    [SerializeField] private int reloadPrice = 0;//임시, 한 탄창 가격으로 통째로 탄창을 사서 갈아버리는 형태
+    [Tooltip("장전 소리")]
+    [SerializeField] private AudioClip reloadSound;
     [Tooltip("이 총의 총 탄약 수. 상점에서 살 때는 상점 품목의 탄약 수로 덮어쓴다.")]
     [SerializeField, Min(0)] private int maxAmmo = 90;
     [Tooltip("남은 탄약 표시(총에 붙은 작은 카운터). 비워도 된다.")]
@@ -497,6 +512,8 @@ public class Weapon : MonoBehaviour
         Transform interactorTransform = interactor.transform;
         vrController =
             interactorTransform.GetComponentInParent<VRController>();
+        playerAmmo =
+            interactorTransform.GetComponentInParent<PlayerAmmo>();
 
         if (vrController == null)
             return;
@@ -540,7 +557,7 @@ public class Weapon : MonoBehaviour
         if (Time.time - lastShotTime < shotColldown)
             return;
 
-        if (currentAmmo <= 0)
+        if (currentAmmo <= 0 || isReloading == true)
         {
             DryFire();
             return;
@@ -575,7 +592,7 @@ public class Weapon : MonoBehaviour
             return;
 
         lastDryFireTime = Time.time;
-        SendHaptic(0.15f, 0.03f);
+        SendHaptic(0.15f, 0.04f);
     }
 
     private void UpdateAmmoText()
@@ -633,9 +650,61 @@ public class Weapon : MonoBehaviour
         isAuto = !isAuto;
     }
 
+    // 재장전 없음 — 탄약을 다 쓰면 새 총을 산다(기획 2026-10-26).
     private void ReLoad()
     {
-        // 재장전 없음 — 탄약을 다 쓰면 새 총을 산다(기획 2026-10-26).
+        if (isReloading) return;
+
+        Animator animator = GetComponent<Animator>();
+        if (animator == null) return;
+
+        if (PlayerWallet.Local.Balance < reloadPrice) return;//임시
+        PlayerWallet.Local.TrySpend(reloadPrice);//임시
+
+        isReloading = true;
+        animator.SetTrigger("Reload");
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource != null && reloadSound != null)
+            audioSource.PlayOneShot(reloadSound);
+    }
+    // Animation Event에서 호출
+    private void ReloadEnd()
+    {
+        int needAmmo = maxAmmo - currentAmmo;
+        int loadAmmo = Mathf.Min(needAmmo, GunTypeAmmo());
+
+        currentAmmo += loadAmmo;
+
+        switch (gunType)
+        {
+            case GunType.pistol:
+                playerAmmo.pistol -= loadAmmo;
+                break;
+            case GunType.smg:
+                playerAmmo.smg -= loadAmmo;
+                break;
+            case GunType.ar:
+                playerAmmo.ar -= loadAmmo;
+                break;
+        }
+
+        isReloading = false;
+        UpdateAmmoText();
+    }
+    private int GunTypeAmmo()
+    {
+        switch (gunType)
+        {
+            case GunType.pistol:
+                return playerAmmo.pistol;
+            case GunType.smg:
+                return playerAmmo.smg;
+            case GunType.ar:
+                return playerAmmo.ar;
+            default:
+                return 0;
+        }
     }
 
     private void CheckGunDamage(Collider other, Vector3 hitPoint)
