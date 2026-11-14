@@ -44,6 +44,7 @@ namespace Shelter.Enemies
         private EnemyState _state;
         private IEnemyTarget _currentTarget;
         private float _currentHealth;
+        private float _maxHealth;
         private float _reevaluateTimer;
         private float _corpseTimer;
         private float _staggerTimer;
@@ -62,7 +63,7 @@ namespace Shelter.Enemies
         private float _vaultHeight;
 
         public float CurrentHealth => _currentHealth;
-        public float MaxHealth => _data.MaxHealth;
+        public float MaxHealth => _maxHealth;
         public EnemyData Data => _data;
         /// <summary>마지막으로 피해를 준 공격자(막타 판정 — 처치 보상 지급 대상). 스폰 시 초기화.</summary>
         public GameObject LastAttacker { get; private set; }
@@ -111,8 +112,11 @@ namespace Shelter.Enemies
                 Spawn(_data, transform.position, transform.rotation);
         }
 
-        /// <summary>풀에서 꺼낸 인스턴스를 실제로 살아있는 좀비로 초기화한다. assignedBarricade가 없으면 가장 가까운 바리케이드로 간다.</summary>
-        public void Spawn(EnemyData data, Vector3 position, Quaternion rotation, Barricade assignedBarricade = null)
+        /// <summary>
+        /// 풀에서 꺼낸 인스턴스를 실제로 살아있는 좀비로 초기화한다. assignedBarricade가 없으면 가장 가까운 바리케이드로 간다.
+        /// healthMultiplier = 난이도 체력 배율(`difficulty`) — EnemyData 에셋을 복제하지 않고 스폰 때 주입한다.
+        /// </summary>
+        public void Spawn(EnemyData data, Vector3 position, Quaternion rotation, Barricade assignedBarricade = null, float healthMultiplier = 1f)
         {
             _data = data;
 
@@ -125,7 +129,8 @@ namespace Shelter.Enemies
             transform.SetPositionAndRotation(position, rotation);
             _movement.Warp(position);
 
-            _currentHealth = _data.MaxHealth;
+            _maxHealth = _data.MaxHealth * Mathf.Max(0.1f, healthMultiplier);
+            _currentHealth = _maxHealth;
             LastAttacker = null;
             ClearTarget();
             _reevaluateTimer = 0f;

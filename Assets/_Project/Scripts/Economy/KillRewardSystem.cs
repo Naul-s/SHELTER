@@ -1,3 +1,4 @@
+using Shelter.Difficulty;
 using Shelter.Enemies;
 using Shelter.Enemies.Spawning;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace Shelter.Economy
             PlayerWallet wallet = enemy.LastAttacker != null ? enemy.LastAttacker.GetComponentInParent<PlayerWallet>() : null;
             if (wallet == null) return; // 플레이어가 아닌 원인(낙사 등)으로 죽은 좀비는 보상 없음
 
-            wallet.Earn(enemy.Data.KillReward);
+            wallet.Earn(DifficultySelection.Modifiers.ApplyKillReward(enemy.Data.KillReward));
         }
     }
 }
