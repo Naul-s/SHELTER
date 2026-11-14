@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Shelter.Core;
+using Shelter.Difficulty;
 using Shelter.Enemies;
 using Shelter.ShelterDefense;
 using UnityEngine;
@@ -43,7 +44,8 @@ namespace Shelter.Enemies.Spawning
             _poolByActiveInstance[instance] = pool;
             instance.DespawnRequested += HandleDespawnRequested;
             instance.EnemyDied += HandleEnemyDied;
-            instance.Spawn(entry.Data, point.position, point.rotation, targetBarricade);
+            instance.Spawn(entry.Data, point.position, point.rotation, targetBarricade,
+                DifficultySelection.Modifiers.EnemyHealthMultiplier);
             _alive.Add(instance);
             return instance;
         }

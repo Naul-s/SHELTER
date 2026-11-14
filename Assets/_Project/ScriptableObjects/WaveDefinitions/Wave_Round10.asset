@@ -29,11 +29,11 @@ MonoBehaviour:
     _spawnInterval: 1.5
     _startDelay: 1.5
   - _point: {fileID: 11400000, guid: f16a0acbc6914b345a58e8040e2cf441, type: 2}
-    _count: 5
+    _count: 4
     _spawnInterval: 1.5
     _startDelay: 3
   - _point: {fileID: 11400000, guid: 509724ac1e3c64c4d828b2916dbbcc1f, type: 2}
-    _count: 5
+    _count: 4
     _spawnInterval: 1.5
     _startDelay: 4.5
   - _point: {fileID: 11400000, guid: 3acccfc46b19150479d6a56ecfae416d, type: 2}

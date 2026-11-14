@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Shelter.Core;
+using Shelter.Difficulty;
 using Shelter.Enemies.Spawning;
 using Shelter.Player;
 using UnityEngine;
@@ -108,9 +109,17 @@ namespace Shelter.Enemies.Spawning.Waves
             IReadOnlyList<WaveSpawnPointAllocation> allocations = wave.PointAllocations;
             int pending = allocations?.Count ?? 0;
 
+            // 포인트별 수 = 제작 수(인원·라운드 보정) → 난이도 배율은 라운드 총원 기준으로 나눠 준다(`difficulty`).
+            DifficultyModifiers difficulty = DifficultySelection.Modifiers;
+            var counts = new int[pending];
+            for (int i = 0; i < pending; i++)
+                counts[i] = _difficultyScaler.ScaleCount(allocations[i].Count, roundsBeyondAuthored, activePlayerCount);
+            difficulty.ScaleSpawnCounts(counts);
+            int maxAlive = difficulty.ApplyMaxAlive(wave.MaxAlive);
+
             RemainingToSpawn = 0;
             for (int i = 0; i < pending; i++)
-                RemainingToSpawn += _difficultyScaler.ScaleCount(allocations[i].Count, roundsBeyondAuthored, activePlayerCount);
+                RemainingToSpawn += counts[i];
 
             RoundSpawningStarted?.Invoke(roundNumber);
 
@@ -127,21 +136,20 @@ namespace Shelter.Enemies.Spawning.Waves
             };
 
             for (int i = 0; i < allocations.Count; i++)
-                StartCoroutine(RunPointAllocation(allocations[i], wave, roundsBeyondAuthored, activePlayerCount, onAllocationDone));
+                StartCoroutine(RunPointAllocation(allocations[i], wave, counts[i], maxAlive, onAllocationDone));
         }
 
         private IEnumerator RunPointAllocation(
             WaveSpawnPointAllocation allocation,
             WaveDefinition wave,
-            int roundsBeyondAuthored,
-            int activePlayerCount,
+            int count,
+            int maxAlive,
             Action onComplete)
         {
             if (allocation.StartDelay > 0f)
                 yield return new WaitForSeconds(allocation.StartDelay);
 
             IReadOnlyList<EnemySpawnEntry> composition = wave.Composition;
-            int count = _difficultyScaler.ScaleCount(allocation.Count, roundsBeyondAuthored, activePlayerCount);
             List<EnemySpawnPoint> candidates = ResolveSpawnPoints(allocation.Point);
 
             if (candidates.Count == 0)
@@ -162,7 +170,7 @@ namespace Shelter.Enemies.Spawning.Waves
                 for (int i = 0; i < count; i++)
                 {
                     // 동시 생존 상한: 자리가 날 때까지 이 포인트의 남은 물량을 대기시킨다.
-                    while (wave.MaxAlive > 0 && _spawner.AliveCount >= wave.MaxAlive)
+                    while (maxAlive > 0 && _spawner.AliveCount >= maxAlive)
                         yield return null;
 
                     EnemySpawnEntry entry = WeightedRandomPicker.Pick(composition, e => e.Weight);

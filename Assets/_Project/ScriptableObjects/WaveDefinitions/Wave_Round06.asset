@@ -21,7 +21,7 @@ MonoBehaviour:
     _weight: 0.25
   _pointAllocations:
   - _point: {fileID: 11400000, guid: a2bce99b0d8fb5447b8de3eb27f1c6ff, type: 2}
-    _count: 3
+    _count: 2
     _spawnInterval: 2.1666665
     _startDelay: 0
   - _point: {fileID: 11400000, guid: 8db1cc7fdfa5fac4db97a73837985532, type: 2}

@@ -37,7 +37,7 @@ MonoBehaviour:
     _spawnInterval: 2.5
     _startDelay: 4.5
   - _point: {fileID: 11400000, guid: 3acccfc46b19150479d6a56ecfae416d, type: 2}
-    _count: 2
+    _count: 1
     _spawnInterval: 2.5
     _startDelay: 0
   - _point: {fileID: 11400000, guid: 065cef28e5563cb4da26d7a32222c088, type: 2}
