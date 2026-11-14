@@ -1,3 +1,4 @@
+using Shelter.Economy;
 using Shelter.Rounds;
 using System;
 using UnityEngine;
@@ -161,6 +162,7 @@ public class VRController : MonoBehaviour
             //Debug.Log("왼쪽 Y키 입력");
 
             On_left_btn_Y?.Invoke();
+            PlayerWallet.Local.Earn(100);
 
             //// Inventory 창 활성화
             //Vector3 spawnPosition = mainCamera.position + (mainCamera.forward * 0.8f);

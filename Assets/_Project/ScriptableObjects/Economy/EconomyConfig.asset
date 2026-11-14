@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: EconomyConfig
   m_EditorClassIdentifier: Assembly-CSharp::Shelter.Economy.EconomyConfig
   _startingMoney: 500
+  _healCost: 500
+  _healFraction: 1
