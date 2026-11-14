@@ -27,4 +27,4 @@ MonoBehaviour:
   _windowVaultDuration: 1.3
   _targetReevaluateInterval: 0.5
   _corpseLifetime: 8
-  _killReward: 150
+  _killReward: 200

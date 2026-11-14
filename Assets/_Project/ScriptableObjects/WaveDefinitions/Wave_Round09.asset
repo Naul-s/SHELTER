@@ -29,7 +29,7 @@ MonoBehaviour:
     _spawnInterval: 1.6666666
     _startDelay: 1.5
   - _point: {fileID: 11400000, guid: f16a0acbc6914b345a58e8040e2cf441, type: 2}
-    _count: 4
+    _count: 3
     _spawnInterval: 1.6666666
     _startDelay: 3
   - _point: {fileID: 11400000, guid: 509724ac1e3c64c4d828b2916dbbcc1f, type: 2}
@@ -41,7 +41,7 @@ MonoBehaviour:
     _spawnInterval: 1.6666666
     _startDelay: 0
   - _point: {fileID: 11400000, guid: 065cef28e5563cb4da26d7a32222c088, type: 2}
-    _count: 4
+    _count: 3
     _spawnInterval: 1.6666666
     _startDelay: 1.5
   - _point: {fileID: 11400000, guid: 77cf6ca62dd9d344c9f9c4424ba3326a, type: 2}

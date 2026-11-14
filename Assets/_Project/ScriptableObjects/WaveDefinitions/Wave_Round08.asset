@@ -21,11 +21,11 @@ MonoBehaviour:
     _weight: 0.35
   _pointAllocations:
   - _point: {fileID: 11400000, guid: a2bce99b0d8fb5447b8de3eb27f1c6ff, type: 2}
-    _count: 4
+    _count: 3
     _spawnInterval: 1.8333333
     _startDelay: 0
   - _point: {fileID: 11400000, guid: 8db1cc7fdfa5fac4db97a73837985532, type: 2}
-    _count: 4
+    _count: 3
     _spawnInterval: 1.8333333
     _startDelay: 1.5
   - _point: {fileID: 11400000, guid: f16a0acbc6914b345a58e8040e2cf441, type: 2}

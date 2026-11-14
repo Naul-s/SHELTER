@@ -224,7 +224,7 @@ MonoBehaviour:
   isCollisionState: 0
   trueDamageSpeed: 2
   hitCooldown: 0.3
-  damage: 12
+  damage: 22
   tier: 0
   hapticAmplitude: 0.5
   hapticDuration: 0.1
@@ -242,9 +242,9 @@ MonoBehaviour:
   slidePos: {fileID: 0}
   shotSlidePos: {x: 0, y: 0, z: 0}
   casingPos: {fileID: 1442494845742917002}
-  reloadPrice: 100
+  reloadPrice: 50
   reloadSound: {fileID: 8300000, guid: 2162b3d4474fcb44086ca1e301081c79, type: 3}
-  maxAmmo: 150
+  maxAmmo: 40
   ammoText: {fileID: 9137173651205886343}
   ammoColor: {r: 0.85, g: 0.95, b: 0.85, a: 1}
   lowAmmoColor: {r: 0.95, g: 0.15, b: 0.1, a: 1}
