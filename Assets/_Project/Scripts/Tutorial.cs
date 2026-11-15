@@ -3,12 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using Unity.Hierarchy;
+using Shelter.Rounds;
 
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] private Button btn_tutorial;
     [SerializeField] private TextMeshProUGUI text_tutorial;
     [SerializeField] private SkipIntermission skipIntermission;
+    [SerializeField] private RoundManager roundManager;
 
     [SerializeField] private VRController vrController;
     [SerializeField] private Transform playerCamera;
@@ -45,17 +47,7 @@ public class Tutorial : MonoBehaviour
             }
             else if (CurrentStep >= 0)
             {
-                for (int i = 0; i < lookObject.Length; i++)
-                {
-                    lookObject[i].gameObject.SetActive(false);
-                }
-                rightControllerVisual.SetActive(false);
-                leftControllerVisual.SetActive(false);
-                blockingPanel.SetActive(false);
-                CurrentStep = -2;
-                skipIntermission.blockingPanel.SetActive(false);
-
-                gameObject.SetActive(false);
+                Tutorial_Exit();
             }
         });
 
@@ -72,9 +64,27 @@ public class Tutorial : MonoBehaviour
         });
     }
 
+    void Tutorial_Exit()
+    {
+        for (int i = 0; i < lookObject.Length; i++)
+        {
+            lookObject[i].gameObject.SetActive(false);
+        }
+        rightControllerVisual.SetActive(false);
+        leftControllerVisual.SetActive(false);
+        blockingPanel.SetActive(false);
+        CurrentStep = -2;
+        skipIntermission.blockingPanel.SetActive(false);
+
+        gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         if (CurrentStep < 0) return;
+
+        if (roundManager.CurrentRound > 0)
+            Tutorial_Exit();
 
         switch (CurrentStep)
         {
@@ -219,13 +229,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (CurrentStep == 12 && waitForNext == false)
         {
-            rightControllerVisual.SetActive(false);
-            leftControllerVisual.SetActive(false);
-            lookObject[lookObject.Length - 1].SetActive(false);
-            CurrentStep = -2;
-
-            skipIntermission.blockingPanel.SetActive(false);
-            gameObject.SetActive(false);
+            Tutorial_Exit();
         }
     }
 }
