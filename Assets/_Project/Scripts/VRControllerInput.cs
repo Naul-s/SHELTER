@@ -150,7 +150,6 @@ public class VRController : MonoBehaviour
             //Debug.Log("왼쪽 Y키 입력");
 
             On_left_btn_Y?.Invoke();
-            PlayerWallet.Local.Earn(100);
         }
         if (left_stick.action != null)
         {

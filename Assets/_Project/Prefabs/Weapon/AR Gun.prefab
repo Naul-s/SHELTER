@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4644182839907996406}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0938953, y: -0, z: -0, w: 0.9955821}
-  m_LocalPosition: {x: 0, y: -0.06193483, z: 0.78120637}
+  m_LocalPosition: {x: 0, y: 0.1408, z: -0.284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
-  m_SelectMode: 1
+  m_SelectMode: 0
   m_FocusMode: 1
   m_CustomReticle: {fileID: 0}
   m_AllowGazeInteraction: 0
@@ -757,17 +757,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_MuzzleFlash
       objectReference: {fileID: 0}
+    - target: {fileID: 5625058010739365920, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625058010739365920, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625058010739365920, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625058010739365920, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7831635814433563760, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7831635814433563760, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7831635814433563760, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.02
+      value: 1.1042
       objectReference: {fileID: 0}
     - target: {fileID: 7831635814433563760, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
       propertyPath: m_LocalRotation.w
@@ -775,15 +791,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831635814433563760, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7831635814433563760, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7831635814433563760, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7831635814433563760, guid: 582874730223a754aafefdbb6f2d9e09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
