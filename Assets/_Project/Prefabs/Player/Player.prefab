@@ -1817,8 +1817,6 @@ MonoBehaviour:
   leftController: {fileID: 7516906868915527806}
   rightController: {fileID: 7516906870685474975}
   gameOverUI: {fileID: 1102649062095786422}
-  UI_SKill: {fileID: 0}
-  UI_Inventory: {fileID: 0}
 --- !u!1 &6851985455222176367
 GameObject:
   m_ObjectHideFlags: 0
@@ -3785,6 +3783,14 @@ PrefabInstance:
     - target: {fileID: 6232745470614056083, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_IgnoreTrackingState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6528530117482412838, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
