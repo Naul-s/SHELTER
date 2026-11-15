@@ -58,12 +58,28 @@ namespace Shelter.Enemies
         public string EnemyId => _enemyId;
         public string DisplayName => _displayName;
 
-        public float MaxHealth => _maxHealth;
-        public float Defense => _defense;
+        public float MaxHealth
+        {
+            get => _maxHealth;
+            set => _maxHealth = value;
+        }
+        public float Defense
+        {
+            get => _defense;
+            set => _defense = value;
+        }
 
-        public float MoveSpeed => _moveSpeed;
+        public float MoveSpeed
+        {
+            get => _moveSpeed;
+            set => _moveSpeed = value;
+        }
 
-        public float AttackPower => _attackPower;
+        public float AttackPower
+        {
+            get => _attackPower;
+            set => _attackPower = value;
+        }
         public float AttackRange => _attackRange;
         public float AttackCooldown => _attackCooldown;
         public float AttackWindupTime => _attackWindupTime;
@@ -78,6 +94,10 @@ namespace Shelter.Enemies
 
         public float CorpseLifetime => _corpseLifetime;
 
-        public int KillReward => _killReward;
+        public int KillReward
+        {
+            get => _killReward;
+            set => _killReward = value;
+        }
     }
 }

@@ -15,5 +15,16 @@ namespace Shelter.Difficulty
         {
             return level == DifficultyLevel.Hard ? _hard : _normal;
         }
+
+        public DifficultyModifiers Normal
+        {
+            get => _normal;
+            set => _normal = value;
+        }
+        public DifficultyModifiers Hard
+        {
+            get => _hard;
+            set => _hard = value;
+        }
     }
 }

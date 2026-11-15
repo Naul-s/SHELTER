@@ -30,10 +30,26 @@ namespace Shelter.Difficulty
         /// <summary>배율 1.0 — 아무것도 바꾸지 않는다. 난이도를 고르지 않고 게임 씬을 바로 켰을 때의 값.</summary>
         public static DifficultyModifiers Identity => new DifficultyModifiers(1f, 1f, 1f, 1f);
 
-        public float EnemyHealthMultiplier => _enemyHealth > 0f ? _enemyHealth : 1f;
-        public float SpawnCountMultiplier => _spawnCount > 0f ? _spawnCount : 1f;
-        public float MaxAliveMultiplier => _maxAlive > 0f ? _maxAlive : 1f;
-        public float KillRewardMultiplier => _killReward >= 0f ? _killReward : 1f;
+        public float EnemyHealthMultiplier
+        {
+            get => _enemyHealth > 0f ? _enemyHealth : 1f;
+            set => _enemyHealth = value;
+        }
+        public float SpawnCountMultiplier
+        {
+            get => _spawnCount > 0f ? _spawnCount : 1f;
+            set => _spawnCount = value;
+        }
+        public float MaxAliveMultiplier
+        {
+            get => _maxAlive > 0f ? _maxAlive : 1f;
+            set => _maxAlive = value;
+        }
+        public float KillRewardMultiplier
+        {
+            get => _killReward > 0f ? _killReward : 1f;
+            set => _killReward = value;
+        }
 
         public float ApplyEnemyHealth(float baseHealth) => baseHealth * EnemyHealthMultiplier;
 

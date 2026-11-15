@@ -39,8 +39,16 @@ namespace Shelter.Economy
 
         public string Id => _id;
         public string DisplayName => _displayName;
-        public int Price => _price;
-        public int Ammo => _ammo;
+        public int Price
+        {
+            get => _price;
+            set => _price = value;
+        }
+        public int Ammo
+        {
+            get => _ammo;
+            set => _ammo = value;
+        }
         public Weapon WeaponPrefab => _weaponPrefab;
     }
 }

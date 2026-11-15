@@ -1,12 +1,13 @@
 using Shelter.Core;
+using Shelter.Difficulty;
 using Shelter.Economy;
 using Shelter.Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Tutorials.Core.Editor;
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -57,6 +58,11 @@ public class Weapon : MonoBehaviour
 
     [Tooltip("무기 데미지")]
     [SerializeField] private int damage = 0;
+    public int Damage
+    {
+        get => damage;
+        set => damage = value;
+    }
 
     [Tooltip("무기 티어")]
     [SerializeField] private int tier = 0;
@@ -149,7 +155,16 @@ public class Weapon : MonoBehaviour
     public int CurrentAmmo => currentAmmo;
     public int MaxAmmo => maxAmmo;
     public bool IsGun => isGun;
-    public int ReloadPrice => reloadPrice;
+    public int ReloadPrice
+    {
+        get => reloadPrice;
+        set => reloadPrice = value;
+    }
+
+    public void ReloadPriceChange(int value)
+    {
+        reloadPrice = value;
+    }
 
     /// <summary>남은 탄약이 바뀌었다(발사·지급).</summary>
     public event Action<int> AmmoChanged;

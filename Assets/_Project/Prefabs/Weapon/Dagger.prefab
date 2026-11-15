@@ -220,11 +220,10 @@ MonoBehaviour:
   attackStats: {fileID: 0}
   vrController: {fileID: 0}
   slot: {fileID: 0}
-  playerAmmo: {fileID: 0}
   isGrab: 0
   isCollisionState: 0
   trueDamageSpeed: 2
-  hitCooldown: 0.2
+  hitCooldown: 0.1
   damage: 17
   tier: 1
   hapticAmplitude: 0.5

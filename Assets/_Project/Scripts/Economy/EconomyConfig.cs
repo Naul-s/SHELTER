@@ -15,8 +15,20 @@ namespace Shelter.Economy
         [Tooltip("1회 회복량(최대 체력 대비 비율). 1 = 가득.")]
         [SerializeField, Range(0.05f, 1f)] private float _healFraction = 1f;
 
-        public int StartingMoney => _startingMoney;
-        public int HealCost => _healCost;
-        public float HealFraction => _healFraction;
+        public int StartingMoney
+        {
+            get => _startingMoney;
+            set => _startingMoney = value;
+        }
+        public int HealCost
+        {
+            get => _healCost;
+            set => _healCost = value;
+        }
+        public float HealFraction
+        {
+            get => _healFraction;
+            set => _healFraction = value;
+        }
     }
 }
