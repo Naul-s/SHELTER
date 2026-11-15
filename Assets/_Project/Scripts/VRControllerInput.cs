@@ -9,6 +9,10 @@ public class VRController : MonoBehaviour
     [SerializeField] private InputActionProperty right_btn_A; public event Action On_right_btn_A;
     [SerializeField] private InputActionProperty right_btn_B; public event Action On_right_btn_B;
     [SerializeField] private InputActionProperty right_stick;
+    public Vector2 RightStickInput =>
+    right_stick.action != null
+    ? right_stick.action.ReadValue<Vector2>()
+    : Vector2.zero;
 
     [SerializeField] private InputActionProperty right_btn_front; public event Action On_right_btn_front; private bool isRight_btn_front_Input;// 단발 구현 용도
     [SerializeField] private InputActionProperty right_btn_side;
@@ -24,6 +28,10 @@ public class VRController : MonoBehaviour
     [SerializeField] private InputActionProperty left_btn_X; public event Action On_left_btn_X;
     [SerializeField] private InputActionProperty left_btn_Y; public event Action On_left_btn_Y;
     [SerializeField] private InputActionProperty left_stick;
+    public Vector2 LeftStickInput =>
+    left_stick.action != null
+    ? left_stick.action.ReadValue<Vector2>()
+    : Vector2.zero;
     [SerializeField] private InputActionProperty left_btn_menu; public event Action On_left_btn_menu;// 게임 메뉴
 
     [SerializeField] private InputActionProperty left_btn_front; public event Action On_left_btn_front; private bool isLeft_btn_front_Input;// 단발 구현 용도
@@ -40,18 +48,6 @@ public class VRController : MonoBehaviour
     [SerializeField] private Transform rightController;
 
     [SerializeField] private GameMenuUI gameOverUI;
-
-
-    [SerializeField] private GameObject UI_SKill;
-    [SerializeField] private GameObject UI_Inventory;
-
-
-    void Awake()
-    {
-        // 구 기획 스킬·인벤토리 UI ? 없는 리그(Player.prefab 등)에서도 동작하도록 비어 있으면 건너뛴다.
-        if (UI_SKill != null) UI_SKill.gameObject.SetActive(false);
-        if (UI_Inventory != null) UI_Inventory.gameObject.SetActive(false);
-    }
 
     void Update()
     {
@@ -148,14 +144,6 @@ public class VRController : MonoBehaviour
             //Debug.Log("왼쪽 X키 입력");
 
             On_left_btn_X?.Invoke();
-
-            //// Skill 창 활성화
-            //Vector3 spawnPosition = mainCamera.position + (mainCamera.forward * 0.8f);
-            //spawnPosition.y += -0.2f;
-            //UI_SKill.transform.position = spawnPosition;
-            //UI_SKill.transform.rotation = mainCamera.rotation;
-            //
-            //UI_SKill.gameObject.SetActive(!UI_SKill.gameObject.activeSelf);
         }
         if (left_btn_Y.action != null && left_btn_Y.action.WasPressedThisFrame())
         {
@@ -163,14 +151,6 @@ public class VRController : MonoBehaviour
 
             On_left_btn_Y?.Invoke();
             PlayerWallet.Local.Earn(100);
-
-            //// Inventory 창 활성화
-            //Vector3 spawnPosition = mainCamera.position + (mainCamera.forward * 0.8f);
-            //spawnPosition.y += -0.2f;
-            //UI_Inventory.transform.position = spawnPosition;
-            //UI_Inventory.transform.rotation = mainCamera.rotation;
-            //
-            //UI_Inventory.gameObject.SetActive(!UI_Inventory.gameObject.activeSelf);
         }
         if (left_stick.action != null)
         {

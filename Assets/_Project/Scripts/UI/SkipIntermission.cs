@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class SkipIntermission : MonoBehaviour
 {
-    [SerializeField] private Button btn_Skip;
-    [SerializeField] private GameObject blockingPanel;
+    public Button btn_Skip;
+    public GameObject blockingPanel;
     [SerializeField] private RoundManager _roundManager;
     [SerializeField] private float changeSeconds = 3f;
 

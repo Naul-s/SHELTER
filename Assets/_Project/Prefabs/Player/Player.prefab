@@ -1469,7 +1469,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4062479208609064930}
   - component: {fileID: 1361920241739185489}
-  - component: {fileID: 7826916849050529754}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1820,21 +1819,6 @@ MonoBehaviour:
   gameOverUI: {fileID: 1102649062095786422}
   UI_SKill: {fileID: 0}
   UI_Inventory: {fileID: 0}
---- !u!114 &7826916849050529754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6779750287161191121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe85d26f647e654f8fbb8045433c68c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAmmo
-  pistol: 1000000000
-  smg: 1000000000
-  ar: 1000000000
 --- !u!1 &6851985455222176367
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,6 +2357,9 @@ MonoBehaviour:
   btn_ReStart: {fileID: 8235378114137777887}
   btn_Main: {fileID: 6092128688314208887}
   _roundManager: {fileID: 0}
+  _clearTitle: GAME CLEAR
+  _clearTitleColor: {r: 0.95, g: 0.82, b: 0.35, a: 1}
+  _clearMessage: "{0} \uB77C\uC6B4\uB4DC\uB97C \uBAA8\uB450 \uBC84\uD17C\uC2B5\uB2C8\uB2E4!"
   isDefeated: 0
 --- !u!1 &7776325639721531866
 GameObject:

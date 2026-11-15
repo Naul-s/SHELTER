@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Tutorials.Core.Editor;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -21,7 +22,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] private PlayerAttackStats attackStats;
     [SerializeField] private VRController vrController;// 현재 주 손에 연결된 컨트롤러(있으면 A/B·X/Y 버튼으로 연사 전환)
     [SerializeField] private EquipmentSlot slot;
-    [SerializeField] private PlayerAmmo playerAmmo;
 
     private XRGrabInteractable xRGrabInteractable;
     private Rigidbody rigid;
@@ -86,11 +86,16 @@ public class Weapon : MonoBehaviour
 
     [Tooltip("총 종류")]
     [SerializeField] private GunType gunType;
-    enum GunType
+    public enum GunType
     {
         pistol,
         smg,
         ar
+    }
+    public bool GunTypeCheck(Weapon.GunType _gunType)
+    {
+        if (gunType == _gunType) return true;
+        else return false;
     }
 
     [Tooltip("false = 단발 고정, true = 연사(트리거를 누르고 있으면 계속 발사). 컨트롤러 버튼(VRController)이 있으면 단발/연사 전환 가능")]
@@ -144,6 +149,7 @@ public class Weapon : MonoBehaviour
     public int CurrentAmmo => currentAmmo;
     public int MaxAmmo => maxAmmo;
     public bool IsGun => isGun;
+    public int ReloadPrice => reloadPrice;
 
     /// <summary>남은 탄약이 바뀌었다(발사·지급).</summary>
     public event Action<int> AmmoChanged;
@@ -238,6 +244,11 @@ public class Weapon : MonoBehaviour
     private void OnSelectEntered(SelectEnterEventArgs args)
     {
         isGrab = true;
+
+        if (Tutorial.CurrentStep == 5)
+        {
+            Tutorial.OnNextStep?.Invoke();
+        }
 
         // 아직 주 손이 없을 때만 조작 권한 부여
         if (primaryInteractor == null)
@@ -373,6 +384,11 @@ public class Weapon : MonoBehaviour
             slot.attachPoint.position,
             slot.attachPoint.rotation
         );
+
+        if (Tutorial.CurrentStep == 8)
+        {
+            Tutorial.OnNextStep?.Invoke();
+        }
     }
 
 
@@ -512,8 +528,6 @@ public class Weapon : MonoBehaviour
         Transform interactorTransform = interactor.transform;
         vrController =
             interactorTransform.GetComponentInParent<VRController>();
-        playerAmmo =
-            interactorTransform.GetComponentInParent<PlayerAmmo>();
 
         if (vrController == null)
             return;
@@ -551,7 +565,7 @@ public class Weapon : MonoBehaviour
     // ─────────────────────────────────────
     // Gun Actions
     // ─────────────────────────────────────
-
+    bool tutorialShot = false;
     private void Shot()
     {
         if (Time.time - lastShotTime < shotColldown)
@@ -561,6 +575,12 @@ public class Weapon : MonoBehaviour
         {
             DryFire();
             return;
+        }
+
+        if (Tutorial.CurrentStep == 6 && tutorialShot == false)
+        {
+            Tutorial.OnNextStep?.Invoke();
+            tutorialShot = true;
         }
 
         lastShotTime = Time.time;
@@ -657,9 +677,12 @@ public class Weapon : MonoBehaviour
 
         Animator animator = GetComponent<Animator>();
         if (animator == null) return;
-
-        if (PlayerWallet.Local.Balance < reloadPrice) return;//임시
-        PlayerWallet.Local.TrySpend(reloadPrice);//임시
+        
+        if (Tutorial.CurrentStep < 0)
+        {
+            if (PlayerWallet.Local.Balance < reloadPrice) return;
+            PlayerWallet.Local.TrySpend(reloadPrice);
+        }
 
         isReloading = true;
         animator.SetTrigger("Reload");
@@ -671,40 +694,15 @@ public class Weapon : MonoBehaviour
     // Animation Event에서 호출
     private void ReloadEnd()
     {
-        int needAmmo = maxAmmo - currentAmmo;
-        int loadAmmo = Mathf.Min(needAmmo, GunTypeAmmo());
-
-        currentAmmo += loadAmmo;
-
-        switch (gunType)
+        if (Tutorial.CurrentStep == 7)
         {
-            case GunType.pistol:
-                playerAmmo.pistol -= loadAmmo;
-                break;
-            case GunType.smg:
-                playerAmmo.smg -= loadAmmo;
-                break;
-            case GunType.ar:
-                playerAmmo.ar -= loadAmmo;
-                break;
+            Tutorial.OnNextStep?.Invoke();
         }
+
+        currentAmmo = maxAmmo;
 
         isReloading = false;
         UpdateAmmoText();
-    }
-    private int GunTypeAmmo()
-    {
-        switch (gunType)
-        {
-            case GunType.pistol:
-                return playerAmmo.pistol;
-            case GunType.smg:
-                return playerAmmo.smg;
-            case GunType.ar:
-                return playerAmmo.ar;
-            default:
-                return 0;
-        }
     }
 
     private void CheckGunDamage(Collider other, Vector3 hitPoint)

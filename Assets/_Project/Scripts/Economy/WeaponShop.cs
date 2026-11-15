@@ -49,6 +49,14 @@ namespace Shelter.Economy
             weapon.SetAmmo(offer.Ammo);
             Play(_purchaseClip);
             Purchased?.Invoke(offer, buyer);
+
+            if (weapon.GunTypeCheck(Weapon.GunType.pistol)) {
+                if (Tutorial.CurrentStep == 4)
+                {
+                    Tutorial.OnNextStep?.Invoke();
+                }
+            }
+
             return weapon;
         }
 
