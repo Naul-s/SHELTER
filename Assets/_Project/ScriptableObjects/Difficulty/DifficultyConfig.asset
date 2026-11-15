@@ -21,4 +21,4 @@ MonoBehaviour:
     _enemyHealth: 1.25
     _spawnCount: 1.25
     _maxAlive: 1.2
-    _killReward: 0.85
+    _killReward: 0.6
