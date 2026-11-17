@@ -224,7 +224,7 @@ MonoBehaviour:
   isCollisionState: 0
   trueDamageSpeed: 2
   hitCooldown: 0.1
-  damage: 17
+  damage: 22
   tier: 1
   hapticAmplitude: 0.5
   hapticDuration: 0.1

@@ -334,9 +334,9 @@ MonoBehaviour:
   slidePos: {fileID: 6144733467047160838}
   shotSlidePos: {x: 0, y: 0.075, z: 0.0644}
   casingPos: {fileID: 163151896566068168}
-  reloadPrice: 80
+  reloadPrice: 250
   reloadSound: {fileID: 8300000, guid: 2162b3d4474fcb44086ca1e301081c79, type: 3}
-  maxAmmo: 30
+  maxAmmo: 60
   ammoText: {fileID: 5907335025477547520}
   ammoColor: {r: 0.85, g: 0.95, b: 0.85, a: 1}
   lowAmmoColor: {r: 0.95, g: 0.15, b: 0.1, a: 1}

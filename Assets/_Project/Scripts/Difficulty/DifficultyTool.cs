@@ -78,6 +78,7 @@ public class DifficultyToll : MonoBehaviour
 
         btn_Save.onClick.AddListener(() => {
             Update_Setting();
+            Specialkey();
         });
     }
 

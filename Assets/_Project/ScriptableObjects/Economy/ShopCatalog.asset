@@ -25,6 +25,6 @@ MonoBehaviour:
     _weaponPrefab: {fileID: 1270005102600715603, guid: 11592c59fa5da684f873b3be1c19a8b5, type: 3}
   - _id: ar
     _displayName: AR
-    _price: 1400
-    _ammo: 30
+    _price: 1800
+    _ammo: 60
     _weaponPrefab: {fileID: 681016632066943707, guid: 46b48d38e5716084d8056a6b87ce655e, type: 3}

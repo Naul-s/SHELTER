@@ -18,7 +18,7 @@ MonoBehaviour:
     _maxAlive: 1
     _killReward: 1
   _hard:
-    _enemyHealth: 1.25
-    _spawnCount: 1.25
+    _enemyHealth: 1.75
+    _spawnCount: 1.5
     _maxAlive: 1.2
     _killReward: 0.6
