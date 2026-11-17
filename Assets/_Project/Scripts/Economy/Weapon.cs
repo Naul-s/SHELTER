@@ -260,7 +260,7 @@ public class Weapon : MonoBehaviour
     {
         isGrab = true;
 
-        if (Tutorial.CurrentStep == 5)
+        if (Tutorial.CurrentStep == 4)
         {
             Tutorial.OnNextStep?.Invoke();
         }

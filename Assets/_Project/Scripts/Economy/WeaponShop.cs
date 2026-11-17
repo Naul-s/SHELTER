@@ -1,3 +1,4 @@
+using InfimaGames.LowPolyShooterPack;
 using System;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ namespace Shelter.Economy
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _purchaseClip;
         [SerializeField] private AudioClip _deniedClip;
+
+        [SerializeField] private Material gunOriginal;
+        [SerializeField] private Material gunLens;
+        [SerializeField] private Weapon tutorialGun;
 
         public ShopCatalog Catalog => _catalog;
 
@@ -50,9 +55,11 @@ namespace Shelter.Economy
             Play(_purchaseClip);
             Purchased?.Invoke(offer, buyer);
 
+            tutorialGun = weapon;
             if (weapon.GunTypeCheck(Weapon.GunType.pistol)) {
-                if (Tutorial.CurrentStep == 4)
+                if (Tutorial.CurrentStep == 3)
                 {
+                    ChangeMaterial_Pistol(weapon, gunLens);
                     Tutorial.OnNextStep?.Invoke();
                 }
             }
@@ -63,6 +70,36 @@ namespace Shelter.Economy
         private void Play(AudioClip clip)
         {
             if (_audioSource != null && clip != null) _audioSource.PlayOneShot(clip);
+        }
+
+        void ChangeMaterial_Pistol(Weapon weapon, Material material)
+        {
+            if (weapon == null) return;
+            if (material == null) return;
+
+            Transform[] children = weapon.GetComponentsInChildren<Transform>(true);
+
+            foreach (Transform child in children)
+            {
+                if (!child.name.Contains("Pistol_O_")) continue;
+
+                Renderer renderer = child.GetComponent<Renderer>();
+                if (renderer == null) continue;
+
+                Material[] materials = renderer.sharedMaterials;
+
+                for (int i = 0; i < materials.Length; i++)
+                {
+                    materials[i] = material;
+                }
+
+                renderer.sharedMaterials = materials;
+            }
+        }
+
+        public void ChangeMaterial_OriginalPistol()
+        {
+            ChangeMaterial_Pistol(tutorialGun, gunOriginal);
         }
     }
 }
