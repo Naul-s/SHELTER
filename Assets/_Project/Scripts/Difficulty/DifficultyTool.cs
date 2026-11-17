@@ -2,7 +2,10 @@ using Shelter.Difficulty;
 using Shelter.Economy;
 using Shelter.Enemies;
 using TMPro;
+using Unity.Hierarchy;
+using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DifficultyToll : MonoBehaviour
@@ -63,40 +66,42 @@ public class DifficultyToll : MonoBehaviour
     [SerializeField] private TMP_InputField input_Runner_KillReward;
 
     [SerializeField] private Button btn_Save;
-    [SerializeField] private Button btn_OnOff;
-    private bool isOnOff;
     [SerializeField] private GameObject CustomTool;
+
+    [SerializeField] private VRController vRController;
+    private TMP_InputField currentInputField;
+    [SerializeField] private GameObject numPad;
 
     void Start()
     {
-        Off();
+        CustomTool.SetActive(false);
 
         btn_Save.onClick.AddListener(() => {
             Update_Setting();
         });
-        btn_OnOff.onClick.AddListener(() => {
-            if (isOnOff == true) On();
-            else Off();
-        });
-    }
-
-    void On()
-    {
-        isOnOff = false;
-        btn_OnOff.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "숨기기";
-        CustomTool.SetActive(true);
-        Refresh_UI();
-    }
-    void Off()
-    {
-        isOnOff = true;
-        btn_OnOff.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "보이기";
-        CustomTool.SetActive(false);
     }
 
     private void OnEnable()
     {
         Refresh_UI();
+        vRController.On_right_btn_front += NumInput;
+        vRController.On_DifficultyCustom += Specialkey;
+    }
+
+    private void OnDisable()
+    {
+        vRController.On_right_btn_front -= NumInput;
+        vRController.On_DifficultyCustom -= Specialkey;
+    }
+
+    void Specialkey()
+    {
+        CustomTool.SetActive(!CustomTool.activeSelf);
+
+        if (CustomTool.activeSelf)
+        {
+            Refresh_UI();
+        }
     }
 
     void Update_Setting()
@@ -197,6 +202,38 @@ public class DifficultyToll : MonoBehaviour
         input_Runner_MoveSpeed.text = enemyDatas[1].MoveSpeed.ToString();
         input_Runner_Attack.text = enemyDatas[1].AttackPower.ToString();
         input_Runner_KillReward.text = enemyDatas[1].KillReward.ToString();
+    }
+
+    void NumInput()
+    {
+        GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+
+        if (selectedObject == null) {
+
+            numPad.SetActive(false);
+            return;
+        }
+
+        if (selectedObject.name.Contains("#NubPad"))
+        {
+            if (selectedObject.name.Contains("Backspace"))
+            {
+                if (currentInputField.text.Length > 0)
+                    currentInputField.text = currentInputField.text.Substring(0, currentInputField.text.Length - 1);
+            }
+            else
+            {
+                if (currentInputField.contentType == TMP_InputField.ContentType.IntegerNumber && selectedObject.name.Contains(".")) return;
+                currentInputField.text += selectedObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+            }
+        }
+        else if (selectedObject.GetComponent<TMP_InputField>() != null)
+        {
+            currentInputField = selectedObject.GetComponent<TMP_InputField>();
+            numPad.SetActive(true);
+            numPad.transform.position = currentInputField.transform.position;
+        }
+        else numPad.SetActive(false);
     }
 }
 
