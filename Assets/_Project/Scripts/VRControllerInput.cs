@@ -241,9 +241,10 @@ public class VRController : MonoBehaviour
 
         if (right_btn_front_value.action != null && right_stick.action != null && (left_btn_Y.action != null && left_btn_Y.action.WasPressedThisFrame()))// 오른쪽 정면 키+오른쪽 스틱 아래로+왼쪽 Y키
         {
+            float inputValue = right_btn_front_value.action.ReadValue<float>();
             Vector2 inputVector = right_stick.action.ReadValue<Vector2>();
 
-            if (inputVector.y < 0.9f)
+            if (0.1f < inputValue && inputValue < 0.6f && inputVector.y < 0.9f)
             {
                 On_DifficultyCustom?.Invoke();
             }
