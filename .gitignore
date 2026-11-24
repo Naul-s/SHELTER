@@ -115,3 +115,30 @@ CLAUDE.local.md
 
 # Notion planning cache (no longer used)
 /Docs/notion/
+
+# Third-party assets — not redistributable. Import them locally (see README); never commit them.
+/[Aa]ssets/Plugins/RootMotion/
+/[Aa]ssets/Plugins/RootMotion.meta
+/[Aa]ssets/Survivalist/Basemesh*
+/[Aa]ssets/Survivalist/Materials*
+/[Aa]ssets/Survivalist/Prefab*
+/[Aa]ssets/Survivalist/Settings*
+/[Aa]ssets/Survivalist/Texture*
+/[Aa]ssets/Survivalist/Survivalist.unity*
+/[Aa]ssets/ZombieMale_AAB*
+/[Aa]ssets/PBR_Materials_AL8310*
+/[Aa]ssets/Kevin Iglesias*
+/[Aa]ssets/Infima Games*
+/[Aa]ssets/YughuesFreeBushes2018*
+/[Aa]ssets/Weapon/Low Poly*
+/[Aa]ssets/Weapon/LowPoly_Tactical_Dagger*
+/[Aa]ssets/Map/
+/[Aa]ssets/Map.meta
+/[Aa]ssets/Plank/
+/[Aa]ssets/Plank.meta
+/[Aa]ssets/Resources/Animations*
+/[Aa]ssets/Resources/SFX*
+/[Aa]ssets/Sounds*
+/[Aa]ssets/Screenshots*
+/[Aa]ssets/_Project/Art/Meshes/CODZOMBIE2_Main_Lightmap.asset*
+/[Aa]ssets/_Project/Art/Meshes/ZombieMale_Combined.asset*
