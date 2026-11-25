@@ -8,6 +8,32 @@ SHELTER is a VR zombie survival game for Meta Quest. You're trapped in a small s
 - VR: OpenXR, XR Interaction Toolkit 3
 - Platform: Meta Quest (Android)
 
+<details>
+<summary><b>Screenshots</b></summary>
+<br>
+
+**Zombies breaking in through a window**
+
+<img src=".github/screenshots/gameplay-pistol.webp" width="720" alt="Shooting zombies with a pistol as they climb in through a window">
+
+**Holding back the horde**
+
+<img src=".github/screenshots/gameplay-horde.webp" width="720" alt="A crowd of zombies in front of the boarded-up doors, with damage numbers">
+
+**Inside the shelter**
+
+<img src=".github/screenshots/shelter-interior.webp" width="720" alt="Shelter hallway with boarded-up windows">
+
+**Player body and hand IK**
+
+<img src=".github/screenshots/player-body-ik.jpg" width="720" alt="Player character holding a pistol with both hands">
+
+**Pistol model**
+
+<img src=".github/screenshots/pistol-model.jpg" width="720" alt="Pistol model in the Unity editor">
+
+</details>
+
 ## About
 
 SHELTER was built by a team of three between July and November 2026. Development has wrapped up, and this repository is kept as an archive of the project.

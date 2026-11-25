@@ -8,6 +8,32 @@ SHELTER는 Meta Quest용 VR 좀비 서바이벌 게임입니다. 작은 쉘터�
 - VR: OpenXR, XR Interaction Toolkit 3
 - 플랫폼: Meta Quest (Android)
 
+<details>
+<summary><b>스크린샷</b></summary>
+<br>
+
+**창문으로 넘어 들어오는 좀비**
+
+<img src=".github/screenshots/gameplay-pistol.webp" width="720" alt="창문으로 넘어 들어오는 좀비를 권총으로 쏘는 장면">
+
+**몰려오는 좀비 막아내기**
+
+<img src=".github/screenshots/gameplay-horde.webp" width="720" alt="판자로 막은 문 앞에 몰려든 좀비 무리와 데미지 숫자">
+
+**쉘터 내부**
+
+<img src=".github/screenshots/shelter-interior.webp" width="720" alt="판자로 막은 창문이 늘어선 쉘터 복도">
+
+**플레이어 몸과 손 IK**
+
+<img src=".github/screenshots/player-body-ik.jpg" width="720" alt="두 손으로 권총을 쥔 플레이어 캐릭터">
+
+**권총 모델**
+
+<img src=".github/screenshots/pistol-model.jpg" width="720" alt="Unity 에디터에서 본 권총 모델">
+
+</details>
+
 ## 프로젝트 소개
 
 2026년 7월부터 11월까지 3명이 함께 만든 팀 프로젝트입니다. 개발은 마무리되었고, 이 저장소는 프로젝트 기록으로 남겨 두었습니다.
