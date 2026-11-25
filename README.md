@@ -8,6 +8,12 @@ VR zombie survival game for Meta Quest. Hold a single shelter against 10 rounds 
 - VR: OpenXR, XR Interaction Toolkit 3
 - Platform: Meta Quest (Android)
 
+## About
+
+- Team project by 3 developers, July–November 2026.
+- Development has ended. The repository is kept as an archive.
+- The current build is single-player. 1–4 player co-op with Photon Fusion 2 was planned but not implemented.
+
 ## Gameplay
 
 - Survive 10 rounds inside the shelter. Clearing round 10 wins; dying ends the game.
@@ -18,7 +24,8 @@ VR zombie survival game for Meta Quest. Hold a single shelter against 10 rounds 
   - Barricade repairs during the intermission
   - Healing at the first-aid station
 - The Ready button on the shop skips the intermission.
-- Difficulty: Normal or Hard. Hard raises zombie health and spawn count and lowers kill rewards.
+- Difficulty: Normal or Hard, chosen after Game Start on the title screen.
+- Clearing round 10 or dying opens a panel with Retry and Title.
 - The tutorial covers movement, buying, shooting, reloading, holstering, and repairs.
 
 ## Controls
@@ -34,6 +41,50 @@ VR zombie survival game for Meta Quest. Hold a single shelter against 10 rounds 
 | Release a weapon at the hip | Holster |
 
 Health and money are shown on the back of the hand.
+
+## Systems
+
+| System | Implementation |
+|---|---|
+| Rounds | `RoundManager` state machine: intermission, in progress, cleared, victory, defeat. Other systems subscribe to its events. |
+| Waves | One `WaveDefinition` asset per round sets zombie types and counts. `WaveManager` spreads spawns across tagged spawn points and caps how many zombies are alive at once. |
+| Zombies | `NavMeshAgent` movement. Outside, a zombie attacks its assigned (or nearest) barricade; once inside, it chases the nearest player. Zombies vault through windows, ragdoll on death, and are pooled. |
+| Barricades | Each window and door has planks. A zombie removes one plank per hit. Players repair planks for money at a repair prompt. |
+| Economy | Wallet, kill rewards, vending shop, paid reloads, heal station. |
+| Combat | Raycast guns with single and automatic fire, magazines, haptics, and hip holsters. |
+| Player | Health and damage feedback. The avatar body follows the headset, and arm IK follows the controllers. |
+| Difficulty | `DifficultyConfig` multiplies zombie health, spawn count, max alive, and kill reward. |
+| UI / Audio | World-space menus placed in front of the player, wrist display, round music, spatial zombie sounds. |
+
+Balance values are ScriptableObjects in `Assets/_Project/ScriptableObjects`.
+
+## Balance
+
+Zombies
+
+| Type | Health | Speed (m/s) | Reward | Appears from |
+|---|---|---|---|---|
+| Walker | 100 | 1.5 | 80 | Round 1 |
+| Runner | 80 | 3.2 | 100 | Round 4 |
+
+Weapons
+
+| Weapon | Price | Damage | Ammo |
+|---|---|---|---|
+| Pistol | 300 | 37 | 15 |
+| SMG | 900 | 22 | 40 |
+| AR | 1800 | 28 | 60 |
+
+- Starting money: 800
+- Healing: 400, restores full health
+- Zombies per round (Normal): 6, 8, 10, 12, 15, 18, 21, 24, 28, 32
+- Intermission between rounds: 60 seconds
+
+Hard mode multipliers
+
+| Zombie health | Spawn count | Max alive | Kill reward |
+|---|---|---|---|
+| ×1.75 | ×1.5 | ×1.2 | ×0.6 |
 
 ## Project Setup
 
